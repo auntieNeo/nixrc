@@ -1,0 +1,53 @@
+" change movement keys to dvorak
+noremap t j
+noremap n k
+noremap s l
+" and remap the keys that were displaced
+noremap j t
+noremap k n
+noremap l s
+
+" remap screen line based movement keys to dvorak
+noremap gt gj
+noremap gn gk
+
+" remap window movement keys to dvorak
+" displaces the back 'till command, which I don't know what it does
+noremap T <C-w><C-j>
+" displaces the prev(find) command, which is important
+noremap N <C-w><C-k>
+" displaces the screen-top command, which is worthless
+noremap H <C-w><C-h>
+" displaces the subst line command, which is important
+noremap S <C-w><C-l>
+" remap keys that were displaced
+" displaces the help command, which is worthless
+noremap K N
+" displaces the screen bottom command, which is worthless
+noremap L S
+
+" map some tab navigation keys
+nmap <C-H> :tabprevious<CR>
+nmap <C-S> :tabnext<CR>
+
+set tabstop=2
+set expandtab
+set shiftwidth=2
+set smarttab
+set cindent
+set formatoptions=rol
+
+set backspace=2
+
+set laststatus=2
+
+set tags+=~/.vim/systags
+
+com -range=% Csort <line1>,<line2>sort i r /\<\w*(.\{-})/  " sort C function prototypes
+
+"setlocal spell spelllang=en_us  " turn on spell checking
+
+set wildmode=list:longest
+
+syntax on
+colorscheme desert

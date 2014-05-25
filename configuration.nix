@@ -86,4 +86,12 @@
     shell = "/run/current-system/sw/bin/bash";
   };
 
+  system.activationScripts =
+  {
+    # Configure various dotfiles
+    auntieneoDotfiles = ''
+      ln -fs ${./dotfiles/tmux.conf} /home/auntieneo/.tmux.conf
+      ln -fs ${./dotfiles/vimrc} /home/auntieneo/.vimrc
+    '';
+  };
 }
