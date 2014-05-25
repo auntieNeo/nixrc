@@ -20,6 +20,12 @@
   networking.hostName = "hakase"; # Define your hostname.
   networking.wireless.enable = true;  # Enables wireless.
 
+  # Google nameservers
+  networking.nameservers = [
+    "8.8.8.8"
+    "8.8.4.4"
+  ];
+
   # Select internationalisation properties.
   i18n = {
     consoleFont = "lat9w-16";
@@ -37,6 +43,7 @@
     git
     irssi
     mplayer
+    pmutils
     rxvt_unicode
     scons
     screen
@@ -60,8 +67,8 @@
   # services.printing.enable = true;
 
   # Enable the X11 windowing system.
-  # services.xserver.enable = true;
-  # services.xserver.layout = "us";
+  services.xserver.enable = true;
+  services.xserver.layout = "dvorak";
   # services.xserver.xkbOptions = "eurosign:e";
 
   # Enable the KDE Desktop Environment.
@@ -72,6 +79,7 @@
   users.extraUsers.auntieneo = {
     name = "auntieneo";
     group = "users";
+    extraGroups = [ "wheel" ];
     uid = 1000;
     createHome = true;
     home = "/home/auntieneo";
