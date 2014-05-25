@@ -14,6 +14,9 @@
   boot.loader.gummiboot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  # See console messages during early boot
+  boot.initrd.kernelModules = [ "fbcon" ];
+
   networking.hostName = "hakase"; # Define your hostname.
   networking.wireless.enable = true;  # Enables wireless.
 
@@ -27,7 +30,23 @@
   # List packages installed in system profile. To search by name, run:
   # nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
+#    ansible  # TODO: write an ansible package
+    chromium
+    cmake
+    dmenu
     git
+    irssi
+    mplayer
+    rxvt_unicode
+    scons
+    screen
+    subversionClient
+    sudo
+    texLiveFull
+    tmux
+    vagrant
+    valgrind
+    linuxPackages.virtualbox
     vim
     wget
   ];
