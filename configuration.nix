@@ -71,10 +71,6 @@
   services.xserver.layout = "dvorak";
   # services.xserver.xkbOptions = "eurosign:e";
 
-  # Enable the KDE Desktop Environment.
-  # services.xserver.displayManager.kdm.enable = true;
-  # services.xserver.desktopManager.kde4.enable = true;
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.extraUsers.auntieneo = {
     name = "auntieneo";
@@ -94,4 +90,22 @@
       ln -fs ${./dotfiles/vimrc} /home/auntieneo/.vimrc
     '';
   };
+
+# TODO: patch and install dwm
+# TODO: patch and install rxvt-unicode with shadows
+# TODO: make a package for ansible
+# TODO: xset r rate 400 once and for all
+# TODO: disable capslock
+# TODO: disable annoying ctrl+s flow control
+# TODO: install aspell
+# TODO: install and configure anthy
+# TODO: install and configure anki
+# TODO: install, configure, and sync unison
+# TODO: fix white-out problem with idle screen
+# TODO: disable suspend on closed lid
+# TODO: configure multiple monitors (depending on which host)
+# TODO: configure backgrounds (depending on which host)
+# TODO: configure wireless (on laptop)
+# TODO: disable beep
+# TODO: figure out how to organize configuration files
 }
