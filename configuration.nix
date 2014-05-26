@@ -89,7 +89,15 @@
       ln -fs ${./dotfiles/tmux.conf} /home/auntieneo/.tmux.conf
       ln -fs ${./dotfiles/vimrc} /home/auntieneo/.vimrc
     '';
+
+    # Configure wireless networks
+    wpa_supplicant = ''  # FIXME: does this name have potential for conflict? must investigate
+      ln -fs ${./private/etc/wpa_supplicant.conf} /etc/wpa_supplicant.conf
+    '';
   };
+
+  # Show the NixOS manual in a virtual console
+  services.nixosManual.showManual = true;
 
 # TODO: patch and install dwm
 # TODO: patch and install rxvt-unicode with shadows
