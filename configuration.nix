@@ -49,14 +49,24 @@
     cmake
     conky
     dmenu
+    # install patched version of dwm
+    (pkgs.lib.overrideDerivation pkgs.dwm (attrs: {
+        name = "dwm-6.0-patched";
+        src = fetchurl {
+          url = "https://github.com/auntieNeo/dwm/archive/e7d079df7024379b50c520f14f613f0c036153b1.tar.gz";
+          sha256 = "5415d2fe5458165253e047df434a7840d5488f8a60487a05c00bb4f38fe4843f";
+        };
+    }))
     evince
     git
     gutenprint
     irssi
+    links2
     linuxPackages.virtualbox
     mercurial
     mplayer
     pmutils
+    psmisc
     rxvt_unicode
     scons
     screen
@@ -105,10 +115,11 @@
       ln -fs ${./dotfiles/vimrc} /home/auntieneo/.vimrc
     '';
 
-    # Configure wireless networks
-    wpa_supplicant = ''  # FIXME: does this name have potential for conflict? must investigate
-      ln -fs ${./private/etc/wpa_supplicant.conf} /etc/wpa_supplicant.conf
-    '';
+# FIXME: wpa_supplicant expects the wpa_supplicant.conf file to be in a read/write filesystem. This is a problem.
+#    # Configure wireless networks
+#    wpa_supplicant = ''  # FIXME: does this name have potential for conflict? must investigate
+#      ln -fs ${./private/etc/wpa_supplicant.conf} /etc/wpa_supplicant.conf
+#    '';
   };
 
   # Show the NixOS manual in a virtual console
