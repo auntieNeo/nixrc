@@ -113,6 +113,7 @@
     auntieneoDotfiles = ''
       ln -fs ${./dotfiles/tmux.conf} /home/auntieneo/.tmux.conf
       ln -fs ${./dotfiles/vimrc} /home/auntieneo/.vimrc
+      ln -fs ${./dotfiles/Xdefaults} /home/auntieneo/.Xdefaults
     '';
 
 # FIXME: wpa_supplicant expects the wpa_supplicant.conf file to be in a read/write filesystem. This is a problem.
@@ -125,7 +126,6 @@
   # Show the NixOS manual in a virtual console
   services.nixosManual.showManual = true;
 
-# TODO: patch and install dwm
 # TODO: patch and install rxvt-unicode with shadows
 # TODO: make a package for ansible
 # TODO: write an anthy package

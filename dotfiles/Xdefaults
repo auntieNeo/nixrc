@@ -1,0 +1,89 @@
+XTerm*metaSendsEscape: true
+xterm*Background: #FFFFFF
+xterm*Foreground: #000000
+URxvt*termName: rxvt
+URxvt*scrollstyle: plain
+URxvt*borderColor: 7
+
+#Psudo transparency for white backgrounds...
+#URxvt*shading: -50
+URxvt*tintColor: white
+URxvt*foreground: black
+URxvt*background: white
+URxvt*inheritPixmap: true
+URxvt*textShadow: true
+URxvt*shadowColor: #FFFFFF
+URxvt.iso14755_52: false
+
+#urxvt*font: fixed, xft:Kochi Gothic:antialias=false
+
+#X broke and made the up key printscr
+URxvt.print-pipe: echo "echoing print"
+
+## dina font looks pretty readable at this size
+URxvt*font: -windows-dina-medium-r-normal--13-100-96-96-c-80-iso8859-1
+URxvt*boldFont: -windows-dina-bold-r-normal--13-100-96-96-c-80-iso8859-1
+
+# dina font looks less squat at 15 pixels than 13 pixels, but is still the same width
+#URxvt*font: -windows-dina-medium-r-normal--15-90-96-96-c-70-*-*
+#URxvt*boldFont: -windows-dina-bold-r-normal--15-90-96-96-c-70-*-*
+
+## terminus can be nice and large for a programmer font
+#URxvt*font:               -xos4-terminus-medium-r-normal--14-140-72-72-c-80-*-*
+
+#URxvt*font:               -*-proggyclean-medium-r-normal-*-13-*-*-*-*-*-*-*
+#URxvt*boldFont:           -*-proggyclean-medium-r-normal-*-13-*-*-*-*-*-*-* 
+
+#URxvt*font:               -*-proggysmall-medium-r-normal-*-10-*-*-*-*-*-*-*
+#URxvt*boldFont:           -*-proggysmall-medium-r-normal-*-10-*-*-*-*-*-*-* 
+
+#URxvt*font:               -*-proggytiny-medium-r-normal-*-10-*-*-*-*-*-*-*
+#URxvt*boldFont:           -*-proggytiny-medium-r-normal-*-10-*-*-*-*-*-*-* 
+
+#URxvt*font:               -*-proggysquare-medium-r-normal-*-11-*-*-*-*-*-*-*
+#URxvt*boldFont:           -*-proggysquare-medium-r-normal-*-11-*-*-*-*-*-*-* 
+
+#URxvt*font:               -windows-dina-medium-r-normal--15-*-*-*-*-*-*-*
+#URxvt*boldFont:           -*-dina-bold-r-normal-*-15-*-*-*-*-*-*-* 
+
+#URxvt*shading: 0
+#URxvt*tintColor: white
+#URxvt*foreground: white
+#URxvt*background: black
+#URxvt*inheritPixmap: true
+#URxvt.iso14755_52: false
+
+#Real transparency for white backgrounds...
+#URxvt*depth: 32
+#URxvt*foreground: black
+##URxvt*background: rgba:7777/7777/7777/7777
+#URxvt*background: rgba:EEEE/EEEE/EEEE/7777
+
+#Xcursor.theme: zelda-cursors-1.0
+Xcursor*theme: Jimmac
+
+##Gnome terminal colors
+! black
+URxvt*color0  : #2E3436
+URxvt*color8  : #555753
+! red
+URxvt*color1  : #CC0000
+URxvt*color9  : #EF2929
+! green
+URxvt*color2  : #4E9A06
+URxvt*color10 : #8AE234
+! yellow
+URxvt*color3  : #C4A000
+URxvt*color11 : #FCE94F
+! blue
+URxvt*color4  : #3465A4
+URxvt*color12 : #729FCF
+! magenta
+URxvt*color5  : #75507B
+URxvt*color13 : #AD7FA8
+! cyan
+URxvt*color6  : #06989A
+URxvt*color14 : #34E2E2
+! white
+URxvt*color7  : #D3D7CF
+URxvt*color15 : #EEEEEC
