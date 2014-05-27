@@ -70,6 +70,7 @@
     rxvt_unicode
     scons
     screen
+    stdenv
     subversionClient
     sudo
     texLiveFull
@@ -110,10 +111,13 @@
   system.activationScripts =
   {
     # Configure various dotfiles
-    auntieneoDotfiles = ''
+    dotfiles = ''
+      ln -fs ${./dotfiles/gitconfig} /home/auntieneo/.gitconfig
       ln -fs ${./dotfiles/tmux.conf} /home/auntieneo/.tmux.conf
       ln -fs ${./dotfiles/vimrc} /home/auntieneo/.vimrc
       ln -fs ${./dotfiles/Xdefaults} /home/auntieneo/.Xdefaults
+      ln -fs ${./dotfiles/tmux.conf} /root/.tmux.conf
+      ln -fs ${./dotfiles/vimrc} /root/.vimrc
     '';
 
 # FIXME: wpa_supplicant expects the wpa_supplicant.conf file to be in a read/write filesystem. This is a problem.
@@ -129,9 +133,17 @@
 # TODO: patch and install rxvt-unicode with shadows
 # TODO: make a package for ansible
 # TODO: write an anthy package
+
 # TODO: xset r rate 400 once and for all
 # TODO: disable capslock
+# TODO: enable nib scrollwheel
+
 # TODO: disable annoying ctrl+s flow control
+# TODO: configure NIX_PATH with /home/auntieneo/code/nixpkgs
+
+# TODO: disable annoying ctrl+s flow control for root user
+# TODO: configure vim for the root user
+
 # TODO: install aspell
 # TODO: install, configure, and sync unison
 # TODO: fix white-out problem with idle screen
@@ -141,8 +153,11 @@
 # TODO: only configure wireless on systems that need it
 # TODO: disable beep
 # TODO: figure out how to organize configuration files
+
 # TODO: install ssh keys
 # TODO: configure ssh-agent
+# TODO: configure git email and username
+
 # TODO: configure cmus
 # TODO: configure audio (don't break on reboot, change depending on the host)
 }
