@@ -45,6 +45,9 @@
 #    ansible  # TODO: write an ansible package
     anki
 #    anthy  # TODO: write an anthy package (with ibus)
+    apg
+    aspell
+    aspellDicts.en
     chromium
     cmake
     conky
@@ -63,10 +66,14 @@
     irssi
     links2
     linuxPackages.virtualbox
+    manpages
     mercurial
     mplayer
+    ncurses
+#    netbeans
     pmutils
     psmisc
+    rtorrent
     rxvt_unicode
     scons
     screen
@@ -79,6 +86,7 @@
     vagrant
     valgrind
     vim
+    vsftpd
     wget
     xlibs.xinit
   ];
@@ -144,7 +152,6 @@
 # TODO: disable annoying ctrl+s flow control for root user
 # TODO: configure vim for the root user
 
-# TODO: install aspell
 # TODO: install, configure, and sync unison
 # TODO: fix white-out problem with idle screen
 # TODO: disable suspend on closed lid
@@ -152,6 +159,7 @@
 # TODO: configure backgrounds (depending on which host)
 # TODO: only configure wireless on systems that need it
 # TODO: disable beep
+# TODO: configure ntp
 # TODO: figure out how to organize configuration files
 
 # TODO: install ssh keys
@@ -160,4 +168,5 @@
 
 # TODO: configure cmus
 # TODO: configure audio (don't break on reboot, change depending on the host)
+# TODO: configure irssi
 }
