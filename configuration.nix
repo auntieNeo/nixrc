@@ -12,6 +12,9 @@ rec {
       (./machines + "/${builtins.readFile ./hostname}.nix")  # FIXME: this breaks when ./hostname has a newline at the end
     ];
 
+  # Allow proprietary software (such as the NVIDIA drivers).
+  nixpkgs.config.allowUnfree = true;
+
   # See console messages during early boot.
   boot.initrd.kernelModules = [ "fbcon" ];
 
@@ -40,33 +43,18 @@ rec {
   # List packages installed in system profile. To search by name, run:
   # nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
+    aspell
+    aspellDicts.en
 #    ansible  # TODO: write an ansible package
-    anki
-#    anthy  # TODO: write an anthy package (with ibus)
-    chromium
     cmake
-    conky
     ctags
-    dmenu
-    # install patched version of dwm
-    (pkgs.lib.overrideDerivation pkgs.dwm (attrs: {
-        name = "dwm-6.0-patched";
-        src = fetchurl {
-          url = "https://github.com/auntieNeo/dwm/archive/e7d079df7024379b50c520f14f613f0c036153b1.tar.gz";
-          sha256 = "5415d2fe5458165253e047df434a7840d5488f8a60487a05c00bb4f38fe4843f";
-        };
-    }))
-    evince
     git
-    gutenprint
     irssi
     links2
     linuxPackages.virtualbox
     mercurial
-    mplayer
     pmutils
     psmisc
-    rxvt_unicode
     scons
     screen
     stdenv
@@ -79,22 +67,12 @@ rec {
     valgrind
     vim
     wget
-    xlibs.xinit
   ];
 
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
-
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
-
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-  services.xserver.layout = "dvorak";
-  # services.xserver.xkbOptions = "eurosign:e";
-  services.xserver.synaptics.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.extraUsers.auntieneo = {
