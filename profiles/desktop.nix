@@ -18,10 +18,11 @@
     evince
     gutenprint
     mplayer
+#    netbeans
     rxvt_unicode
     xlibs.xinit
   ];
-#
+
   # Enable CUPS to print documents.
   services.printing.enable = true;
 

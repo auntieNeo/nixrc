@@ -4,6 +4,7 @@
   imports =
     [
       ../profiles/desktop.nix
+      ../profiles/server.nix
     ];
 
   # Use the GRUB 2 boot loader.
