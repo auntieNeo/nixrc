@@ -18,6 +18,14 @@
     # Use the NVIDIA graphics drivers.
     videoDrivers = [ "nvidia" ];
 
+    serverLayoutSection = ''
+      Identifier     "Layout0"
+      Screen      0  "Screen0" 0 0
+      InputDevice    "Keyboard0" "CoreKeyboard"
+      InputDevice    "Mouse0" "CorePointer"
+      Option         "Xinerama" "0"
+    '';
+
     monitorSection = ''
       # HorizSync source: edid, VertRefresh source: edid
       Identifier     "Monitor0"
