@@ -1,0 +1,4 @@
+.*.swp
+hardware-configuration.nix
+hostname
+Session.vim

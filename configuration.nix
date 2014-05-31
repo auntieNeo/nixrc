@@ -4,15 +4,16 @@
 
 { config, pkgs, ... }:
 
-{
+rec {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      # Import machine-specific configuration files.
+      (./machines + "/${builtins.readFile ./hostname}.nix")  # FIXME: this breaks when ./hostname has a newline at the end
     ];
 
-  # Use the gummiboot efi boot loader.
-  boot.loader.gummiboot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  # Allow proprietary software (such as the NVIDIA drivers).
+  nixpkgs.config.allowUnfree = true;
 
   # See console messages during early boot.
   boot.initrd.kernelModules = [ "fbcon" ];
@@ -20,8 +21,8 @@
   # Disable console blanking after being idle.
   boot.kernelParams = [ "consoleblank=0" ];
 
-  networking.hostName = "hakase"; # Define your hostname.
-  networking.wireless.enable = true;  # Enables wireless.
+  # Set the hostname from the contents of ./hostname
+  networking.hostName = builtins.readFile ./hostname;  # FIXME: this breaks when ./hostname has a newline at the end
 
   # Google nameservers
   networking.nameservers = [
@@ -43,38 +44,24 @@
   # nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
 #    ansible  # TODO: write an ansible package
-    anki
-#    anthy  # TODO: write an anthy package (with ibus)
     apg
     aspell
     aspellDicts.en
-    chromium
     cmake
-    conky
-    dmenu
-    # install patched version of dwm
-    (pkgs.lib.overrideDerivation pkgs.dwm (attrs: {
-        name = "dwm-6.0-patched";
-        src = fetchurl {
-          url = "https://github.com/auntieNeo/dwm/archive/e7d079df7024379b50c520f14f613f0c036153b1.tar.gz";
-          sha256 = "5415d2fe5458165253e047df434a7840d5488f8a60487a05c00bb4f38fe4843f";
-        };
-    }))
-    evince
+    ctags
     git
-    gutenprint
     irssi
     links2
     linuxPackages.virtualbox
     manpages
     mercurial
-    mplayer
     ncurses
-#    netbeans
     pmutils
     psmisc
     rtorrent
     rxvt_unicode
+    pmutils
+    psmisc
     scons
     screen
     stdenv
@@ -86,24 +73,8 @@
     vagrant
     valgrind
     vim
-    vsftpd
     wget
-    xlibs.xinit
   ];
-
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
-
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-  services.xserver.layout = "dvorak";
-  # services.xserver.xkbOptions = "eurosign:e";
-  services.xserver.synaptics.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.extraUsers.auntieneo = {
