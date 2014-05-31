@@ -43,16 +43,23 @@ rec {
   # List packages installed in system profile. To search by name, run:
   # nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
+#    ansible  # TODO: write an ansible package
+    apg
     aspell
     aspellDicts.en
-#    ansible  # TODO: write an ansible package
     cmake
     ctags
     git
     irssi
     links2
     linuxPackages.virtualbox
+    manpages
     mercurial
+    ncurses
+    pmutils
+    psmisc
+    rtorrent
+    rxvt_unicode
     pmutils
     psmisc
     scons
@@ -68,11 +75,6 @@ rec {
     vim
     wget
   ];
-
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.extraUsers.auntieneo = {
@@ -121,7 +123,6 @@ rec {
 # TODO: disable annoying ctrl+s flow control for root user
 # TODO: configure vim for the root user
 
-# TODO: install aspell
 # TODO: install, configure, and sync unison
 # TODO: fix white-out problem with idle screen
 # TODO: disable suspend on closed lid
@@ -129,6 +130,7 @@ rec {
 # TODO: configure backgrounds (depending on which host)
 # TODO: only configure wireless on systems that need it
 # TODO: disable beep
+# TODO: configure ntp
 # TODO: figure out how to organize configuration files
 
 # TODO: install ssh keys
@@ -137,4 +139,5 @@ rec {
 
 # TODO: configure cmus
 # TODO: configure audio (don't break on reboot, change depending on the host)
+# TODO: configure irssi
 }

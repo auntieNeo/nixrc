@@ -49,5 +49,8 @@ com -range=% Csort <line1>,<line2>sort i r /\<\w*(.\{-})/  " sort C function pro
 
 set wildmode=list:longest
 
+" line number information displayed in the status bar
+set ruler
+
 syntax on
 colorscheme desert
