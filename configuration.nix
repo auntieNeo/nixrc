@@ -10,9 +10,14 @@
       ./hardware-configuration.nix
     ];
 
-  # Use the gummiboot efi boot loader.
-  boot.loader.gummiboot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+#  # Use the gummiboot efi boot loader.
+#  boot.loader.gummiboot.enable = true;
+#  boot.loader.efi.canTouchEfiVariables = true;
+  # Use the GRUB 2 boot loader.
+  boot.loader.grub.enable = true;
+  boot.loader.grub.version = 2;
+  # Define on which hard drive you want to install Grub.
+  boot.loader.grub.device = "/dev/sda";
 
   # See console messages during early boot.
   boot.initrd.kernelModules = [ "fbcon" ];
@@ -20,8 +25,8 @@
   # Disable console blanking after being idle.
   boot.kernelParams = [ "consoleblank=0" ];
 
-  networking.hostName = "hakase"; # Define your hostname.
-  networking.wireless.enable = true;  # Enables wireless.
+  networking.hostName = "hazuki"; # Define your hostname.
+#  networking.wireless.enable = true;  # Enables wireless.
 
   # Google nameservers
   networking.nameservers = [
@@ -86,7 +91,7 @@
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  services.openssh.enable = true;
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
