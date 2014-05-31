@@ -19,16 +19,11 @@
     videoDrivers = [ "nvidia" ];
 
     serverLayoutSection = ''
-      Identifier     "Layout0"
-      Screen      0  "Screen0" 0 0
-      InputDevice    "Keyboard0" "CoreKeyboard"
-      InputDevice    "Mouse0" "CorePointer"
       Option         "Xinerama" "0"
     '';
 
     monitorSection = ''
       # HorizSync source: edid, VertRefresh source: edid
-      Identifier     "Monitor0"
       VendorName     "Unknown"
       ModelName      "Ancor Communications Inc VE228"
       HorizSync       30.0 - 83.0
@@ -37,16 +32,12 @@
     '';
 
     deviceSection = ''
-      Identifier     "Device0"
       Driver         "nvidia"
       VendorName     "NVIDIA Corporation"
       BoardName      "GeForce GTX 670"
     '';
 
     screenSection = ''
-      Identifier     "Screen0"
-      Device         "Device0"
-      Monitor        "Monitor0"
       DefaultDepth    24
       Option         "Stereo" "0"
       Option         "metamodes" "DVI-I-1: nvidia-auto-select +0+0 {rotation=left}, DP-0: nvidia-auto-select +1080+0 {rotation=left}, DVI-D-0: nvidia-auto-select +2160+0 {rotation=left}; DVI-I-1: nvidia-auto-select +0+0 {rotation=left}; DVI-I-1: 1680x1050 +0+0 {rotation=left}; DVI-I-1: 1600x1200 +0+0 {rotation=left}; DVI-I-1: 1440x900 +0+0 {rotation=left}; DVI-I-1: 1280x1024 +0+0 {rotation=left}; DVI-I-1: 1280x1024_60 +0+0 {rotation=left}; DVI-I-1: 1280x960 +0+0 {rotation=left}; DVI-I-1: 1152x864 +0+0 {rotation=left}; DVI-I-1: 1024x768 +0+0 {rotation=left}; DVI-I-1: 1024x768_70 +0+0 {rotation=left}; DVI-I-1: 1024x768_60 +0+0 {rotation=left}; DVI-I-1: 800x600 +0+0 {rotation=left}; DVI-I-1: 800x600_72 +0+0 {rotation=left}; DVI-I-1: 800x600_60 +0+0 {rotation=left}; DVI-I-1: 800x600_56 +0+0 {rotation=left}; DVI-I-1: 640x480 +0+0 {rotation=left}; DVI-I-1: 640x480_72 +0+0 {rotation=left}; DVI-I-1: 640x480_60 +0+0 {rotation=left}"
