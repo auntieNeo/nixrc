@@ -4,20 +4,13 @@
 
 { config, pkgs, ... }:
 
-{
+rec {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      # Import machine-specific configuration files.
+      (./machines + "/${builtins.readFile ./hostname}.nix")  # FIXME: this breaks when ./hostname has a newline at the end
     ];
-
-#  # Use the gummiboot efi boot loader.
-#  boot.loader.gummiboot.enable = true;
-#  boot.loader.efi.canTouchEfiVariables = true;
-  # Use the GRUB 2 boot loader.
-  boot.loader.grub.enable = true;
-  boot.loader.grub.version = 2;
-  # Define on which hard drive you want to install Grub.
-  boot.loader.grub.device = "/dev/sda";
 
   # See console messages during early boot.
   boot.initrd.kernelModules = [ "fbcon" ];
@@ -25,8 +18,8 @@
   # Disable console blanking after being idle.
   boot.kernelParams = [ "consoleblank=0" ];
 
-  networking.hostName = "hazuki"; # Define your hostname.
-#  networking.wireless.enable = true;  # Enables wireless.
+  # Set the hostname from the contents of ./hostname
+  networking.hostName = builtins.readFile ./hostname;  # FIXME: this breaks when ./hostname has a newline at the end
 
   # Google nameservers
   networking.nameservers = [
@@ -53,6 +46,7 @@
     chromium
     cmake
     conky
+    ctags
     dmenu
     # install patched version of dwm
     (pkgs.lib.overrideDerivation pkgs.dwm (attrs: {
