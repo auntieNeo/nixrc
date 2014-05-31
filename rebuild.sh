@@ -1,7 +1,15 @@
 #!/run/current-system/sw/bin/bash
-GIT="git -c user.email='none@example.com' -c user.name='none'"
-cd /etc/nixos/
-sudo $GIT fetch local master
-#sudo $GIT reset --hard
-sudo $GIT checkout local/master
+if [ $# -eq 0 ]; then
+  SRC=$HOME/code/nixrc
+else
+  SRC=$1
+fi
+sudo rsync --filter="protect /hardware-configuration.nix" \
+           --filter="protect /hostname" \
+           --filter="exclude,s .gitignore" \
+           --filter="exclude,s /.git" \
+           --filter="exclude .*.swp" \
+           --filter="exclude Session.vim" \
+           --delete --recursive \
+           $SRC/ /etc/nixos/
 sudo nixos-rebuild switch
