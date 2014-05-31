@@ -19,7 +19,7 @@
     videoDrivers = [ "nvidia" ];
 
     serverLayoutSection = ''
-      Option         "Xinerama" "0"
+      Option         "Xinerama" "1"
     '';
 
     monitorSection = ''
