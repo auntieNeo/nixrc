@@ -35,7 +35,7 @@ else
   echo -n "nixos" > $HOSTNAME_FILE
 fi
 
-# Rsync files from 
+# Rsync files from the git repository to their final destination.
 rsync --filter="protect /hardware-configuration.nix" \
            --filter="protect /hostname" \
            --filter="exclude,s .gitignore" \
