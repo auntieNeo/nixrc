@@ -3,3 +3,7 @@ stty -ixon
 
 # Set the default editor.
 EDITOR=vim
+
+if [ "$UID" -ne 0 ]; then
+  PS1='[\u@\h \W]\$ '
+fi

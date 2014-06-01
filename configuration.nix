@@ -91,6 +91,7 @@ rec {
   system.activationScripts =
   {
     # Configure various dotfiles.
+    # FIXME: These are chmod 0777. Not good.
     dotfiles = ''
       ln -fs ${./dotfiles/bashrc} /home/auntieneo/.bashrc
       ln -fs ${./dotfiles/gitconfig} /home/auntieneo/.gitconfig
