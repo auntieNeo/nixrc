@@ -146,6 +146,4 @@ rec {
 # TODO: configure audio (don't break on reboot, change depending on the host)
 # TODO: configure irssi
 # TODO: automatically start and configure tmux (different for each machine)
-
-# FIXME: disable RenderAccel for netbook's radeon driver for faster terminals
 }
