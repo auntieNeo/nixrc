@@ -55,5 +55,5 @@ $RSYNC --filter="protect /hardware-configuration.nix" \
            --filter="exclude .*.swp" \
            --filter="exclude Session.vim" \
            --delete --recursive \
-           $SRC/ $NIXOS_CONFIG/
+           $NIXRC/ $NIXOS_CONFIG/
 $NIXOS_INSTALL && $RM -rf /mnt/nixrc && $REBOOT
