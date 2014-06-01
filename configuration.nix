@@ -128,9 +128,12 @@ rec {
 
 # TODO: configure NIX_PATH with /home/auntieneo/code/nixpkgs
 # TODO: configure zsh to behave like bash but still be awesome
+# TODO: make an alias to disable color in alsamixer
 
 # TODO: use wmname to set the window manager name to LG3D (hack to get Java to behave in dwm)
 # TODO: configure clickable URLs in rxvt-unicode (see https://wiki.archlinux.org/index.php/rxvt-unicode#Clickable_URLs)
+# TODO: patch to enable splitting the primary tile in dwm
+# TODO: patch dwm to ALWAYS be able to change the volume (or find some other solution)
 
 # TODO: install, configure, and sync unison
 # TODO: fix white-out problem with idle screen
@@ -149,4 +152,5 @@ rec {
 # TODO: configure cmus
 # TODO: configure audio (don't break on reboot, change depending on the host)
 # TODO: automatically start and configure tmux (different for each machine)
+# TODO: automatically import Chromium settings (probably through Google profile)
 }

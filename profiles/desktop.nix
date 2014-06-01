@@ -24,6 +24,13 @@
     (pkgs.lib.overrideDerivation pkgs.rxvt_unicode (attrs: {
       patches = [ ../patches/urxvt-text-shadows.patch ];  # FIXME: This clobbers an existing patch for correct font spacing.
     }))
+    (pkgs.lib.overrideDerivation pkgs.slim (attrs: {
+      # Set the display manager theme.
+      theme = fetchurl {
+        url = "https://github.com/menski/slim-theme-dwm/archive/076038e839a29fad3ec403326c22f0cf3e7c79f9.tar.gz";
+        sha256 = "d74fb764cb79f962d7bdb134388b9d8a31dbbb67953adc5c54a14b85aaf73d9f";
+      };
+    }))
     wmname  # Used for hack in which Java apps break in dwm.
     xlibs.xinit
   ];
@@ -36,4 +43,8 @@
   services.xserver.layout = "dvorak";
   services.xserver.xkbOptions = "caps:hyper";
   services.xserver.synaptics.enable = true;
+
+  # Set dwm as the X session type.
+#dmconfig.session.names
+
 }
