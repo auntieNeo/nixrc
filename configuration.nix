@@ -118,7 +118,6 @@ rec {
 # FIXME: vim ctrl+h ctrl+s tab navigation seems to be broken on my netbook
 
 # TODO: xset r rate 400 once and for all
-# TODO: disable capslock
 # TODO: enable nib scrollwheel
 
 # TODO: disable annoying ctrl+s flow control
@@ -146,4 +145,5 @@ rec {
 # TODO: configure cmus
 # TODO: configure audio (don't break on reboot, change depending on the host)
 # TODO: configure irssi
+# TODO: automatically start and configure tmux (different for each machine)
 }
