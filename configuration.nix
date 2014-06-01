@@ -116,6 +116,7 @@ rec {
 
 # TODO: make a package for ansible
 # TODO: write an anthy package
+# TODO: update vagrant to at lesat version 1.6 (for Windows guest support)
 
 # TODO: try to load ./Session.vim whenever "vim" is run
 # TODO: write macro to set function keys to run commands
