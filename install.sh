@@ -38,9 +38,11 @@ if [ ! -d $NIXRC ]; then
   $GIT clone "https://github.com/auntieNeo/nixrc"
 fi
 
-# Determine the hostname from UUID in /sys/class/dmi/id/product_uuid.
+# Determine the hostname from either UUID or MAC address.
 if $GREP --quiet "01572D33-7B50-CB11-A0BB-8DFA84B41F9C" $UUID_FILE; then
   $ECHO -n "hakase" > $HOSTNAME_FILE
+elif $GREP --quiet "00:25:22:cb:23:c1" "/sys/class/net/enp3s0/address"; then
+  $ECHO -n "hazuki" > $HOSTNAME_FILE
 else
   $ECHO -n "nixos" > $HOSTNAME_FILE
 fi
