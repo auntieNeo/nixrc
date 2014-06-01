@@ -6,6 +6,7 @@
 #    anthy  # TODO: write an anthy package (with ibus)
     chromium
     conky
+#    dina  # TODO: write a package for dina fonts
     dmenu
     # install patched version of dwm
     (pkgs.lib.overrideDerivation pkgs.dwm (attrs: {
@@ -18,8 +19,9 @@
     evince
     gutenprint
     mplayer
-#    netbeans
+    netbeans
     rxvt_unicode
+    wmname  # Used for hack in which Java apps break in dwm.
     xlibs.xinit
   ];
 

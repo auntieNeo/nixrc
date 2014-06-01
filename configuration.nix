@@ -74,6 +74,7 @@ rec {
     valgrind
     vim
     wget
+    wgetpaste
   ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -121,7 +122,8 @@ rec {
 # TODO: configure NIX_PATH with /home/auntieneo/code/nixpkgs
 
 # TODO: disable annoying ctrl+s flow control for root user
-# TODO: configure vim for the root user
+
+# TODO: use wmname to set the window manager name to LG3D (hack to get Java to behave in dwm)
 
 # TODO: install, configure, and sync unison
 # TODO: fix white-out problem with idle screen
