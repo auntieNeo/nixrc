@@ -92,7 +92,7 @@ rec {
   {
     # Configure various dotfiles.
     dotfiles = ''
-      ln -fs ${./dotfiles/bashrc} /home/auntieneo/.bashrc
+      ln -fs ${./dotfiles/bashrc} /home/auntieneo/.bashrc  # FIXME: for some reason, hakase doesn't source bashrc
       ln -fs ${./dotfiles/gitconfig} /home/auntieneo/.gitconfig
       ln -fs ${./dotfiles/tmux.conf} /home/auntieneo/.tmux.conf
       ln -fs ${./dotfiles/vimrc} /home/auntieneo/.vimrc
@@ -124,7 +124,6 @@ rec {
 
 # TODO: configure NIX_PATH with /home/auntieneo/code/nixpkgs
 # TODO: configure zsh to behave like bash but still be awesome
-# TODO: set EDITOR to vim
 
 # TODO: use wmname to set the window manager name to LG3D (hack to get Java to behave in dwm)
 
