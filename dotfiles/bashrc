@@ -1,2 +1,5 @@
 # Disable annoying ctrl+s flow control.
 stty -ixon
+
+# Set the default editor.
+EDITOR=vim
