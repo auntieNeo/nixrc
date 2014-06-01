@@ -28,7 +28,7 @@ UUID_FILE="/sys/class/dmi/id/product_uuid"
 if [ ! -d $NIXOS_CONFIG ]; then
   $ECHO "Error: Could not find /mnt/etc/nixos."
   $ECHO "Run 'nixos-generate-config --root /mnt' and review output first."
-  return 1
+  exit 1
 fi
 
 # Clone the git repository containing the NixOS configuration.

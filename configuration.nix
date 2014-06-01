@@ -114,12 +114,16 @@ rec {
 # TODO: make a package for ansible
 # TODO: write an anthy package
 
+# TODO: try to load ./Session.vim whenever "vim" is run
+# FIXME: vim ctrl+h ctrl+s tab navigation seems to be broken on my netbook
+
 # TODO: xset r rate 400 once and for all
 # TODO: disable capslock
 # TODO: enable nib scrollwheel
 
 # TODO: disable annoying ctrl+s flow control
 # TODO: configure NIX_PATH with /home/auntieneo/code/nixpkgs
+# TODO: configure zsh to behave like bash but still be awesome
 
 # TODO: disable annoying ctrl+s flow control for root user
 
