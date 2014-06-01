@@ -91,9 +91,11 @@ rec {
   system.activationScripts =
   {
     # Configure various dotfiles.
+    # FIXME: The dotfiles can't be linked on the first boot of a fresh install, because the home directory hasn't been created yet.
     dotfiles = ''
       ln -fs ${./dotfiles/bashrc} /home/auntieneo/.bashrc  # FIXME: for some reason, hakase doesn't source bashrc
       ln -fs ${./dotfiles/gitconfig} /home/auntieneo/.gitconfig
+      ln -fs ${./dotfiles/irssi} /home/auntieneo/.irssi
       ln -fs ${./dotfiles/tmux.conf} /home/auntieneo/.tmux.conf
       ln -fs ${./dotfiles/vimrc} /home/auntieneo/.vimrc
       ln -fs ${./dotfiles/Xdefaults} /home/auntieneo/.Xdefaults
@@ -118,6 +120,7 @@ rec {
 # TODO: try to load ./Session.vim whenever "vim" is run
 # TODO: write macro to set function keys to run commands
 # FIXME: vim ctrl+h ctrl+s tab navigation seems to be broken on my netbook
+# TODO: add ctrl+<left> and ctrl+<right> tab navigation in vim (for use from my phone)
 
 # TODO: xset r rate 400 once and for all
 # TODO: enable nib scrollwheel
@@ -126,6 +129,7 @@ rec {
 # TODO: configure zsh to behave like bash but still be awesome
 
 # TODO: use wmname to set the window manager name to LG3D (hack to get Java to behave in dwm)
+# TODO: configure clickable URLs in rxvt-unicode (see https://wiki.archlinux.org/index.php/rxvt-unicode#Clickable_URLs)
 
 # TODO: install, configure, and sync unison
 # TODO: fix white-out problem with idle screen
@@ -143,6 +147,5 @@ rec {
 
 # TODO: configure cmus
 # TODO: configure audio (don't break on reboot, change depending on the host)
-# TODO: configure irssi
 # TODO: automatically start and configure tmux (different for each machine)
 }

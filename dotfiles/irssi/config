@@ -1,0 +1,25 @@
+servers = (
+  {
+    address = "irc.freenode.net";
+    chatnet = "freenode";
+    autoconnect = "Yes";
+  },
+);
+
+chatnets = {
+  FreeNode = {
+    type = "IRC";
+    autosendcmd = "MSG NickServ IDENTIFY 888yanksucks; /MODE nick -i";
+  };
+};
+
+channels = (
+  { name = "#peltkore"; chatnet = "freenode"; autojoin = "Yes"; },
+);
+settings = {
+  core = {
+    real_name = "Jonathan Glines";
+    user_name = "auntieNeo";
+    nick = "auntie";
+  };
+};
