@@ -1,0 +1,2 @@
+# Disable annoying ctrl+s flow control.
+stty -ixon

@@ -92,10 +92,12 @@ rec {
   {
     # Configure various dotfiles
     dotfiles = ''
+      ln -fs ${./dotfiles/bashrc} /home/auntieneo/.bashrc
       ln -fs ${./dotfiles/gitconfig} /home/auntieneo/.gitconfig
       ln -fs ${./dotfiles/tmux.conf} /home/auntieneo/.tmux.conf
       ln -fs ${./dotfiles/vimrc} /home/auntieneo/.vimrc
       ln -fs ${./dotfiles/Xdefaults} /home/auntieneo/.Xdefaults
+      ln -fs ${./dotfiles/bashrc} /root/.bashrc
       ln -fs ${./dotfiles/tmux.conf} /root/.tmux.conf
       ln -fs ${./dotfiles/vimrc} /root/.vimrc
     '';
@@ -115,16 +117,15 @@ rec {
 # TODO: write an anthy package
 
 # TODO: try to load ./Session.vim whenever "vim" is run
+# TODO: write macro to set function keys to run commands
 # FIXME: vim ctrl+h ctrl+s tab navigation seems to be broken on my netbook
 
 # TODO: xset r rate 400 once and for all
 # TODO: enable nib scrollwheel
 
-# TODO: disable annoying ctrl+s flow control
 # TODO: configure NIX_PATH with /home/auntieneo/code/nixpkgs
 # TODO: configure zsh to behave like bash but still be awesome
-
-# TODO: disable annoying ctrl+s flow control for root user
+# TODO: set EDITOR to vim
 
 # TODO: use wmname to set the window manager name to LG3D (hack to get Java to behave in dwm)
 
