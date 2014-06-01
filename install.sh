@@ -3,7 +3,7 @@
 #
 # This script automates configuration and installation of NixOS. It is intended
 # to be run from the within the NixOS live boot medium. Filesystems creation
-# and network configuration must be done beforehand.  followed by running
+# and network configuration must be done beforehand, followed by running
 # 'nixos-generate-config --root /mnt' (see the NixOS manual).
 #
 
