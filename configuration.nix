@@ -90,7 +90,7 @@ rec {
 
   system.activationScripts =
   {
-    # Configure various dotfiles
+    # Configure various dotfiles.
     dotfiles = ''
       ln -fs ${./dotfiles/gitconfig} /home/auntieneo/.gitconfig
       ln -fs ${./dotfiles/tmux.conf} /home/auntieneo/.tmux.conf
@@ -107,7 +107,7 @@ rec {
 #    '';
   };
 
-  # Show the NixOS manual in a virtual console
+  # Show the NixOS manual in a virtual console.
   services.nixosManual.showManual = true;
 
 # TODO: patch and install rxvt-unicode with shadows

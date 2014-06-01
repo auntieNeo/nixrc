@@ -21,8 +21,8 @@ URxvt.iso14755_52: false
 URxvt.print-pipe: echo "echoing print"
 
 ## dina font looks pretty readable at this size
-URxvt*font: -windows-dina-medium-r-normal--13-100-96-96-c-80-iso8859-1
-URxvt*boldFont: -windows-dina-bold-r-normal--13-100-96-96-c-80-iso8859-1
+#URxvt*font: -windows-dina-medium-r-normal--13-100-96-96-c-80-iso8859-1
+#URxvt*boldFont: -windows-dina-bold-r-normal--13-100-96-96-c-80-iso8859-1
 
 # dina font looks less squat at 15 pixels than 13 pixels, but is still the same width
 #URxvt*font: -windows-dina-medium-r-normal--15-90-96-96-c-70-*-*

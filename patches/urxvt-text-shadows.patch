@@ -1,0 +1,181 @@
+diff -ur rxvt-unicode-9.12/src/init.C rxvt-unicode-9.12-modified/src/init.C
+--- rxvt-unicode-9.12/src/init.C	2011-06-22 04:44:37.000000000 -0600
++++ rxvt-unicode-9.12-modified/src/init.C	2013-09-11 13:08:25.000000000 -0600
+@@ -509,6 +509,7 @@
+ #endif /* ! NO_BOLD_UNDERLINE_REVERSE */
+ #if ENABLE_FRILLS
+     NULL,			// Color_underline
++    NULL,			// Color_shadow
+ #endif
+ #ifdef OPTION_HC
+     NULL,
+diff -ur rxvt-unicode-9.12/src/optinc.h rxvt-unicode-9.12-modified/src/optinc.h
+--- rxvt-unicode-9.12/src/optinc.h	2011-02-21 00:39:50.000000000 -0700
++++ rxvt-unicode-9.12-modified/src/optinc.h	2013-09-12 04:21:36.000000000 -0600
+@@ -34,6 +34,7 @@
+  def(hold)       // hold window open after exit
+  def(override_redirect)
+  def(urgentOnBell)
++ def(textShadow)
+ #else
+  nodef(insecure)
+  nodef(borderLess)
+diff -ur rxvt-unicode-9.12/src/rsinc.h rxvt-unicode-9.12-modified/src/rsinc.h
+--- rxvt-unicode-9.12/src/rsinc.h	2011-02-21 00:39:50.000000000 -0700
++++ rxvt-unicode-9.12-modified/src/rsinc.h	2013-09-12 03:33:16.000000000 -0600
+@@ -78,6 +78,7 @@
+   def (lineSpace)
+   def (letterSpace)
+   def (cursorUnderline)
++  def (textShadow)
+   def (urgentOnBell)
+ #endif
+ #ifdef BUILTIN_GLYPHS
+diff -ur rxvt-unicode-9.12/src/rxvt.h rxvt-unicode-9.12-modified/src/rxvt.h
+--- rxvt-unicode-9.12/src/rxvt.h	2011-06-22 04:44:37.000000000 -0600
++++ rxvt-unicode-9.12-modified/src/rxvt.h	2013-09-11 12:37:07.000000000 -0600
+@@ -502,6 +502,7 @@
+ #endif
+ #if ENABLE_FRILLS
+   Color_underline,
++  Color_shadow,
+ #endif
+ #ifdef OPTION_HC
+   Color_HC,
+diff -ur rxvt-unicode-9.12/src/rxvtfont.C rxvt-unicode-9.12-modified/src/rxvtfont.C
+--- rxvt-unicode-9.12/src/rxvtfont.C	2011-06-22 10:06:14.000000000 -0600
++++ rxvt-unicode-9.12-modified/src/rxvtfont.C	2013-09-12 07:02:41.000000000 -0600
+@@ -32,6 +32,8 @@
+ # include <fontconfig/fontconfig.h>
+ #endif
+ 
++#define ISSET_PIXCOLOR(idx)     (!!term->rs[Rs_color + (idx)])
++
+ #define MAX_OVERLAP_ROMAN  (8 + 2)	// max. character width in 8ths of the base width
+ #define MAX_OVERLAP_ITALIC (8 + 3)	// max. overlap for italic fonts
+ 
+@@ -1053,6 +1055,19 @@
+   XGCValues v;
+   v.foreground = term->pix_colors[fg];
+   v.font = f->fid;
++#if ENABLE_FRILLS
++  XGCValues shadow_v;
++  XRectangle clip_rect;
++  if(term->option(Opt_textShadow))
++  {
++    if (ISSET_PIXCOLOR (Color_shadow))
++      shadow_v.foreground = term->pix_colors[Color_shadow];
++    else
++      shadow_v.foreground = term->pix_colors[bg];
++    shadow_v.font = v.font;
++    clip_rect.x = clip_rect.y = 0;
++  }
++#endif
+ 
+   if (enc2b)
+     {
+@@ -1115,7 +1130,23 @@
+               while (len);
+             }
+           else
+-            XDrawString (disp, d, gc, x, y + base, xc, len);
++            {
++#ifdef ENABLE_FRILLS
++              // FIXME: shadows should be implemented for the other cases as well
++              if(term->option(Opt_textShadow))
++              {
++                // set a clipping rectangle to clip shadows
++                clip_rect.width = term->fwidth * len;
++                clip_rect.height = term->fheight;
++                XSetClipRectangles(disp, gc, x, y, &clip_rect, 1, Unsorted);
++                XChangeGC (disp, gc, GCForeground | GCFont, &shadow_v);  // FIXME: could get rid of these extra calls
++                XDrawString (disp, d, gc, x + 1, y + 1 + base, xc, len);
++                XChangeGC (disp, gc, GCForeground | GCFont, &v);
++                XSetClipMask(disp, gc, None);
++              }
++#endif
++              XDrawString (disp, d, gc, x, y + base, xc, len);
++            }
+         }
+     }
+ }
+@@ -1359,8 +1390,26 @@
+                      int fg, int bg)
+ {
+   XGlyphInfo extents;
++#if ENABLE_FRILLS
++  XftGlyphSpec *enc;
++  XftGlyphSpec *ep;
++  XftGlyphSpec *enc_shadow;
++  XftGlyphSpec *ep_shadow; 
++  if(term->option(Opt_textShadow))
++  {
++    enc = rxvt_temp_buf<XftGlyphSpec> (len*2);
++    enc_shadow = enc + len;
++    ep_shadow = enc_shadow;
++  }
++  else
++  {
++    XftGlyphSpec *enc = rxvt_temp_buf<XftGlyphSpec> (len);
++  }
++  ep = enc;
++#else
+   XftGlyphSpec *enc = rxvt_temp_buf<XftGlyphSpec> (len);
+   XftGlyphSpec *ep = enc;
++#endif
+ 
+   dTermDisplay;
+   dTermGC;
+@@ -1398,6 +1447,17 @@
+           if (extents.xOff == 0)
+             ep->x = x_ + cwidth;
+ 
++#if ENABLE_FRILLS
++          if(term->option(Opt_textShadow))
++          {
++            ep_shadow->glyph = glyph;
++            ep_shadow->x = ep->x + 1;
++            ep_shadow->y = ep->y + 1;
++
++            ep_shadow++;
++          }
++#endif
++
+           ep++;
+         }
+ 
+@@ -1462,6 +1522,15 @@
+ #endif
+             XftDrawRect (d2, &term->pix_colors[bg >= 0 ? bg : Color_bg].c, 0, 0, w, h);
+ 
++#if ENABLE_FRILLS
++          if(term->option(Opt_textShadow))
++          {
++            if (ISSET_PIXCOLOR (Color_shadow))
++              XftDrawGlyphSpec (d2, &term->pix_colors[Color_shadow].c, f, enc_shadow, ep_shadow - enc_shadow);
++            else
++              XftDrawGlyphSpec (d2, &term->pix_colors[bg].c, f, enc_shadow, ep_shadow - enc_shadow);
++          }
++#endif
+           XftDrawGlyphSpec (d2, &term->pix_colors[fg].c, f, enc, ep - enc);
+           XCopyArea (disp, d2, d, gc, 0, 0, w, h, x, y);
+         }
+diff -ur rxvt-unicode-9.12/src/xdefaults.C rxvt-unicode-9.12-modified/src/xdefaults.C
+--- rxvt-unicode-9.12/src/xdefaults.C	2011-06-22 04:44:37.000000000 -0600
++++ rxvt-unicode-9.12-modified/src/xdefaults.C	2013-09-12 03:30:22.000000000 -0600
+@@ -138,6 +138,7 @@
+               BOOL (Rs_tripleclickwords, "tripleclickwords", "tcw", Opt_tripleclickwords, 0, "triple click word selection"),
+               BOOL (Rs_insecure, "insecure", "insecure", Opt_insecure, 0, "enable possibly insecure escape sequences"),
+               BOOL (Rs_cursorUnderline, "cursorUnderline", "uc", Opt_cursorUnderline, 0, "underline cursor"),
++              BOOL (Rs_textShadow, "textShadow", "uc", Opt_textShadow, 0, "text shadow effect"),
+ #endif
+ #if CURSOR_BLINK
+               BOOL (Rs_cursorBlink, "cursorBlink", "bc", Opt_cursorBlink, 0, "blinking cursor"),
+@@ -171,6 +172,7 @@
+ #endif /* ! NO_BOLD_UNDERLINE_REVERSE */
+ #if ENABLE_FRILLS
+               RSTRG (Rs_color + Color_underline, "underlineColor", "color"),
++              RSTRG (Rs_color + Color_shadow, "shadowColor", "color"),
+ #endif
+               RSTRG (Rs_color + Color_scroll, "scrollColor", "color"),
+ #ifdef RXVT_SCROLLBAR
