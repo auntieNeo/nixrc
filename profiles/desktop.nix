@@ -34,6 +34,6 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
   services.xserver.layout = "dvorak";
-  # services.xserver.xkbOptions = "eurosign:e";
+  services.xserver.xkbOptions = "caps:hyper";
   services.xserver.synaptics.enable = true;
 }
