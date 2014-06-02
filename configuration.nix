@@ -124,7 +124,6 @@ rec {
 # TODO: add ctrl+<left> and ctrl+<right> tab navigation in vim (for use from my phone)
 
 # TODO: xset r rate 400 once and for all
-# TODO: enable nib scrollwheel
 
 # TODO: configure NIX_PATH with /home/auntieneo/code/nixpkgs
 # TODO: configure zsh to behave like bash but still be awesome
