@@ -11,8 +11,8 @@
   boot.loader.gummiboot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  # Disable RenderAccel for faster rendering in terminal emulators.
   services.xserver = {
+    # Disable RenderAccel for faster rendering in terminal emulators.
     deviceSection = ''
       Option "RenderAccel" "false"
     '';

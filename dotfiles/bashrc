@@ -4,6 +4,7 @@ stty -ixon
 # Set the default editor.
 EDITOR=vim
 
+# Set the prompt to Arch Linux's default user prompt.
 if [ "$UID" -ne 0 ]; then
   PS1='[\u@\h \W]\$ '
 fi
