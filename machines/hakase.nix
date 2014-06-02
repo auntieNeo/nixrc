@@ -17,14 +17,17 @@
       Option "RenderAccel" "false"
     '';
 
-    # TODO: Get this TrackPoint configuration working.
-#    # Enable vertical and horizontal TrackPoint scrolling.
-#    inputDeviceSection = ''
-#      Driver "TPPS/2 IBM TrackPoint"
-#      Option "Evdev Wheel Emulation" "8 1"
-#      Option "Evdev Wheel Emulation Button" "8 2"
-#      Option "TPPS/2 IBM TrackPoint" "Evdev Wheel Emulation Axes" 8 6 7 4 5
-#      Option "Evdev Wheel Emulation Timeout" "8 200"
-#    '';
+    # Enable vertical and horizontal TrackPoint scrolling.
+    config = ''
+      Section "InputClass"
+        Identifier "Trackpoint Wheel Emulation"
+        MatchProduct "TPPS/2 IBM TrackPoint|DualPoint Stick|Synaptics Inc. Composite TouchPad / TrackPoint|ThinkPad USB Keyboard with TrackPoint|USB Trackpoint pointing device|Composite TouchPad / TrackPoint"
+        MatchDevicePath "/dev/input/event*"
+        Option "EmulateWheel" "true"
+        Option "EmulateWheelButton" "2"
+        Option "XAxisMapping" "6 7"
+        Option "YAxisMapping" "4 5"
+      EndSection
+    '';
   };
 }
