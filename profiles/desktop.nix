@@ -55,7 +55,8 @@
         manage = "window";
         name = "dwm";
         start = ''
-          ${pkgs.dwm}/bin/dwm &
+          # FIXME: Need a way to reference the patched dwm by it's full path.
+          dwm
           waitPID=$!
         '';
       } ];
