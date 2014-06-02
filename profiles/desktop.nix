@@ -45,6 +45,12 @@
   services.xserver.synaptics.enable = true;
 
   # Set dwm as the X session type.
-#dmconfig.session.names
-
+  services.xserver.displayManager.session = [ {
+    manage = "window";
+    name = "dwm";
+    start = ''
+      ${pkgs.dwm}/bin/dwm &
+      waitPID=$!
+      '';
+  } ];
 }
