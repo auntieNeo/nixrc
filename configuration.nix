@@ -93,12 +93,14 @@ rec {
     # Configure various dotfiles.
     # FIXME: The dotfiles can't be linked on the first boot of a fresh install, because the home directory hasn't been created yet.
     dotfiles = ''
-      ln -fs ${./dotfiles/bashrc} /home/auntieneo/.bashrc  # FIXME: for some reason, hakase doesn't source bashrc
+      ln -fs ${./dotfiles/bash_profile} /home/auntieneo/.bash_profile
+      ln -fs ${./dotfiles/bashrc} /home/auntieneo/.bashrc
       ln -fs ${./dotfiles/gitconfig} /home/auntieneo/.gitconfig
       ln -fs ${./dotfiles/irssi} /home/auntieneo/.irssi
       ln -fs ${./dotfiles/tmux.conf} /home/auntieneo/.tmux.conf
       ln -fs ${./dotfiles/vimrc} /home/auntieneo/.vimrc
       ln -fs ${./dotfiles/Xdefaults} /home/auntieneo/.Xdefaults
+      ln -fs ${./dotfiles/bash_profile} /root/.bash_profile
       ln -fs ${./dotfiles/bashrc} /root/.bashrc
       ln -fs ${./dotfiles/tmux.conf} /root/.tmux.conf
       ln -fs ${./dotfiles/vimrc} /root/.vimrc
