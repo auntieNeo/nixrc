@@ -4,6 +4,9 @@
   networking.wireless.enable = true;
 
   services.xserver = {
+    # Enable laptop trackpads.
+    synaptics.enable = true;
+
     # Enable vertical and horizontal TrackPoint scrolling.
     config = ''
       Section "InputClass"

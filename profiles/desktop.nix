@@ -38,11 +38,21 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-  services.xserver.layout = "dvorak";
-  services.xserver.xkbOptions = "caps:hyper";
-  services.xserver.synaptics.enable = true;
+  services.xserver = {
+    # Enable the X11 windowing system.
+    enable = true;
+    layout = "dvorak";
+    xkbOptions = "caps:hyper";
+
+    config = ''
+      Section "InputClass"
+        Identifier "Keyboard Defaults"
+        MatchIsKeyboard "on"
+        # Set key repeat delay lower than default (500 30).
+        Option "AutoRepeat" "400 30"  # FIXME: this doesn't seem to do anything
+      EndSection
+    '';
+  };
 
   # Set dwm as the X session type.
 #dmconfig.session.names

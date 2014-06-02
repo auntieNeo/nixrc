@@ -125,8 +125,6 @@ rec {
 # FIXME: vim ctrl+h ctrl+s tab navigation seems to be broken on my netbook
 # TODO: add ctrl+<left> and ctrl+<right> tab navigation in vim (for use from my phone)
 
-# TODO: xset r rate 400 once and for all
-
 # TODO: configure NIX_PATH with /home/auntieneo/code/nixpkgs
 # TODO: configure zsh to behave like bash but still be awesome
 # TODO: make an alias to disable color in alsamixer
