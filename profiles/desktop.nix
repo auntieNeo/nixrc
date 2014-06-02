@@ -18,6 +18,7 @@
     }))
     evince
     gutenprint
+    # kochi_substitute  # TODO: write a kochi substitute package
     mplayer
     netbeans
     # Install a patched version of rxvt_unicode (with text shadows).
