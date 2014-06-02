@@ -10,6 +10,6 @@ if [ "$UID" -ne 0 ]; then
 fi
 
 # Set the corporate proxy for certain machines.
-if [ `hostname` -eq "kresnik" ]; then
+if [ `hostname` = "kresnik" ]; then
   for i in http https ftp rsync; do export ${i}_proxy='http://ongate.onsemi.com:80'; done
 fi
