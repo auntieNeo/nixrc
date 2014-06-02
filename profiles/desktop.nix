@@ -48,8 +48,9 @@
       Section "InputClass"
         Identifier "Keyboard Defaults"
         MatchIsKeyboard "on"
-        # Set key repeat delay lower than default (500 30).
-        Option "AutoRepeat" "400 30"  # FIXME: this doesn't seem to do anything
+# This doesn't work anymore. See: https://bugs.freedesktop.org/show_bug.cgi?id=24336
+#        # Set key repeat delay lower than default (500 30).
+#        Option "AutoRepeat" "400 30"
       EndSection
     '';
   };
