@@ -24,13 +24,6 @@
     (pkgs.lib.overrideDerivation pkgs.rxvt_unicode (attrs: {
       patches = [ ../patches/urxvt-text-shadows.patch ];  # FIXME: This clobbers an existing patch for correct font spacing.
     }))
-    (pkgs.lib.overrideDerivation pkgs.slim (attrs: {
-      # Set the display manager theme.
-      theme = fetchurl {
-        url = "https://github.com/menski/slim-theme-dwm/archive/076038e839a29fad3ec403326c22f0cf3e7c79f9.tar.gz";
-        sha256 = "d74fb764cb79f962d7bdb134388b9d8a31dbbb67953adc5c54a14b85aaf73d9f";
-      };
-    }))
     wmname  # Used for hack in which Java apps break in dwm.
     xlibs.xinit
   ];
@@ -44,24 +37,32 @@
     layout = "dvorak";
     xkbOptions = "caps:hyper";
 
-    config = ''
-      Section "InputClass"
-        Identifier "Keyboard Defaults"
-        MatchIsKeyboard "on"
-# This doesn't work anymore. See: https://bugs.freedesktop.org/show_bug.cgi?id=24336
-#        # Set key repeat delay lower than default (500 30).
-#        Option "AutoRepeat" "400 30"
-      EndSection
-    '';
-  };
+    displayManager = {
+      # Set the SLiM display manager theme.
+      slim.theme = pkgs.fetchurl {
+        url = "https://github.com/menski/slim-theme-dwm/archive/076038e839a29fad3ec403326c22f0cf3e7c79f9.tar.gz";
+        sha256 = "d74fb764cb79f962d7bdb134388b9d8a31dbbb67953adc5c54a14b85aaf73d9f";
+      };
 
-  # Set dwm as the X session type.
-  services.xserver.displayManager.session = [ {
-    manage = "window";
-    name = "dwm";
-    start = ''
-      ${pkgs.dwm}/bin/dwm &
-      waitPID=$!
-      '';
-  } ];
+      # Set key repeat delay lower than default (which is 500 30).
+      xserverArgs = [
+        "-ardelay 400"
+        "-arinterval 30"
+      ];
+
+      # Set dwm as the X session type.
+      session = [ {
+        manage = "window";
+        name = "dwm";
+        start = ''
+          ${pkgs.dwm}/bin/dwm &
+          waitPID=$!
+        '';
+      } ];
+    };
+
+#    # Enable dwm window manager.
+#    windowManager.dwm = { enable = true; };
+
+  };
 }
