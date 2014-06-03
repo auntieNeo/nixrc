@@ -21,6 +21,7 @@
     # kochi_substitute  # TODO: write a kochi substitute package
     mplayer
     netbeans
+    # nitrogen  # TODO: write a nitrogen package
     # Install a patched version of rxvt_unicode (with text shadows).
     (pkgs.lib.overrideDerivation pkgs.rxvt_unicode (attrs: {
       patches = [ ../patches/urxvt-text-shadows.patch ];  # FIXME: This clobbers an existing patch for correct font spacing.
