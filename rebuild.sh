@@ -6,6 +6,7 @@ else
 fi
 sudo rsync --filter="protect /hardware-configuration.nix" \
            --filter="protect /hostname" \
+           --filter="protect /private" \
            --filter="exclude,s .gitignore" \
            --filter="exclude,s /.git" \
            --filter="exclude .*.swp" \

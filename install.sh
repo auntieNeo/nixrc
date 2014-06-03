@@ -31,6 +31,8 @@ if grep --quiet "01572D33-7B50-CB11-A0BB-8DFA84B41F9C" $UUID_FILE; then
   echo -n "hakase" > $HOSTNAME_FILE
 elif grep --quiet "00:25:22:cb:23:c1" "/sys/class/net/enp3s0/address"; then
   echo -n "hazuki" > $HOSTNAME_FILE
+elif grep --quiet "44454C4C-4E00-1057-8046-C3C04F484E31" $UUID_FILE; then
+  echo -n "kresnik" > $HOSTNAME_FILE
 else
   echo -n "nixos" > $HOSTNAME_FILE
 fi
@@ -38,6 +40,7 @@ fi
 # Rsync files from the git repository to their final destination.
 rsync --filter="protect /hardware-configuration.nix" \
            --filter="protect /hostname" \
+           --filter="protect /private" \
            --filter="exclude,s .gitignore" \
            --filter="exclude,s /.git" \
            --filter="exclude .*.swp" \

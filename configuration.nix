@@ -24,6 +24,7 @@ rec {
   # Set the hostname from the contents of ./hostname
   networking.hostName = builtins.readFile ./hostname;  # FIXME: this breaks when ./hostname has a newline at the end
 
+  # TODO: configure different nameservers for different machines
   # Google nameservers
   networking.nameservers = [
     "8.8.8.8"
