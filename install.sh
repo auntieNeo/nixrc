@@ -33,6 +33,8 @@ elif grep --quiet "00:25:22:cb:23:c1" "/sys/class/net/enp3s0/address"; then
   echo -n "hazuki" > $HOSTNAME_FILE
 elif grep --quiet "44454C4C-4E00-1057-8046-C3C04F484E31" $UUID_FILE; then
   echo -n "kresnik" > $HOSTNAME_FILE
+elif grep --quiet "50:e5:49:cb:df:23" "/sys/class/net/enp8s0/address"; then
+  echo -n "lain" > $HOSTNAME_FILE
 else
   echo -n "nixos" > $HOSTNAME_FILE
 fi
