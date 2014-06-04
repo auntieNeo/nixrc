@@ -40,10 +40,16 @@
     xkbOptions = "caps:hyper";
 
     displayManager = {
-      # Set the SLiM display manager theme.
-      slim.theme = pkgs.fetchurl {
-        url = "https://github.com/menski/slim-theme-dwm/archive/076038e839a29fad3ec403326c22f0cf3e7c79f9.tar.gz";
-        sha256 = "d74fb764cb79f962d7bdb134388b9d8a31dbbb67953adc5c54a14b85aaf73d9f";
+      slim = {
+        # Set the SLiM display manager theme.
+        theme = pkgs.fetchurl {
+          url = "https://github.com/menski/slim-theme-dwm/archive/076038e839a29fad3ec403326c22f0cf3e7c79f9.tar.gz";
+          sha256 = "d74fb764cb79f962d7bdb134388b9d8a31dbbb67953adc5c54a14b85aaf73d9f";
+        };
+
+#        # Auto-login until I get a less ugly theme
+#        defaultUser = "auntieneo";
+#        autoLogin = true;
       };
 
       # Set key repeat delay lower than default (which is 500 30).
@@ -64,8 +70,7 @@
       } ];
     };
 
-#    # Enable dwm window manager.
-#    windowManager.dwm = { enable = true; };
-
+    # Enable dwm window manager.
+#    windowManager.default = "dwm";
   };
 }
