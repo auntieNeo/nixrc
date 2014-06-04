@@ -21,7 +21,7 @@ fi
 
 # Clone the git repository containing the NixOS configuration.
 if [ ! -d $NIXRC ]; then
-  $NIX_ENV --install git
+  nix-env --install git
   cd /mnt/
   git clone "https://github.com/auntieNeo/nixrc"
 fi
