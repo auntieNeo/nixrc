@@ -57,7 +57,7 @@
         manage = "window";
         name = "dwm";
         start = ''
-          # FIXME: Need a way to reference the patched dwm by it's full path.
+          # FIXME: Need a way to reference the patched dwm by its full path.
           dwm
           waitPID=$!
         '';

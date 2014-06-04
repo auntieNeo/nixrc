@@ -74,6 +74,7 @@ rec {
     vagrant
     valgrind
     vim
+    vlock
     wget
     wgetpaste
   ];
