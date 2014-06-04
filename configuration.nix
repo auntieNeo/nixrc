@@ -149,6 +149,7 @@ rec {
 # TODO: install ssh keys
 # TODO: configure ssh-agent
 # TODO: configure git email and username
+# TODO: make reverse proxy ssh service
 
 # TODO: configure cmus
 # TODO: configure audio (don't break on reboot, change depending on the host)
