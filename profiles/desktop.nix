@@ -26,6 +26,7 @@
     (pkgs.lib.overrideDerivation pkgs.rxvt_unicode (attrs: {
       patches = [ ../patches/urxvt-text-shadows.patch ];  # FIXME: This clobbers an existing patch for correct font spacing.
     }))
+    linuxPackages.virtualbox
     wmname  # Used for hack in which Java apps break in dwm.
     xlibs.xinit
   ];

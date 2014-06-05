@@ -53,7 +53,6 @@ rec {
     git
     irssi
     links2
-    linuxPackages.virtualbox
     manpages
     mercurial
     ncurses
