@@ -7,4 +7,7 @@ alias nel='nix-env-local'
 alias nix-shell-local='nix-shell $NIXPKGS_LOCAL'  # FIXME: prevent nix-shell from changing the prompt to green
 alias nsl='nix-shell-local'
 
+# Outlook over RDP (will prompt for password from stdin).  # TODO: store password in file and pipe in with expect
+alias outlook="xfreerdp -u fg6tqj --app --plugin rail --data '%programfiles(x86)%\Microsoft Office\office12\outlook.exe' -- localhost"
+
 source $HOME/.bashrc
