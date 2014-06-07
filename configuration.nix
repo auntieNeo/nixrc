@@ -52,11 +52,13 @@ rec {
     ctags
     git
     idutils
+    inetutils
     irssi
     links2
     manpages
     mercurial
     ncurses
+#    pacman  # TODO: write a package for Arch Linux's pacman (for creating Arch chroots)
     pmutils
     psmisc
     rtorrent
