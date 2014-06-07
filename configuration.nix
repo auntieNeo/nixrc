@@ -156,4 +156,6 @@ rec {
 # TODO: configure audio (don't break on reboot, change depending on the host)
 # TODO: automatically start and configure tmux (different for each machine)
 # TODO: automatically import Chromium settings (probably through Google profile)
+
+# TODO: configure Android USB tethering
 }
