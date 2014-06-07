@@ -51,6 +51,7 @@ rec {
     cmake
     ctags
     git
+    idutils
     irssi
     links2
     manpages
@@ -70,6 +71,7 @@ rec {
     texLiveFull
     tmux
 #    typespeed  # TODO: write a typespeed package
+    unison
     vagrant
     valgrind
     vim
@@ -82,7 +84,7 @@ rec {
   users.extraUsers.auntieneo = {
     name = "auntieneo";
     group = "users";
-    extraGroups = [ "wheel" ];
+    extraGroups = [ "wheel" "vboxusers" ];
     uid = 1000;
     createHome = true;
     home = "/home/auntieneo";
