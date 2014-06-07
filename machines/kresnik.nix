@@ -7,7 +7,15 @@
       ../profiles/server.nix
     ];
 
+
+  environment.systemPackages = with pkgs; [
+#    freerdp
+  ];
+
   # TODO: configure a local squid transparent proxy server to go through the corporate proxy
+
+  # Use the corporate proxy.
+  nix.proxy = http://ongate.onsemi.com:80;
 
   # Use the GRUB 2 boot loader.
   boot.loader.grub.enable = true;

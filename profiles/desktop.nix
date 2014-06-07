@@ -21,6 +21,8 @@
       };
     }))
     evince
+    firefox
+    gimp
     gutenprint
     # kochi_substitute  # TODO: write a kochi substitute package
     mplayer
