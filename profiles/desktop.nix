@@ -1,6 +1,10 @@
 { config, pkgs, ... }:
 
 {
+  # Load VirtualBox kernel modules.
+  # TODO: manually download and install VirtualBox Extension Pack
+  imports = [ <nixos/modules/programs/virtualbox.nix> ];
+
   environment.systemPackages = with pkgs; [
     anki
 #    anthy  # TODO: write an anthy package (with ibus)

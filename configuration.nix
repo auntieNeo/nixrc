@@ -51,11 +51,14 @@ rec {
     cmake
     ctags
     git
+    idutils
+    inetutils
     irssi
     links2
     manpages
     mercurial
     ncurses
+#    pacman  # TODO: write a package for Arch Linux's pacman (for creating Arch chroots)
     pmutils
     psmisc
     rtorrent
@@ -70,6 +73,7 @@ rec {
     texLiveFull
     tmux
 #    typespeed  # TODO: write a typespeed package
+    unison
     vagrant
     valgrind
     vim
@@ -82,7 +86,7 @@ rec {
   users.extraUsers.auntieneo = {
     name = "auntieneo";
     group = "users";
-    extraGroups = [ "wheel" ];
+    extraGroups = [ "wheel" "vboxusers" ];
     uid = 1000;
     createHome = true;
     home = "/home/auntieneo";
@@ -154,4 +158,6 @@ rec {
 # TODO: configure audio (don't break on reboot, change depending on the host)
 # TODO: automatically start and configure tmux (different for each machine)
 # TODO: automatically import Chromium settings (probably through Google profile)
+
+# TODO: configure Android USB tethering
 }
