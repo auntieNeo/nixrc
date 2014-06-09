@@ -1,3 +1,4 @@
+# TODO: make aliases work in other shells as well as dmenu
 # Set some aliases for easy NixOS package development.
 NIXPKGS_LOCAL="/home/auntieneo/code/nixpkgs"
 alias nix-build-local='nix-build $NIXPKGS_LOCAL'
@@ -7,7 +8,12 @@ alias nel='nix-env-local'
 alias nix-shell-local='nix-shell $NIXPKGS_LOCAL'  # FIXME: prevent nix-shell from changing the prompt to green
 alias nsl='nix-shell-local'
 
-# Outlook over RDP (will prompt for password from stdin).  # TODO: store password in file and pipe in with expect
+# Various programs over RDP (will prompt for password from stdin).  # TODO: store password in file and pipe in with expect
+# TODO: get clipboard redirection working
+alias chrome="xfreerdp -u fg6tqj --app --plugin rail --data '%programfiles(x86)%\Google\Chrome\Application\chrome.exe' -- localhost"
+alias cmd="xfreerdp -u fg6tqj --app --plugin rail --data '%windir%\system32\cmd.exe' -- localhost"
+alias explorer="xfreerdp -u fg6tqj --app --plugin rail --data '%windir%\explorer.exe' -- localhost"
 alias outlook="xfreerdp -u fg6tqj --app --plugin rail --data '%programfiles(x86)%\Microsoft Office\office12\outlook.exe' -- localhost"
+alias windows="xfreerdp -u fg6tqj localhost"
 
 source $HOME/.bashrc

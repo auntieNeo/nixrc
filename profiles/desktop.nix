@@ -31,6 +31,7 @@
     linuxPackages.virtualbox
     wmname  # Used for hack in which Java apps break in dwm.
     xlibs.xinit
+    xorg.xkill
   ];
 
   # Enable CUPS to print documents.

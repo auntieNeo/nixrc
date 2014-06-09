@@ -97,7 +97,7 @@ rec {
       ln -fs ${./dotfiles/bash_profile} /home/auntieneo/.bash_profile
       ln -fs ${./dotfiles/bashrc} /home/auntieneo/.bashrc
       ln -fs ${./dotfiles/gitconfig} /home/auntieneo/.gitconfig
-      ln -fsn ${./dotfiles/irssi} /home/auntieneo/.irssi
+      ln -fsn ${./dotfiles/irssi} /home/auntieneo/.irssi  # FIXME: as this directory is read-only, irssi can't write logs and such
       ln -fs ${./dotfiles/tmux.conf} /home/auntieneo/.tmux.conf
       ln -fs ${./dotfiles/vimrc} /home/auntieneo/.vimrc
       ln -fs ${./dotfiles/Xdefaults} /home/auntieneo/.Xdefaults

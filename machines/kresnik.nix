@@ -24,6 +24,10 @@
   boot.loader.grub.device = "/dev/sda";
 
   services.xserver = {
+    # Disable RenderAccel for faster rendering in terminal emulators.
+    deviceSection = ''
+      Option "RenderAccel" "false"
+    '';
     config = ''
       Section "Monitor"
         Identifier "DVI-0"
