@@ -54,6 +54,7 @@ rec {
     idutils
     irssi
     links2
+    rubyLibs.jekyll
     manpages
     mercurial
     ncurses
@@ -68,10 +69,10 @@ rec {
     stdenv
     subversionClient
     sudo
-    texLiveFull
     tmux
 #    typespeed  # TODO: write a typespeed package
     unison
+    unzip
     vagrant
     valgrind
     vim
