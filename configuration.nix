@@ -57,6 +57,7 @@ rec {
     links2
     manpages
     mercurial
+    mkpasswd
     ncurses
 #    pacman  # TODO: write a package for Arch Linux's pacman (for creating Arch chroots)
     pmutils
@@ -85,13 +86,14 @@ rec {
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.extraUsers.auntieneo = {
     name = "auntieneo";
-    group = "users";
-    extraGroups = [ "wheel" "vboxusers" ];
+    group = "auntieneo";
+    extraGroups = [ "users" "vboxusers" "wheel" ];
     uid = 1000;
     createHome = true;
     home = "/home/auntieneo";
     shell = "/run/current-system/sw/bin/bash";
   };
+  users.extraGroups.auntieneo.gid = 1000;
 
   system.activationScripts =
   {
@@ -103,6 +105,9 @@ rec {
       ln -fs ${./dotfiles/gitconfig} /home/auntieneo/.gitconfig
       ln -fsn ${./dotfiles/irssi} /home/auntieneo/.irssi
       ln -fs ${./dotfiles/tmux.conf} /home/auntieneo/.tmux.conf
+      ln -fs ${./dotfiles/vimlatex} /home/auntieneo/.vimlatex
+      ln -fs ${./dotfiles/vimnotepad} /home/auntieneo/.vimnotepad
+      ln -fs ${./dotfiles/vimpython} /home/auntieneo/.vimpython
       ln -fs ${./dotfiles/vimrc} /home/auntieneo/.vimrc
       ln -fs ${./dotfiles/Xdefaults} /home/auntieneo/.Xdefaults
       ln -fs ${./dotfiles/bash_profile} /root/.bash_profile

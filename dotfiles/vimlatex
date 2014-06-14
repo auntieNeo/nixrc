@@ -1,0 +1,6 @@
+:nmap <F2> :w<CR>:!pdflatex -shell-escape -synctex=1 -interaction=nonstopmode % <CR>
+:imap <F2> <C-o>:w<CR><C-o>:!pdflatex -shell-escape -synctex=1 -interaction=nonstopmode % <CR>
+:nmap <F3> :w<CR>:!xelatex -shell-escape -synctex=1 -interaction=nonstopmode % <CR>
+:imap <F3> <C-o>:w<CR><C-o>:!xelatex -shell-escape -synctex=1 -interaction=nonstopmode % <CR>
+:nmap <F5> :w<CR>:!evince %<.pdf & <CR>
+set nocindent
