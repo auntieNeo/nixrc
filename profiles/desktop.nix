@@ -33,6 +33,7 @@
       patches = [ ../patches/urxvt-text-shadows.patch ];  # FIXME: This clobbers an existing patch for correct font spacing.
     }))
     linuxPackages.virtualbox
+    # TODO: write a package for the VirtualBox Guest Additions ISO
     wmname  # Used for hack in which Java apps break in dwm.
     xlibs.xinit
     xorg.xkill

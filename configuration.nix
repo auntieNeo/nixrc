@@ -58,6 +58,7 @@ rec {
     manpages
     mercurial
     ncurses
+#    nkf  # TODO: write a package for Network Kanji Filter
 #    pacman  # TODO: write a package for Arch Linux's pacman (for creating Arch chroots)
     pmutils
     psmisc
@@ -70,6 +71,7 @@ rec {
     stdenv
     subversionClient
     sudo
+    tcpdump
     texLiveFull
     tmux
 #    typespeed  # TODO: write a typespeed package
@@ -124,6 +126,7 @@ rec {
 # TODO: make a package for ansible
 # TODO: write an anthy package
 # TODO: update vagrant to at lesat version 1.6 (for Windows guest support)
+# TODO: write packages for some repository management tools, such as myrepo, gr, Android's repo, and mu-repo
 
 # TODO: try to load ./Session.vim whenever "vim" is run
 # TODO: write macro to set function keys to run commands
