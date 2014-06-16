@@ -55,8 +55,10 @@ rec {
     inetutils
     irssi
     links2
+    rubyLibs.jekyll
     manpages
     mercurial
+    mkpasswd
     ncurses
 #    nkf  # TODO: write a package for Network Kanji Filter
 #    pacman  # TODO: write a package for Arch Linux's pacman (for creating Arch chroots)
@@ -71,11 +73,15 @@ rec {
     stdenv
     subversionClient
     sudo
+<<<<<<< HEAD
     tcpdump
     texLiveFull
+=======
+>>>>>>> e749e946437d19458c9eb0afa961b120cb252381
     tmux
 #    typespeed  # TODO: write a typespeed package
     unison
+    unzip
     vagrant
     valgrind
     vim
@@ -87,13 +93,14 @@ rec {
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.extraUsers.auntieneo = {
     name = "auntieneo";
-    group = "users";
-    extraGroups = [ "wheel" "vboxusers" ];
+    group = "auntieneo";
+    extraGroups = [ "users" "vboxusers" "wheel" ];
     uid = 1000;
     createHome = true;
     home = "/home/auntieneo";
     shell = "/run/current-system/sw/bin/bash";
   };
+  users.extraGroups.auntieneo.gid = 1000;
 
   system.activationScripts =
   {
@@ -105,6 +112,9 @@ rec {
       ln -fs ${./dotfiles/gitconfig} /home/auntieneo/.gitconfig
       ln -fsn ${./dotfiles/irssi} /home/auntieneo/.irssi  # FIXME: as this directory is read-only, irssi can't write logs and such
       ln -fs ${./dotfiles/tmux.conf} /home/auntieneo/.tmux.conf
+      ln -fs ${./dotfiles/vimlatex} /home/auntieneo/.vimlatex
+      ln -fs ${./dotfiles/vimnotepad} /home/auntieneo/.vimnotepad
+      ln -fs ${./dotfiles/vimpython} /home/auntieneo/.vimpython
       ln -fs ${./dotfiles/vimrc} /home/auntieneo/.vimrc
       ln -fs ${./dotfiles/Xdefaults} /home/auntieneo/.Xdefaults
       ln -fs ${./dotfiles/bash_profile} /root/.bash_profile

@@ -1,0 +1,3 @@
+noremap t gj
+noremap n gk
+set lbr
