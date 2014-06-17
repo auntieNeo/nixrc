@@ -5,6 +5,11 @@
   # TODO: manually download and install VirtualBox Extension Pack
   imports = [ <nixos/modules/programs/virtualbox.nix> ];
 
+  # Enable Adobe Flash player
+  nixpkgs.config.firefox.enableAdobeFlash = true;
+  nixpkgs.config.chromium.enableAdobeFlash = true;
+
+
   environment.systemPackages = with pkgs; [
     anki
 #    anthy  # TODO: write an anthy package (with ibus)
@@ -23,6 +28,7 @@
     evince
     firefox
     gimp
+    gnumeric
     gutenprint
     # kochi_substitute  # TODO: write a kochi substitute package
     mplayer
