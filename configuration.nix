@@ -108,6 +108,7 @@ rec {
       ln -fs ${./dotfiles/bashrc} /home/auntieneo/.bashrc
       ln -fs ${./dotfiles/gitconfig} /home/auntieneo/.gitconfig
       ln -fsn ${./dotfiles/irssi} /home/auntieneo/.irssi  # FIXME: as this directory is read-only, irssi can't write logs and such
+      ln -fs ${./dotfiles/nixpkgs/config.nix} /home/auntieneo/.nixpkgs/config.nix  # FIXME: create a directory for nixpkgs
       ln -fs ${./dotfiles/tmux.conf} /home/auntieneo/.tmux.conf
       ln -fs ${./dotfiles/vimlatex} /home/auntieneo/.vimlatex
       ln -fs ${./dotfiles/vimnotepad} /home/auntieneo/.vimnotepad

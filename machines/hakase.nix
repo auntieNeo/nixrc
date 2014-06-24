@@ -5,6 +5,7 @@
     [
       ../profiles/desktop.nix
       ../profiles/laptop.nix
+      ../profiles/development.nix
     ];
 
   # Use the gummiboot efi boot loader.
