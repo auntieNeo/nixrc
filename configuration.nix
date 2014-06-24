@@ -24,7 +24,6 @@ rec {
   # Set the hostname from the contents of ./hostname
   networking.hostName = builtins.readFile ./hostname;  # FIXME: this breaks when ./hostname has a newline at the end
 
-  # TODO: configure different nameservers for different machines
   # Google nameservers
   networking.nameservers = [
     "8.8.8.8"
@@ -44,7 +43,7 @@ rec {
   # List packages installed in system profile. To search by name, run:
   # nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
-#    ansible  # TODO: write an ansible package
+#    ansible  # TODO: uncomment this once ansible package is in stable nixpkgs
     apg
     aspell
     aspellDicts.en
@@ -76,7 +75,7 @@ rec {
     tcpdump
     texLiveFull
     tmux
-#    typespeed  # TODO: write a typespeed package
+#    typespeed  # TODO: uncomment this later
     unison
     unzip
     vagrant
@@ -85,6 +84,7 @@ rec {
     vlock
     wget
     wgetpaste
+    zsh
   ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -130,17 +130,14 @@ rec {
   # Show the NixOS manual in a virtual console.
   services.nixosManual.showManual = true;
 
-# TODO: make a package for ansible
 # TODO: write an anthy package
 # TODO: update vagrant to at lesat version 1.6 (for Windows guest support)
 # TODO: write packages for some repository management tools, such as myrepo, gr, Android's repo, and mu-repo
 
 # TODO: try to load ./Session.vim whenever "vim" is run
 # TODO: write macro to set function keys to run commands
-# FIXME: vim ctrl+h ctrl+s tab navigation seems to be broken on my netbook
 # TODO: add ctrl+<left> and ctrl+<right> tab navigation in vim (for use from my phone)
 
-# TODO: configure NIX_PATH with /home/auntieneo/code/nixpkgs
 # TODO: configure zsh to behave like bash but still be awesome
 # TODO: make an alias to disable color in alsamixer
 
@@ -157,7 +154,6 @@ rec {
 # TODO: only configure wireless on systems that need it
 # TODO: disable beep
 # TODO: configure ntp
-# TODO: figure out how to organize configuration files
 
 # TODO: install ssh keys
 # TODO: configure ssh-agent
