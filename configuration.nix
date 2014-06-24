@@ -73,11 +73,8 @@ rec {
     stdenv
     subversionClient
     sudo
-<<<<<<< HEAD
     tcpdump
     texLiveFull
-=======
->>>>>>> e749e946437d19458c9eb0afa961b120cb252381
     tmux
 #    typespeed  # TODO: write a typespeed package
     unison
