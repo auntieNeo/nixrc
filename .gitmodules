@@ -1,0 +1,3 @@
+[submodule "dotfiles/oh-my-zsh"]
+	path = dotfiles/oh-my-zsh
+	url = https://github.com/robbyrussell/oh-my-zsh
