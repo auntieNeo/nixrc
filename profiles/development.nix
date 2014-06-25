@@ -3,6 +3,7 @@
 {
   # install development packages
   environment.systemPackages = with pkgs; [
+    eclipses.eclipse_cpp_43
     netbeans
   ];
 
