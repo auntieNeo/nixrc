@@ -43,8 +43,9 @@ fi
 rsync --filter="protect /hardware-configuration.nix" \
            --filter="protect /hostname" \
            --filter="protect /private" \
-           --filter="exclude,s .gitignore" \
-           --filter="exclude,s /.git" \
+           --filter="exclude,s *.gitignore" \
+           --filter="exclude,s *.gitmodules" \
+           --filter="exclude,s *.git" \
            --filter="exclude .*.swp" \
            --filter="exclude Session.vim" \
            --delete --recursive \

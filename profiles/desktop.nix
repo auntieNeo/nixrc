@@ -32,7 +32,6 @@
     gutenprint
     # kochi_substitute  # TODO: write a kochi substitute package
     mplayer
-    netbeans
     # nitrogen  # TODO: write a nitrogen package
     texLiveFull
     # Install a patched version of rxvt_unicode (with text shadows).

@@ -1,3 +1,6 @@
 [user]
 	email = auntieNeo@gmail.com
 	name = Jonathan Glines
+
+[push]
+  default = simple

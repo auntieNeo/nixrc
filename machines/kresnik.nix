@@ -5,6 +5,7 @@
     [
       ../profiles/desktop.nix
       ../profiles/server.nix
+      ../profiles/development.nix
     ];
 
 
