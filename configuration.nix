@@ -95,7 +95,7 @@ rec {
     uid = 1000;
     createHome = true;
     home = "/home/auntieneo";
-    shell = "/run/current-system/sw/bin/bash";
+    shell = "/run/current-system/sw/bin/zsh";
   };
   users.extraGroups.auntieneo.gid = 1000;
 
