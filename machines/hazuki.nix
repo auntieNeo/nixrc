@@ -5,6 +5,8 @@
     [
       ../profiles/desktop.nix
       ../profiles/server.nix
+      ../profiles/development.nix
+      ../profiles/games.nix
     ];
 
   # Use the GRUB 2 boot loader.
