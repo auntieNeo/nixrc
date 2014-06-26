@@ -48,6 +48,9 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
+  # Put fonts in font path
+  fonts.fonts [ pkgs.ipafont ]
+
   services.xserver = {
     # Enable the X11 windowing system.
     enable = true;
