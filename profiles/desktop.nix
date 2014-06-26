@@ -30,6 +30,7 @@
     gimp
     gnumeric
     gutenprint
+    ipafont
     # kochi_substitute  # TODO: write a kochi substitute package
     mplayer
     # nitrogen  # TODO: write a nitrogen package
@@ -49,7 +50,7 @@
   services.printing.enable = true;
 
   # Put fonts in font path
-  fonts.fonts [ pkgs.ipafont ]
+  fonts.fonts = [ pkgs.ipafont ];
 
   services.xserver = {
     # Enable the X11 windowing system.
