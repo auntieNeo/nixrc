@@ -1,15 +1,12 @@
-# Disable annoying ctrl+s flow control.
-stty -ixon
+if [ -f $HOME/.aliases ]; then
+  source $HOME/.aliases
+fi
 
-# Set the default editor.
-EDITOR=vim
+if [ -f $HOME/.common ]; then
+  source $HOME/.common
+fi
 
 # Set the prompt to Arch Linux's default user prompt.
 if [ "$UID" -ne 0 ]; then
   PS1='[\u@\h \W]\$ '
-fi
-
-# Set the corporate proxy for certain machines.
-if [ `hostname` = "kresnik" ]; then
-  for i in http https ftp rsync; do export ${i}_proxy='http://ongate.onsemi.com:80'; done
 fi

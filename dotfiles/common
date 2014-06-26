@@ -1,0 +1,10 @@
+# Disable annoying ctrl+s flow control.
+stty -ixon
+
+# Set the default editor.
+EDITOR=vim
+
+# Set the corporate proxy for certain machines.
+if [ `hostname` = "kresnik" ]; then
+  for i in http https ftp rsync; do export ${i}_proxy='http://ongate.onsemi.com:80'; done
+fi

@@ -77,3 +77,4 @@ setopt autolist
 unsetopt menucomplete
 
 source $HOME/.aliases
+source $HOME/.common
