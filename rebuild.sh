@@ -1,6 +1,11 @@
 #!/run/current-system/sw/bin/bash
 
-release=$(cat /etc/nixos/release)
+if [ -f /etc/nixos/release ]; then
+  release=$(cat /etc/nixos/release)
+else
+  release="unstable"
+fi
+
 
 # TODO: check if repo is up to date
 #commit=$(curl -sI http://nixos.org/channels/nixos-${release}/ | grep Location | perl -n -e'/([0-9a-f]{7})\/\s*$/ && print $1')
