@@ -75,3 +75,5 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 setopt autolist
 unsetopt menucomplete
+
+source $HOME/.aliases

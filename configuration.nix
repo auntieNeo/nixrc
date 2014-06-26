@@ -104,6 +104,7 @@ rec {
     # Configure various dotfiles.
     # FIXME: The dotfiles can't be linked on the first boot of a fresh install, because the home directory hasn't been created yet.
     dotfiles = ''
+      ln -fs ${./dotfiles/aliases} /home/auntieneo/.aliases
       ln -fs ${./dotfiles/bash_profile} /home/auntieneo/.bash_profile
       ln -fs ${./dotfiles/bashrc} /home/auntieneo/.bashrc
       ln -fs ${./dotfiles/gitconfig} /home/auntieneo/.gitconfig
