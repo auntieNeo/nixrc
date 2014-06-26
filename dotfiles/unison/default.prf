@@ -1,0 +1,8 @@
+include common
+
+root = /home/auntieneo
+root = ssh://auntieneo.net//home/auntieneo
+
+path = code
+path = images
+path = work

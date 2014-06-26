@@ -113,6 +113,8 @@ rec {
       ln -fs ${./dotfiles/nixpkgs/config.nix} /home/auntieneo/.nixpkgs/config.nix  # FIXME: create a directory for nixpkgs
       ln -fsn ${./dotfiles/oh-my-zsh} /home/auntieneo/.oh-my-zsh
       ln -fs ${./dotfiles/tmux.conf} /home/auntieneo/.tmux.conf
+      ln -fs ${./dotfiles/unison/common.prf} /home/auntieneo/.unison/common.prf  # FIXME: create a directory for unison
+      ln -fs ${./dotfiles/unison/default.prf} /home/auntieneo/.unison/default.prf
       ln -fs ${./dotfiles/vimlatex} /home/auntieneo/.vimlatex
       ln -fs ${./dotfiles/vimnotepad} /home/auntieneo/.vimnotepad
       ln -fs ${./dotfiles/vimpython} /home/auntieneo/.vimpython
