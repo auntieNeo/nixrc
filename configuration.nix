@@ -149,6 +149,7 @@ rec {
 # TODO: add ctrl+<left> and ctrl+<right> tab navigation in vim (for use from my phone)
 
 # TODO: configure zsh to behave like bash but still be awesome
+# TODO: setopt NO_HUP to keep background jobs alive when zsh exits
 
 # TODO: use wmname to set the window manager name to LG3D (hack to get Java to behave in dwm)
 # TODO: configure clickable URLs in rxvt-unicode (see https://wiki.archlinux.org/index.php/rxvt-unicode#Clickable_URLs)

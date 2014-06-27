@@ -14,7 +14,7 @@
     anki
 #    anthy  # TODO: write an anthy package (with ibus)
     chromium
-    conky
+    conky  # TODO: configure conky
 #    dina  # TODO: write a package for dina fonts
     dmenu
     # install patched version of dwm
