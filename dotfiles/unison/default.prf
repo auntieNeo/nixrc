@@ -6,3 +6,6 @@ root = ssh://auntieneo.net//home/auntieneo
 path = code
 path = images
 path = work
+
+ignore = Name code/*
+ignore = Name work/onsemi/sandbox
