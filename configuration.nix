@@ -43,13 +43,14 @@ rec {
   # List packages installed in system profile. To search by name, run:
   # nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
-#    ansible  # TODO: uncomment this once ansible package is in stable nixpkgs
+    ansible
     apg
     aspell
     aspellDicts.en
     cmake
     ctags
     git
+    gnupg
     idutils
     inetutils
     irssi
@@ -75,7 +76,7 @@ rec {
     tcpdump
     texLiveFull
     tmux
-#    typespeed  # TODO: uncomment this later
+    typespeed
     unison
     unzip
     vagrant
@@ -112,6 +113,7 @@ rec {
       ln -fsn ${./dotfiles/irssi} /home/auntieneo/.irssi  # FIXME: as this directory is read-only, irssi can't write logs and such
       ln -fs ${./dotfiles/nixpkgs/config.nix} /home/auntieneo/.nixpkgs/config.nix  # FIXME: create a directory for nixpkgs
       ln -fsn ${./dotfiles/oh-my-zsh} /home/auntieneo/.oh-my-zsh
+      ln -fs ${./dotfiles/ssh/config} /home/auntieneo/.ssh/config  # FIXME: create the .ssh directory
       ln -fs ${./dotfiles/tmux.conf} /home/auntieneo/.tmux.conf
       ln -fs ${./dotfiles/unison/common.prf} /home/auntieneo/.unison/common.prf  # FIXME: create a directory for unison
       ln -fs ${./dotfiles/unison/default.prf} /home/auntieneo/.unison/default.prf
@@ -141,12 +143,11 @@ rec {
 # TODO: update vagrant to at lesat version 1.6 (for Windows guest support)
 # TODO: write packages for some repository management tools, such as myrepo, gr, Android's repo, and mu-repo
 
-# TODO: try to load ./Session.vim whenever "vim" is run
+# TODO: try to load ./Session.vim whenever "vim" is run (probably using myFunEnv or something)
 # TODO: write macro to set function keys to run commands
 # TODO: add ctrl+<left> and ctrl+<right> tab navigation in vim (for use from my phone)
 
 # TODO: configure zsh to behave like bash but still be awesome
-# TODO: make an alias to disable color in alsamixer
 
 # TODO: use wmname to set the window manager name to LG3D (hack to get Java to behave in dwm)
 # TODO: configure clickable URLs in rxvt-unicode (see https://wiki.archlinux.org/index.php/rxvt-unicode#Clickable_URLs)
@@ -159,8 +160,6 @@ rec {
 # TODO: configure multiple monitors (depending on which host)
 # TODO: configure backgrounds (depending on which host)
 # TODO: only configure wireless on systems that need it
-# TODO: disable beep
-# TODO: configure ntp
 
 # TODO: install ssh keys
 # TODO: configure ssh-agent

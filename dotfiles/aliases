@@ -15,3 +15,6 @@ alias cmd="xfreerdp -u fg6tqj --app --plugin rail --data '%windir%\system32\cmd.
 alias explorer="xfreerdp -u fg6tqj --app --plugin rail --data '%windir%\explorer.exe' -- localhost"
 alias outlook="xfreerdp -u fg6tqj --app --plugin rail --data '%programfiles(x86)%\Microsoft Office\office12\outlook.exe' -- localhost"
 alias windows="xfreerdp -u fg6tqj localhost"
+
+# Misc options
+alias alsamixer="alsamixer --no-color"
