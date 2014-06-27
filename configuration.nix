@@ -49,6 +49,7 @@ rec {
     aspellDicts.en
     cmake
     ctags
+    expect
     git
     gnupg
     idutils
