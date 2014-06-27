@@ -1,0 +1,19 @@
+Host minerve
+  Hostname minerve.cose.isu.edu
+  User glinjona
+
+Host lain
+  ProxyCommand ssh -q minerve nc lain.cose.isu.edu 22 
+  User auntieneo
+
+Host dhaos
+  Hostname auntieneo.net
+  User auntieneo
+
+Host hazuki
+  ProxyCommand ssh -q dhaos nc localhost 2200
+  User auntieneo
+
+Host kresnik
+  ProxyCommand ssh -q dhaos nc localhost 2222
+  User auntieneo
