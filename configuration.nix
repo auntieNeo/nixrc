@@ -109,6 +109,7 @@ rec {
       ln -fs ${./dotfiles/aliases} /home/auntieneo/.aliases
       ln -fs ${./dotfiles/bash_profile} /home/auntieneo/.bash_profile
       ln -fs ${./dotfiles/bashrc} /home/auntieneo/.bashrc
+      ln -fsn ${./dotfiles/bin} /home/auntieneo/.bin
       ln -fs ${./dotfiles/common} /home/auntieneo/.common
       ln -fs ${./dotfiles/gitconfig} /home/auntieneo/.gitconfig
       ln -fs ${./dotfiles/grconfig.json} /home/auntieneo/.grconfig.json

@@ -82,6 +82,7 @@
         manage = "window";
         name = "dwm";
         start = ''
+          wmname LG3D
           # FIXME: Need a way to reference the patched dwm by its full path.
           dwm
           waitPID=$!

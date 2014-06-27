@@ -2,3 +2,4 @@
 hardware-configuration.nix
 hostname
 Session.vim
+private

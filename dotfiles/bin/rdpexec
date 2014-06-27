@@ -1,0 +1,28 @@
+#!/usr/bin/env expect
+
+# Get the RDP command to run
+set command [lindex $argv 0]
+
+# Get the RDP password
+set password_file "/etc/nixos/private/rdp_password"
+set f [open $password_file]
+set rdp_password [read -nonewline $f]
+close $f
+
+spawn xfreerdp -u fg6tqj --app --plugin rail --data '$command' -- localhost
+expect {
+  Password: {
+    send_user "password from $password_file\n"
+    send "$rdp_password\r"
+  } timeout {
+    send_user "RDP command timed out.\n"
+  }
+}
+
+set timeout 5000  # FIXME: the process dies when expect is closed
+expect {
+  eol: {
+  } timeout: {
+    disconnect
+  }
+}

@@ -48,6 +48,6 @@ rsync --filter="protect /hardware-configuration.nix" \
            --filter="exclude,s *.git" \
            --filter="exclude .*.swp" \
            --filter="exclude Session.vim" \
-           --delete --recursive \
+           --delete --recursive --perms \
            $NIXRC/ $NIXOS_CONFIG/
 nixos-install && rm -rf /mnt/nixrc && reboot

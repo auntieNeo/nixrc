@@ -38,7 +38,7 @@ sudo rsync --filter="protect /hardware-configuration.nix" \
            --filter="exclude,s *.git" \
            --filter="exclude .*.swp" \
            --filter="exclude Session.vim" \
-           --delete --recursive \
+           --delete --recursive --perms \
            $SRC/ /etc/nixos/
 
 if [ $# -eq 0 ]; then
