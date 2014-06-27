@@ -1,0 +1,12 @@
+{
+  "tags": {
+    "all": [
+      "/home/auntieneo/code/nixpkgs",
+      "/home/auntieneo/code/nixrc"
+    ],
+    "nix": [
+      "/home/auntieneo/code/nixpkgs",
+      "/home/auntieneo/code/nixrc"
+    ]
+  }
+}

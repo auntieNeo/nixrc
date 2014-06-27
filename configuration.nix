@@ -110,6 +110,7 @@ rec {
       ln -fs ${./dotfiles/bashrc} /home/auntieneo/.bashrc
       ln -fs ${./dotfiles/common} /home/auntieneo/.common
       ln -fs ${./dotfiles/gitconfig} /home/auntieneo/.gitconfig
+      ln -fs ${./dotfiles/grconfig.json} /home/auntieneo/.grconfig.json
       ln -fsn ${./dotfiles/irssi} /home/auntieneo/.irssi  # FIXME: as this directory is read-only, irssi can't write logs and such
       ln -fs ${./dotfiles/nixpkgs/config.nix} /home/auntieneo/.nixpkgs/config.nix  # FIXME: create a directory for nixpkgs
       ln -fsn ${./dotfiles/oh-my-zsh} /home/auntieneo/.oh-my-zsh
