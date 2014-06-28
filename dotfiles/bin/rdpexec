@@ -9,16 +9,20 @@ set f [open $password_file]
 set rdp_password [read -nonewline $f]
 close $f
 
+set timeout 10
+
 spawn -ignore HUP xfreerdp -u fg6tqj --app --plugin rail --data '$command' -- localhost
+
 expect {
   Password: {
     send_user "password from $password_file\n"
     send "$rdp_password\r"
   }
-  timeout disconnect
 }
 
 expect {
-  "Do you trust the above certificate? (Y/N)" { send "Y\r"; exp_continue }
-  timeout disconnect
+  "Do you trust the above certificate? (Y/N)" {
+    send_user "Y\n"
+    send "Y\r"
+  }
 }
