@@ -9,21 +9,16 @@ set f [open $password_file]
 set rdp_password [read -nonewline $f]
 close $f
 
-spawn xfreerdp -u fg6tqj --app --plugin rail --data '$command' -- localhost
+spawn -ignore HUP xfreerdp -u fg6tqj --app --plugin rail --data '$command' -- localhost
 expect {
   Password: {
     send_user "password from $password_file\n"
     send "$rdp_password\r"
-  } timeout {
-    send_user "RDP command timed out.\n"
   }
+  timeout disconnect
 }
 
-# FIXME: expect this: Do you trust the above certificate? (Y/N)
-set timeout 5000 ; # FIXME: the process dies when expect is closed
 expect {
-  eol: {
-  } timeout: {
-    disconnect
-  }
+  "Do you trust the above certificate? (Y/N)" { send "Y\r"; exp_continue }
+  timeout disconnect
 }
