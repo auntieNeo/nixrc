@@ -27,6 +27,7 @@
     }))
     evince
     firefox
+    freerdp
     gimp
     gnumeric
     gutenprint
