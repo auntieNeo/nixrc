@@ -16,4 +16,5 @@ Host hazuki
 
 Host kresnik
   ProxyCommand ssh -q dhaos nc localhost 2222
+  LocalForward 3389 localhost:3389
   User auntieneo
