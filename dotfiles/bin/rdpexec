@@ -19,7 +19,8 @@ expect {
   }
 }
 
-set timeout 5000  # FIXME: the process dies when expect is closed
+# FIXME: expect this: Do you trust the above certificate? (Y/N)
+set timeout 5000 ; # FIXME: the process dies when expect is closed
 expect {
   eol: {
   } timeout: {
