@@ -8,3 +8,6 @@ EDITOR=vim
 if [ `hostname` = "kresnik" ]; then
   for i in http https ftp rsync; do export ${i}_proxy='http://ongate.onsemi.com:80'; done
 fi
+
+# Add custom bin, including Windows RDP "executables", to the PATH
+PATH="$PATH:$HOME/.bin"

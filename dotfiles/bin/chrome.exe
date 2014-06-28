@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+rdpexec="`dirname $0`/rdpexec"
+# FIXME: chrome doesn't seem to work
+$rdpexec '%programfiles(x86)%\Google\Chrome\Application\chrome.exe'

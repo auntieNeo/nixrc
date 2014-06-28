@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+rdpexec="`dirname $0`/rdpexec"
+$rdpexec '%windir%\system32\cmd.exe'

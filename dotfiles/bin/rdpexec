@@ -11,6 +11,7 @@ close $f
 
 set timeout 10
 
+# TODO: get clipboard redirection working
 spawn -ignore HUP xfreerdp -u fg6tqj --app --plugin rail --data '$command' -- localhost
 
 expect {

@@ -8,14 +8,6 @@ alias nel='nix-env-local'
 alias nix-shell-local='nix-shell $NIXPKGS_LOCAL'  # FIXME: prevent nix-shell from changing the prompt to green
 alias nsl='nix-shell-local'
 
-# Various programs over RDP (will prompt for password from stdin).  # TODO: store password in file and pipe in with expect
-# TODO: get clipboard redirection working
-alias chrome="xfreerdp -u fg6tqj --app --plugin rail --data '%programfiles(x86)%\Google\Chrome\Application\chrome.exe' -- localhost"
-alias cmd="xfreerdp -u fg6tqj --app --plugin rail --data '%windir%\system32\cmd.exe' -- localhost"
-alias explorer="xfreerdp -u fg6tqj --app --plugin rail --data '%windir%\explorer.exe' -- localhost"
-alias outlook="xfreerdp -u fg6tqj --app --plugin rail --data '%programfiles(x86)%\Microsoft Office\office12\outlook.exe' -- localhost"
-alias windows="xfreerdp -u fg6tqj localhost"
-
 # Misc options
 alias alsamixer="alsamixer --no-color"
 alias gr-unpushed="gr git --no-pager log --branches --not --remotes --simplify-by-decoration --decorate --oneline"
