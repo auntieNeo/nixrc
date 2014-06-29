@@ -66,7 +66,6 @@ rec {
     pmutils
     psmisc
     rtorrent
-    rxvt_unicode
     pmutils
     psmisc
     scons
@@ -75,9 +74,7 @@ rec {
     subversionClient
     sudo
     tcpdump
-    texLiveFull
     tmux
-    typespeed
     unison
     unzip
     vagrant
