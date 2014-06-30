@@ -35,6 +35,7 @@
     # kochi_substitute  # TODO: write a kochi substitute package
     mplayer
     # nitrogen  # TODO: write a nitrogen package
+    openbox
     texLiveFull
     typespeed
     # Install a patched version of rxvt_unicode (with text shadows).
