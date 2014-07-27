@@ -5,8 +5,11 @@
     name = "tots";
     buildInputs = with pkgs; [
       allegro5
+      boost
       cmake
       gdb
+      glew
+      graphviz
       lua5_2
       mesa
       pkgconfig
