@@ -6,6 +6,7 @@
     doxygen
     eclipses.eclipse_cpp_43
     netbeans
+    # TODO: install sloc
   ];
 
   system.activationScripts =

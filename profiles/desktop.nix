@@ -6,8 +6,21 @@
   imports = [ <nixos/modules/programs/virtualbox.nix> ];
 
   # Enable Adobe Flash player
-  nixpkgs.config.firefox.enableAdobeFlash = true;
-  nixpkgs.config.chromium.enableAdobeFlash = true;
+  nixpkgs.config.firefox.
+  nixpkgs.config = {
+    allowUnfree = true;
+    firefox = {
+      jre = true;
+      enableGoogleTalkPlugin = true;
+      enableAdobeFlash = true;
+    };
+    chromium = {
+      jre = true;
+      enableGoogleTalkPlugin = true;
+      enablePepperFlash = true;
+      enablePepperPDF = true;
+    };
+  };
 
 
   environment.systemPackages = with pkgs; [
