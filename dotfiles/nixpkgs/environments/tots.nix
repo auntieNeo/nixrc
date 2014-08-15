@@ -9,7 +9,9 @@
       cmake
       gdb
       glew
+      gmock
       graphviz
+      gtest
       lua5_2
       mesa
       pkgconfig
