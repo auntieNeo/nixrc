@@ -1,4 +1,4 @@
-#!/run/current-system/sw/bin/bash
+#!/usr/bin/env bash
 
 if [ -f /etc/nixos/release ]; then
   release=$(cat /etc/nixos/release)

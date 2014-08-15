@@ -1,3 +1,7 @@
+" load some vim plugins
+set rtp+=~/.nix-profile/vim-plugins/YouCompleteMe
+" or for p in ["YouCompleteMe"] | exec 'set rtp+=~/.nix-profile/vim-plugins/'.p | endfor
+
 " change movement keys to dvorak
 noremap t j
 noremap n k
