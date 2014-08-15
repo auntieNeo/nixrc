@@ -146,6 +146,7 @@ rec {
 # TODO: try to load ./Session.vim whenever "vim" is run (probably using myFunEnv or something)
 # TODO: write macro to set function keys to run commands
 # TODO: add ctrl+<left> and ctrl+<right> tab navigation in vim (for use from my phone)
+# TODO: configure YouCompleteMe vim plugin
 
 # TODO: configure zsh to behave like bash but still be awesome
 # TODO: setopt NO_HUP to keep background jobs alive when zsh exits

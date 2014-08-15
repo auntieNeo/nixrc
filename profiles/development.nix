@@ -6,6 +6,8 @@
     doxygen
     eclipses.eclipse_cpp_43
     netbeans
+    sloccount
+#    vimPlugins
   ];
 
   system.activationScripts =
