@@ -6,7 +6,6 @@
   imports = [ <nixos/modules/programs/virtualbox.nix> ];
 
   # Enable Adobe Flash player
-  nixpkgs.config.firefox.
   nixpkgs.config = {
     allowUnfree = true;
     firefox = {
