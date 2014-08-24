@@ -79,7 +79,7 @@ rec {
     unzip
     vagrant
     valgrind
-    vim
+    vim_configurable
     vlock
     wget
     wgetpaste
@@ -111,10 +111,12 @@ rec {
       ln -fs ${./dotfiles/gitconfig} /home/auntieneo/.gitconfig
       ln -fs ${./dotfiles/grconfig.json} /home/auntieneo/.grconfig.json
       ln -fsn ${./dotfiles/irssi} /home/auntieneo/.irssi  # FIXME: as this directory is read-only, irssi can't write logs and such
+      mkdir /home/auntieneo/.nixpkgs || true
       ln -fs ${./dotfiles/nixpkgs/config.nix} /home/auntieneo/.nixpkgs/config.nix  # FIXME: create a directory for nixpkgs
       ln -fsn ${./dotfiles/oh-my-zsh} /home/auntieneo/.oh-my-zsh
       ln -fs ${./dotfiles/ssh/config} /home/auntieneo/.ssh/config  # FIXME: create the .ssh directory
       ln -fs ${./dotfiles/tmux.conf} /home/auntieneo/.tmux.conf
+      mkdir /home/auntieneo/.unison || true
       ln -fs ${./dotfiles/unison/common.prf} /home/auntieneo/.unison/common.prf  # FIXME: create a directory for unison
       ln -fs ${./dotfiles/unison/default.prf} /home/auntieneo/.unison/default.prf
       ln -fs ${./dotfiles/vimlatex} /home/auntieneo/.vimlatex
@@ -122,6 +124,7 @@ rec {
       ln -fs ${./dotfiles/vimpython} /home/auntieneo/.vimpython
       ln -fs ${./dotfiles/vimrc} /home/auntieneo/.vimrc
       ln -fs ${./dotfiles/Xdefaults} /home/auntieneo/.Xdefaults
+      ln -fs ${./dotfiles/ycm_extra_conf.py} /home/auntieneo/.ycm_extra_conf.py
       ln -fs ${./dotfiles/zshrc} /home/auntieneo/.zshrc
       ln -fs ${./dotfiles/bash_profile} /root/.bash_profile
       ln -fs ${./dotfiles/bashrc} /root/.bashrc

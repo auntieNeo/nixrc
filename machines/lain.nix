@@ -4,6 +4,7 @@
   imports =
     [
       ../profiles/desktop.nix
+      ../profiles/development.nix
       ../profiles/server.nix
     ];
 

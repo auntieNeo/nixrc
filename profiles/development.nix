@@ -7,7 +7,7 @@
     eclipses.eclipse_cpp_43
     netbeans
     sloccount
-#    vimPlugins
+    vimPlugins.YouCompleteMe
   ];
 
   system.activationScripts =
