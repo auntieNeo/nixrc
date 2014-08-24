@@ -4,18 +4,26 @@ wd=$(pwd)
 nixos_dir="/etc/nixos"
 local_repo="$HOME/code/nixpkgs"
 system_repo="$nixos_dir/nixpkgs"
+origin_url='https://github.com/auntieNeo/nixpkgs'
+upstream_url='https://github.com/nixos/nixpkgs'
 
-function git_checkout_temp {
+function git_checkout_local_temp {
   local prev_dir=$(pwd)
 
   local branch=$1
   local repo_path=$2
 
   # create a temporary directory
-  temp=$(sudo mktemp -d --tmpdir=/tmp ${branch}.XXXXXXXXXX)
-  echo "created: $temp"
+  local temp=$(mktemp -d --tmpdir=/tmp ${branch}.XXXXXXXXXX)
+  echo "$temp"
+
+  # clone the given repository with the given branch
+  git clone --origin 'local' --branch $branch $repo_path $temp
 
   cd $prev_dir
+}
+
+function git_check_clean { 
 }
 
 # get the NixOS release string
@@ -25,12 +33,30 @@ else
   release="unstable"
 fi
 
-# fetch latest $(release) branch from GitHub origin
-cd $local_repo
-git fetch "origin"
-# TODO: attempt to merge the GitHub origin's $(release) branch into our local branch
-git pull 
-cd $wd
+## fetch latest $(release) branch from GitHub origin
+#cd $local_repo
+#git fetch "origin"
+#cd $wd
+#
+## attempt to merge the GitHub origin's $(release) branch into our local branch
+#temp=$(git_checkout_local_temp "$release" "$local_repo")
+#cd $temp
+#echo $temp
+#git remote add 'origin' "$origin_url"
+#git fetch 'origin'
+#git merge --ff-only "origin/$release"
+#if $? != 0; then
+#  echo "Could not fast-forward merge from origin/$release into local/$release"
+#  echo "Please merge origin/$release into $release branch of"
+#  echo "$local_repo and then push the changes manually."
+#  rm -rf "$temp"
+#  exit 1
+#fi
+#cd "$local_repo"
+#
+#rm -rf "$temp"
+#cd $wd
+#exit
 
 # find the latest commit that Hydra has built for the release we're following
 commit=$(curl -sI http://nixos.org/channels/nixos-${release}/ | grep Location | perl -n -e'/([0-9a-f]{7})\/\s*$/ && print $1')
