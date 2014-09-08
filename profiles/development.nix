@@ -6,6 +6,8 @@
     doxygen
     eclipses.eclipse_cpp_43
     netbeans
+    python
+    R
     sloccount
     vimPlugins.YouCompleteMe
   ];

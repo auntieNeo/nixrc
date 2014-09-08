@@ -42,6 +42,7 @@
     freerdp
     gimp
     gnumeric
+    gparted
     gutenprint
     ipafont
     # kochi_substitute  # TODO: write a kochi substitute package
