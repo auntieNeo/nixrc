@@ -2,7 +2,6 @@
 
 {
   # Load VirtualBox kernel modules.
-  # TODO: manually download and install VirtualBox Extension Pack
   imports = [ <nixos/modules/programs/virtualbox.nix> ];
 
   # Enable Adobe Flash player
@@ -19,6 +18,8 @@
       enablePepperFlash = true;
       enablePepperPDF = true;
     };
+  # Enable VirtualBox extensions (requires manual download)
+    virtualbox.enableExtensionPack = true;
   };
 
 
