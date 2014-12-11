@@ -25,7 +25,7 @@
 
   environment.systemPackages = with pkgs; [
     anki
-#    anthy  # TODO: write an anthy package (with ibus)
+    anthy
     chromium
     conky  # TODO: configure conky
 #    dina  # TODO: write a package for dina fonts
@@ -45,6 +45,7 @@
     gnumeric
     gparted
     gutenprint
+    ibus
     ipafont
     # kochi_substitute  # TODO: write a kochi substitute package
     mplayer
