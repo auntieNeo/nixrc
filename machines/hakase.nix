@@ -19,4 +19,7 @@
       Option "RenderAccel" "false"
     '';
   };
+
+  # specify port to bind to for SSH reverse tunneling
+  services.ssh-phone-home.bindPort = 2244;
 }
