@@ -14,7 +14,6 @@ rec {
     ncurses-dev = pkgs.myEnvFun {
       name = "ncurses";
       buildInputs = with pkgs; [
-        curses
         ncurses
       ];
     };
