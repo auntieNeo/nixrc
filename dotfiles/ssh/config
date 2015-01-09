@@ -2,9 +2,17 @@ Host minerve
   Hostname minerve.cose.isu.edu
   User glinjona
 
+Host minerve2
+  Hostname minerve2.cose.isu.edu
+  User glinjona
+
 Host lain
   ProxyCommand ssh -q minerve nc lain.cose.isu.edu 22 
   User auntieneo
+
+Host leela
+  ProxyCommand ssh -q minerve nc localhost 2255
+  User ansible
 
 Host dhaos
   Hostname auntieneo.net
