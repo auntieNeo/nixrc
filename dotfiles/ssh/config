@@ -7,7 +7,7 @@ Host minerve2
   User glinjona
 
 Host lain
-  ProxyCommand ssh -q minerve nc lain.cose.isu.edu 22 
+  ProxyCommand ssh -q minerve nc localhost 2222
   User auntieneo
 
 Host leela
