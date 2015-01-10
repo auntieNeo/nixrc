@@ -26,6 +26,14 @@ rec {
       ];
     };
 
+    # Environment for python development.
+    env-python = pkgs.myEnvFun {
+      name = "python";
+      buildInputs = with pkgs; [
+        pypyPackages.pyyaml
+      ];
+    };
+
     # Environment for developing swc-based window managers.
     # See htpps://github.com/michaelforney/swc
     env-swc = pkgs.myEnvFun {
