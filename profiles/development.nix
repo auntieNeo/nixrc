@@ -3,12 +3,19 @@
 {
   # install development packages
   environment.systemPackages = with pkgs; [
+    cmake
     doxygen
     eclipses.eclipse_cpp_43
+    mercurial
     netbeans
     python
     R
+    rubyLibs.jekyll
+    scons
     sloccount
+    subversionClient
+    vagrant
+    valgrind
     vimPlugins.YouCompleteMe
   ];
 

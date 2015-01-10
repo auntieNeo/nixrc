@@ -10,6 +10,8 @@ rec {
       ./hardware-configuration.nix
       # Import machine-specific configuration files.
       (./machines + "/${builtins.readFile ./hostname}.nix")  # FIXME: this breaks when ./hostname has a newline at the end
+      # Import default packages.
+      ./profiles/default.nix
     ];
 
   # Allow proprietary software (such as the NVIDIA drivers).
@@ -39,53 +41,6 @@ rec {
 
   # Set the timezone.
   time.timeZone = "US/Mountain";
-
-  # List packages installed in system profile. To search by name, run:
-  # nix-env -qaP | grep wget
-  environment.systemPackages = with pkgs; [
-    ansible
-    apg
-    aspell
-    aspellDicts.en
-    bind  # nslookup, dig
-    cmake
-    ctags
-    expect
-    git
-    gnupg
-    idutils
-    inetutils
-    irssi
-    links2
-    rubyLibs.jekyll
-    manpages
-    mercurial
-    mkpasswd
-    ncurses
-#    nkf  # TODO: write a package for Network Kanji Filter
-#    pacman  # TODO: write a package for Arch Linux's pacman (for creating Arch chroots)
-    pmutils
-    psmisc
-    rtorrent
-    pmutils
-    psmisc
-    scons
-    screen
-    stdenv
-    subversionClient
-    sudo
-    tcpdump
-    tmux
-    unison
-    unzip
-    vagrant
-    valgrind
-    vim_configurable
-    vlock
-    wget
-    wgetpaste
-    zsh
-  ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.extraUsers.auntieneo = {
@@ -130,6 +85,7 @@ rec {
       ln -fs ${./dotfiles/bash_profile} /root/.bash_profile
       ln -fs ${./dotfiles/bashrc} /root/.bashrc
       ln -fs ${./dotfiles/tmux.conf} /root/.tmux.conf
+      ln -fsn ${./dotfiles/tmuxinator} /home/auntieneo/.tmuxinator
       ln -fs ${./dotfiles/vimrc} /root/.vimrc
     '';
 
