@@ -47,6 +47,7 @@ rec {
     apg
     aspell
     aspellDicts.en
+    bind  # nslookup, dig
     cmake
     ctags
     expect
