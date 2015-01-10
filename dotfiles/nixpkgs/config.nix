@@ -10,8 +10,16 @@ rec {
 #  packageOverrides = import "${home}/.nixpkgs/livemedia/installer.nix";
 
   packageOverrides = pkgs: {
+    # Environment for making Jekyll websites
+    env-jekyll = pkgs.myEnvFun {
+      name = "jekyll";
+      buildInputs = with pkgs; let ruby = ruby_2_1; in [
+         rubyLibs.jekyll  # FIXME: figure out how to get this to use ruby_2_1
+      ];
+    };
+
     # Environment for developing programs that use ncurses.
-    ncurses-dev = pkgs.myEnvFun {
+    env-ncurses = pkgs.myEnvFun {
       name = "ncurses";
       buildInputs = with pkgs; [
         curses
@@ -21,7 +29,7 @@ rec {
 
     # Environment for developing swc-based window managers.
     # See htpps://github.com/michaelforney/swc
-    swc = pkgs.myEnvFun {
+    env-swc = pkgs.myEnvFun {
       name = "swc";
       buildInputs = with pkgs; [
         fontconfig
@@ -39,7 +47,7 @@ rec {
     };
 
     # Environment for programming USB Teensy development boards.
-    teensy = pkgs.myEnvFun {
+    env-teensy = pkgs.myEnvFun {
       name = "teensy";
       buildInputs = with pkgs; [
         arduino_core
@@ -49,7 +57,7 @@ rec {
     };
 
     # Environment I am using for developing a game engine.
-    tots = pkgs.myEnvFun {
+    env-tots = pkgs.myEnvFun {
       name = "tots";
       buildInputs = with pkgs; [
         allegro5

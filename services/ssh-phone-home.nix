@@ -68,7 +68,11 @@ in
 
       bindsTo = [ "network.target" ];
 
-      serviceConfig = with cfg; { User = cfg.localUser; };
+      serviceConfig = with cfg; {
+        User = cfg.localUser;
+        RestartSec = 10;  # restart every 10 seconds on failure
+        Restart = "on-failure";
+      };
       script = with cfg;  ''
         ${openssh}/bin/ssh -NTC -o ServerAliveInterval=60 -o ExitOnForwardFailure=yes -R ${toString bindPort}:localhost:22 -l ${remoteUser} -p ${toString remotePort} ${remoteHostname}
       '';

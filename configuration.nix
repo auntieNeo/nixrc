@@ -56,7 +56,10 @@ rec {
     inetutils
     irssi
     links2
+
     rubyLibs.jekyll
+    nodejs  # needed for jekyll
+
     manpages
     mercurial
     mkpasswd
