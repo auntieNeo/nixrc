@@ -32,3 +32,9 @@ windows:
       layout: main-horizontal
       panes:
         - irssi
+  - media:
+      layout: main-horizontal
+      panes:
+        - cmus
+        - alsamixer
+        - clear

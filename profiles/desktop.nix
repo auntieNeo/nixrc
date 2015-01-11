@@ -1,9 +1,6 @@
 { config, pkgs, ... }:
 
 {
-  # Load VirtualBox kernel modules.
-  imports = [ <nixos/modules/programs/virtualbox.nix> ];
-
   # Enable Adobe Flash player
   nixpkgs.config = {
     allowUnfree = true;
@@ -27,6 +24,7 @@
     anki
     anthy
     chromium
+    cmus
     conky  # TODO: configure conky
 #    dina  # TODO: write a package for dina fonts
     dmenu
@@ -57,7 +55,6 @@
     (pkgs.lib.overrideDerivation pkgs.rxvt_unicode (attrs: {
       patches = [ ../patches/urxvt-text-shadows.patch ];  # FIXME: This clobbers an existing patch for correct font spacing.
     }))
-    linuxPackages.virtualbox
     # TODO: write a package for the VirtualBox Guest Additions ISO
     wmname  # Used for hack in which Java apps break in dwm.
     xlibs.xinit
