@@ -10,9 +10,21 @@ Host lain
   ProxyCommand ssh -q minerve nc localhost 2222
   User auntieneo
 
+Host skynet
+  ProxyCommand ssh -q minerve nc localhost 2233
+  User glinjona
+
+Host skynet2
+  ProxyCommand ssh -q minerve nc localhost 2244
+  User glinjona
+
 Host leela
   ProxyCommand ssh -q minerve nc localhost 2255
   User ansible
+
+Host skynet3
+  ProxyCommand ssh -q minerve nc localhost 2266
+  User glinjona
 
 Host dhaos
   Hostname auntieneo.net
