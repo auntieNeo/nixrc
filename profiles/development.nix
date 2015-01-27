@@ -6,6 +6,7 @@
     cmake
     doxygen
     eclipses.eclipse_cpp_43
+    linuxPackages.virtualbox
     mercurial
     netbeans
     python
@@ -18,6 +19,9 @@
     valgrind
     vimPlugins.YouCompleteMe
   ];
+
+  # Load VirtualBox kernel modules.
+  services.virtualboxHost.enable = true;
 
   system.activationScripts =
   {
