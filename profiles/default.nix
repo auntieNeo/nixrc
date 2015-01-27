@@ -16,6 +16,7 @@
     idutils
     inetutils
     irssi
+    ledger
     links2
     manpages
     mkpasswd
