@@ -14,14 +14,21 @@ rec {
       ./profiles/default.nix
     ];
 
+
   # Allow proprietary software (such as the NVIDIA drivers).
   nixpkgs.config.allowUnfree = true;
 
-  # See console messages during early boot.
-  boot.initrd.kernelModules = [ "fbcon" ];
+  boot = {
+    # See console messages during early boot.
+    initrd.kernelModules = [ "fbcon" ];
 
-  # Disable console blanking after being idle.
-  boot.kernelParams = [ "consoleblank=0" ];
+    # Disable console blanking after being idle.
+    kernelParams = [ "consoleblank=0" ];
+
+    # Use more recent kernel for render node support
+    # See <http://www.phoronix.com/scan.php?page=news_item&px=MTYzMTg>
+    kernelPackages = pkgs.linuxPackages_3_18;
+  };
 
   # Set the hostname from the contents of ./hostname
   networking.hostName = builtins.readFile ./hostname;  # FIXME: this breaks when ./hostname has a newline at the end
@@ -46,7 +53,7 @@ rec {
   users.extraUsers.auntieneo = {
     name = "auntieneo";
     group = "auntieneo";
-    extraGroups = [ "users" "vboxusers" "wheel" ];
+    extraGroups = [ "users" "vboxusers" "video" "wheel" ];
     uid = 1000;
     createHome = true;
     home = "/home/auntieneo";
