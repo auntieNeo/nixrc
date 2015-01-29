@@ -53,7 +53,7 @@ rec {
   users.extraUsers.auntieneo = {
     name = "auntieneo";
     group = "auntieneo";
-    extraGroups = [ "users" "vboxusers" "video" "wheel" ];
+    extraGroups = [ "audio" "users" "vboxusers" "video" "wheel" ];
     uid = 1000;
     createHome = true;
     home = "/home/auntieneo";
@@ -82,6 +82,7 @@ rec {
       mkdir /home/auntieneo/.unison || true
       ln -fs ${./dotfiles/unison/common.prf} /home/auntieneo/.unison/common.prf  # FIXME: create a directory for unison
       ln -fs ${./dotfiles/unison/default.prf} /home/auntieneo/.unison/default.prf
+      ln -fs ${./dotfiles/velox.conf} /home/auntieneo/.velox.conf
       ln -fs ${./dotfiles/vimlatex} /home/auntieneo/.vimlatex
       ln -fs ${./dotfiles/vimnotepad} /home/auntieneo/.vimnotepad
       ln -fs ${./dotfiles/vimpython} /home/auntieneo/.vimpython
