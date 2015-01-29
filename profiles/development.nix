@@ -11,12 +11,13 @@
     netbeans
     python
     R
-    rubyLibs.jekyll
+#    rubyLibs.jekyll
     scons
     sloccount
     subversionClient
     vagrant
     valgrind
+    vimPlugins.UltiSnips
     vimPlugins.YouCompleteMe
   ];
 

@@ -31,7 +31,7 @@
     sudo
     tcpdump
     tmux
-    rubyLibs.tmuxinator
+#    rubyLibs.tmuxinator
     unison
     unzip
     vim_configurable
