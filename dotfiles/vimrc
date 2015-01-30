@@ -62,7 +62,7 @@ set expandtab
 set shiftwidth=2
 set smarttab
 set cindent
-set formatoptions=rol
+set formatoptions=rolq
 
 set backspace=2
 
