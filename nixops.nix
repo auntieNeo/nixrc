@@ -33,7 +33,7 @@ let
 
 in
 {
-#  network.description = "dhaos network";
+  network.description = "auntieneo";
 
   # Provision an EC2 key pair
   resources.ec2KeyPairs.auntie-key-pair =
@@ -49,8 +49,8 @@ in
       ec2 = {
         accessKeyId = ec2-accessKeyId;  # symbolic name looked up in ~/.ec2-keys
         region = ec2-region;
-        instanceType = "t2.small";
-        ami = "ami-3bf1bf0b";
+        instanceType = "t2.micro";
+        ami = "ami-fb9dc3cb";
         keyPair = resources.ec2KeyPairs.auntie-key-pair;
         securityGroups = [ "allow-ssh" ];
       };
