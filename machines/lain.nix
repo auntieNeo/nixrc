@@ -39,5 +39,8 @@
   };
 
   # specify port to bind to for SSH reverse tunneling
-  services.ssh-phone-home.bindPort = 2222;
+  services.ssh-phone-home = {
+    enable = true;
+    bindPort = 2222;
+  };
 }

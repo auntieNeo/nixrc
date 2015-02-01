@@ -1,4 +1,5 @@
 .*.swp
+.*.swo
 hardware-configuration.nix
 hostname
 Session.vim

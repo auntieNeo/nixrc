@@ -59,6 +59,7 @@
     wmname  # Used for hack in which Java apps break in dwm.
     xlibs.xinit
     xorg.xkill
+    xwayland
   ];
 
   # Enable CUPS to print documents.

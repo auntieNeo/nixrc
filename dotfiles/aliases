@@ -11,3 +11,4 @@ alias nsl='nix-shell-local'
 # Misc options
 alias alsamixer="alsamixer --no-color"
 alias gr-unpushed="gr git --no-pager log --branches --not --remotes --simplify-by-decoration --decorate --oneline"
+alias unison="unison -ui text"
