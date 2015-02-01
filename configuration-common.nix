@@ -3,8 +3,9 @@
 # Nixops. For configuration specific to conventional installs and Nixops
 # installs, see ./configuration.nix and ./nixops.nix respectively.
 
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
+with lib;
 rec {
   imports =
     let hostName = config.networking.hostName; in
@@ -48,6 +49,8 @@ rec {
     group = "auntieneo";
     extraGroups = [ "audio" "users" "vboxusers" "video" "wheel" ];
     uid = 1000;
+    # FIXME: createHome doesn't run early enough for a freshly created /home disk
+    # (i.e. user is left without a home directory)
     createHome = true;
     home = "/home/auntieneo";
     shell = "/run/current-system/sw/bin/zsh";
@@ -57,36 +60,45 @@ rec {
   system.activationScripts =
   {
     # Configure various dotfiles.
-    # FIXME: The dotfiles can't be linked on the first boot of a fresh install, because the home directory hasn't been created yet.
-    dotfiles = ''
-      ln -fs ${./dotfiles/aliases} /home/auntieneo/.aliases
-      ln -fs ${./dotfiles/bash_profile} /home/auntieneo/.bash_profile
-      ln -fs ${./dotfiles/bashrc} /home/auntieneo/.bashrc
-      ln -fsn ${./dotfiles/bin} /home/auntieneo/.bin
-      ln -fs ${./dotfiles/common} /home/auntieneo/.common
-      ln -fs ${./dotfiles/gitconfig} /home/auntieneo/.gitconfig
-      ln -fs ${./dotfiles/grconfig.json} /home/auntieneo/.grconfig.json
-      ln -fsn ${./dotfiles/irssi} /home/auntieneo/.irssi  # FIXME: as this directory is read-only, irssi can't write logs and such
-      mkdir /home/auntieneo/.nixpkgs || true
-      ln -fs ${./dotfiles/nixpkgs/config.nix} /home/auntieneo/.nixpkgs/config.nix  # FIXME: create a directory for nixpkgs
-      ln -fsn ${./dotfiles/oh-my-zsh} /home/auntieneo/.oh-my-zsh
-      ln -fs ${./dotfiles/ssh/config} /home/auntieneo/.ssh/config  # FIXME: create the .ssh directory
-      ln -fs ${./dotfiles/tmux.conf} /home/auntieneo/.tmux.conf
-      mkdir /home/auntieneo/.unison || true
-      ln -fs ${./dotfiles/unison/common.prf} /home/auntieneo/.unison/common.prf  # FIXME: create a directory for unison
-      ln -fs ${./dotfiles/unison/default.prf} /home/auntieneo/.unison/default.prf
-      ln -fs ${./dotfiles/velox.conf} /home/auntieneo/.velox.conf
-      ln -fs ${./dotfiles/vimlatex} /home/auntieneo/.vimlatex
-      ln -fs ${./dotfiles/vimnotepad} /home/auntieneo/.vimnotepad
-      ln -fs ${./dotfiles/vimpython} /home/auntieneo/.vimpython
-      ln -fs ${./dotfiles/vimrc} /home/auntieneo/.vimrc
-      ln -fs ${./dotfiles/Xdefaults} /home/auntieneo/.Xdefaults
-      ln -fs ${./dotfiles/ycm_extra_conf.py} /home/auntieneo/.ycm_extra_conf.py
-      ln -fs ${./dotfiles/zshrc} /home/auntieneo/.zshrc
+    dotfiles = stringAfter [ "users" ]
+    ''
+      cd /home/auntieneo
+      ln -fs ${./dotfiles/aliases} .aliases
+      ln -fs ${./dotfiles/bash_profile} .bash_profile
+      ln -fs ${./dotfiles/bashrc} .bashrc
+      ln -fsn ${./dotfiles/bin} .bin
+      ln -fs ${./dotfiles/common} .common
+      ln -fs ${./dotfiles/gitconfig} .gitconfig
+      ln -fs ${./dotfiles/grconfig.json} .grconfig.json
+      ln -fsn ${./dotfiles/irssi} .irssi  # FIXME: as this directory is read-only, irssi can't write logs and such
+      mkdir .nixpkgs 2>/dev/null || true
+      chown auntieneo:auntieneo .nixpkgs
+      ln -fs ${./dotfiles/nixpkgs/config.nix} .nixpkgs/config.nix  # FIXME: create a directory for nixpkgs
+      ln -fsn ${./dotfiles/oh-my-zsh} .oh-my-zsh
+      mkdir --mode=0700 .ssh 2>/dev/null || true
+      chown auntieneo:auntieneo .ssh
+      cp ${./dotfiles/ssh/authorized_keys} .ssh/authorized_keys
+      mkdir --mode=0600 .ssh/authorized_keys 2>/dev/null || true
+      chown auntieneo:auntieneo .ssh/authorized_keys
+      ln -fs ${./dotfiles/ssh/config} .ssh/config  # FIXME: create the .ssh directory
+      ln -fs ${./dotfiles/tmux.conf} .tmux.conf
+      ln -fsn ${./dotfiles/tmuxinator} .tmuxinator
+      mkdir .unison 2>/dev/null || true
+      chown auntieneo:auntieneo .unison
+      ln -fs ${./dotfiles/unison/common.prf} .unison/common.prf  # FIXME: create a directory for unison
+      ln -fs ${./dotfiles/unison/default.prf} .unison/default.prf
+      ln -fs ${./dotfiles/velox.conf} .velox.conf
+      ln -fs ${./dotfiles/vimlatex} .vimlatex
+      ln -fs ${./dotfiles/vimnotepad} .vimnotepad
+      ln -fs ${./dotfiles/vimpython} .vimpython
+      ln -fs ${./dotfiles/vimrc} .vimrc
+      ln -fs ${./dotfiles/Xdefaults} .Xdefaults
+      ln -fs ${./dotfiles/ycm_extra_conf.py} .ycm_extra_conf.py
+      ln -fs ${./dotfiles/zshrc} .zshrc
+
       ln -fs ${./dotfiles/bash_profile} /root/.bash_profile
       ln -fs ${./dotfiles/bashrc} /root/.bashrc
       ln -fs ${./dotfiles/tmux.conf} /root/.tmux.conf
-      ln -fsn ${./dotfiles/tmuxinator} /home/auntieneo/.tmuxinator
       ln -fs ${./dotfiles/vimrc} /root/.vimrc
     '';
 

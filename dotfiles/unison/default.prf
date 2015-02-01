@@ -1,11 +1,11 @@
 include common
 
 root = /home/auntieneo
-root = ssh://auntieneo.net//home/auntieneo
+root = ssh://dhaos//home/auntieneo
+servercmd = /run/current-system/sw/bin/unison
 
 path = code
-path = images
-path = work
+#path = images
+#path = work
 
-ignore = Name code/*
-ignore = Name work/onsemi/sandbox
+#ignore = Name work/onsemi/sandbox
