@@ -1,3 +1,4 @@
 ignore = Name .*.swp
+ignore = Name .*.swo
 ignore = Name *.o
 ignore = Name *~
