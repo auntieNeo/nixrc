@@ -7,12 +7,10 @@
 
 with lib;
 rec {
-  imports =
-    let hostName = config.networking.hostName; in
-    [
-      # Import default packages.
-      ./profiles/default.nix
-    ];
+  imports = [
+    # Import default packages.
+    ./profiles/default.nix
+  ];
 
   # Allow proprietary software (such as the NVIDIA drivers).
   nixpkgs.config.allowUnfree = true;

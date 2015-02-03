@@ -9,6 +9,7 @@
     linuxPackages.virtualbox
     mercurial
     netbeans
+    binutils
     python
     R
 #    rubyLibs.jekyll
