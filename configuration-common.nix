@@ -41,6 +41,11 @@ rec {
   # Set the timezone.
   time.timeZone = "US/Mountain";
 
+  security.pam.loginLimits = [
+    # Enable core dump files.
+    { domain = "*"; type = "-"; item = "core"; value = "unlimited"; }
+  ];
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.extraUsers.auntieneo = {
     name = "auntieneo";

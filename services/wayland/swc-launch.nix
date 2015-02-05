@@ -71,7 +71,8 @@ in
       restartIfChanged = false;
 
       serviceConfig = {
-        User="${cfg.user}";
+        User = "${cfg.user}";
+        LimitCORE = "infinity";
       };
 
       environment = {

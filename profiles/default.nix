@@ -41,4 +41,16 @@
     zsh
   ];
 
+  # Enable core dump handling in systemd.
+  systemd.coredump = {
+    enable = true;
+    extraConfig = ''
+      Storage=journal
+    '';
+  };
+
+#  boot.kernel.sysctl = {
+#    # Enable core dump handling in systemd.
+#    "kernel.core_pattern" = "${pkgs.systemd}/lib/systemd/systemd-coredump %p %u %g %s %t %e";
+#  };
 }
