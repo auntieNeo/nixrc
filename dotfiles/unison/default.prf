@@ -6,6 +6,6 @@ servercmd = /run/current-system/sw/bin/unison
 
 path = code
 #path = images
-#path = work
+path = work
 
 #ignore = Name work/onsemi/sandbox
