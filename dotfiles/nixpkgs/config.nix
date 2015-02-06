@@ -10,6 +10,16 @@ rec {
 #  packageOverrides = import "${home}/.nixpkgs/livemedia/installer.nix";
 
   packageOverrides = pkgs: {
+    # Environment for Java development
+    env-java = pkgs.myEnvFun {
+      name = "java";
+      buildInputs = with pkgs; [
+        gradle
+        maven
+        openjdk
+      ];
+    };
+
     # Environment for making Jekyll websites
     env-jekyll = pkgs.myEnvFun {
       name = "jekyll";
