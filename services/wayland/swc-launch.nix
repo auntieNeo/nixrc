@@ -45,7 +45,7 @@ in
 
       tty = mkOption {
         type = types.int;
-        default = 6;
+        default = 9;
         description = "Virtual console for swc-launch to use.";
       };
 
@@ -65,26 +65,28 @@ in
     security.setuidPrograms = [ "swc-launch" ];
 
     systemd.services.swc-launch = {
+      enable = true;
       description = "Launcher for libswc-based Wayland compositors";
-      after = [ "systemd-udev-settle.service" "local-fs.target" "acpid.service" ];
+      after = [ "systemd-udev-settle.service" "local-fs.target" ];
 
       restartIfChanged = false;
 
       serviceConfig = {
         User = "${cfg.user}";
-        LimitCORE = "infinity";
       };
 
       environment = {
         XKB_DEFAULT_LAYOUT = "${cfg.layout}";
         XKB_DEFAULT_OPTIONS = "${cfg.xkbOptions}";
+
+        # FIXME: This doesn't work when the user hasn't explicitly set her uid.
+        XDG_RUNTIME_DIR = "/run/user/${toString config.users.extraUsers.${cfg.user}.uid}";
       };
 
-      preStart =
-        ''
-        '';
-
-      script = with cfg; "${config.security.wrapperDir}/swc-launch -t /dev/tty${toString tty} -- ${server.${server.active_server}.command}";
+      script = with cfg; ''
+        ${config.security.wrapperDir}/swc-launch -t /dev/tty${toString tty} \
+        -- ${server.${server.active_server}.command}
+      '';
     };
   };
 }

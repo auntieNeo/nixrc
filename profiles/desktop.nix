@@ -33,6 +33,7 @@
     conky  # TODO: configure conky
 #    dina  # TODO: write a package for dina fonts
     dmenu
+    dmenu-wl
     # install patched version of dwm
     (pkgs.lib.overrideDerivation pkgs.dwm (attrs: {
       name = "dwm-6.0-patched";
@@ -55,6 +56,7 @@
     mplayer
     # nitrogen  # TODO: write a nitrogen package
     openbox
+    st-wl
     texLiveFull
     typespeed
     # Install a patched version of rxvt_unicode (with text shadows).
@@ -128,9 +130,11 @@
 
   # TODO: push these upstream
   nixpkgs.config.packageOverrides = pkgs: rec {
-    libswc = pkgs.callPackage ../pkgs/libswc/default.nix { };
+    libswc = pkgs.misc.debugVersion (pkgs.callPackage ../pkgs/libswc/default.nix { });
     libwld = pkgs.callPackage ../pkgs/libwld/default.nix { };
     velox = pkgs.callPackage ../pkgs/velox/default.nix { };
+    dmenu-wl = pkgs.callPackage ../pkgs/dmenu-wl/default.nix { };
+    st-wl = pkgs.callPackage ../pkgs/st-wl/default.nix { };
   };
 
   security.setuidPrograms = [ "weston-launch" ];
