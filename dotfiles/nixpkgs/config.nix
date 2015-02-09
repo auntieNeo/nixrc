@@ -17,6 +17,7 @@ rec {
         gradle
         maven
         openjdk
+#        openjdk8
       ];
     };
 

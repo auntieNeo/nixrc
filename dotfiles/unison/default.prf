@@ -5,7 +5,4 @@ root = ssh://dhaos//home/auntieneo
 servercmd = /run/current-system/sw/bin/unison
 
 path = code
-#path = images
 path = work
-
-#ignore = Name work/onsemi/sandbox
