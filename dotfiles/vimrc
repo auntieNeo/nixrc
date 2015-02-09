@@ -30,32 +30,33 @@ noremap L S
 nmap <C-H> :tabprevious<CR>
 nmap <C-S> :tabnext<CR>
 
-" YCM key bindings (tab binding is added later with hacks below)
-let g:ycm_key_list_select_completion = ['<C-t>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-n>', '<Up>']
-
-" UltiSnips key bindings
-" FIXME: none of my terminals support shift+tab or ctrl+tab
-" FIXME: JumpBackward isn't working at all
-let g:UltiSnipsExpandTrigger = "<tab>"
-let g:UltiSnipsJumpForwardTrigger = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<C-p>"
-let g:UltiSnipsListSnippets = "<C-u>"
-
-" Some hacks to make UltiSnips play with YCM
-" from <http://stackoverflow.com/a/21979915>
-function! g:UltiSnips_Complete()
-  call UltiSnips#ExpandSnippetOrJump()
-  if g:ulti_expand_or_jump_res == 0
-    if pumvisible()
-      return "\<Down>"
-    else
-      return "\<tab>"
-    endif
-  endif
-  return ""
-endfunction
-au BufEnter * exec "inoremap <silent> " . g:UltiSnipsJumpForwardTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
+" Vim is a piece of shit when it comes to failing gracefully, so disable these for now.
+"" YCM key bindings (tab binding is added later with hacks below)
+"let g:ycm_key_list_select_completion = ['<C-t>', '<Down>']
+"let g:ycm_key_list_previous_completion = ['<C-n>', '<Up>']
+"
+"" UltiSnips key bindings
+"" FIXME: none of my terminals support shift+tab or ctrl+tab
+"" FIXME: JumpBackward isn't working at all
+"let g:UltiSnipsExpandTrigger = "<tab>"
+"let g:UltiSnipsJumpForwardTrigger = "<tab>"
+"let g:UltiSnipsJumpBackwardTrigger = "<C-p>"
+"let g:UltiSnipsListSnippets = "<C-u>"
+"
+"" Some hacks to make UltiSnips play with YCM
+"" from <http://stackoverflow.com/a/21979915>
+"function! g:UltiSnips_Complete()
+"  call UltiSnips#ExpandSnippetOrJump()
+"  if g:ulti_expand_or_jump_res == 0
+"    if pumvisible()
+"      return "\<Down>"
+"    else
+"      return "\<tab>"
+"    endif
+"  endif
+"  return ""
+"endfunction
+"au BufEnter * exec "inoremap <silent> " . g:UltiSnipsJumpForwardTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
 
 set tabstop=2
 set expandtab

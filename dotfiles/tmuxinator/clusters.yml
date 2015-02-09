@@ -1,7 +1,7 @@
 # ~/.tmuxinator/clusters.yml
 
 name: clusters
-root: ~/work/cluster_scripts
+root: ~/work/cose/code/cluster_scripts
 
 # Optional tmux socket
 # socket_name: foo

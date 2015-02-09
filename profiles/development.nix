@@ -18,7 +18,7 @@
     subversionClient
     vagrant
     valgrind
-    vimPlugins.UltiSnips
+#    vimPlugins.UltiSnips
     vimPlugins.YouCompleteMe
   ];
 
