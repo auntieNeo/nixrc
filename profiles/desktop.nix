@@ -28,6 +28,7 @@
   environment.systemPackages = with pkgs; [
     anki
     anthy
+    briss
     chromium
     cmus
     conky  # TODO: configure conky
@@ -56,6 +57,7 @@
     mplayer
     # nitrogen  # TODO: write a nitrogen package
     openbox
+    pdftk
     st-wl
     texLiveFull
     typespeed

@@ -4,7 +4,7 @@
   # List packages installed in system profile. To search by name, run:
   # nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
-#    ansible
+    ansible
     apg
     aspell
     aspellDicts.en
@@ -20,6 +20,7 @@
     links2
     manpages
     mkpasswd
+    mosh
     ncurses
 #    nkf  # TODO: write a package for Network Kanji Filter
     nix-prefetch-scripts
@@ -27,6 +28,7 @@
     pmutils
     psmisc
     rtorrent
+    ruby
     screen
     stdenv
     sudo
