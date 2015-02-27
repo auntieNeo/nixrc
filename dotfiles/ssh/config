@@ -22,7 +22,7 @@ Host leela
   ProxyCommand ssh -q minerve nc localhost 2255
   User ansible
 
-Host skynet3
+Host urban3
   ProxyCommand ssh -q minerve nc localhost 2266
   User glinjona
 

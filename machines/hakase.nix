@@ -4,9 +4,10 @@
   imports =
     [
       ../profiles/desktop.nix
-      ../profiles/server.nix
-      ../profiles/laptop.nix
       ../profiles/development.nix
+      ../profiles/laptop.nix
+      ../profiles/server.nix
+      ../profiles/virtualization.nix
     ];
 
   # Use the gummiboot efi boot loader.
@@ -20,6 +21,9 @@
     '';
   };
 
-  # specify port to bind to for SSH reverse tunneling
-  services.ssh-phone-home.bindPort = 2244;
+  # Specify port to bind to for SSH reverse tunneling
+  services.ssh-phone-home = {
+    enable = true;
+    bindPort = 2244;
+  };
 }

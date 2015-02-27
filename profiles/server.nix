@@ -10,14 +10,17 @@
   services.openssh.enable = true;
 
   # The "SSH phone home" service for SSH reverse tunneling
-  # Machines using this will need to enable it with this:
-  # services.ssh-phone-home.enable = pkgs.lib.mkForce true;
+  # Machines that use this will still need to enable it with:
+  # services.ssh-phone-home.enable = true;
+  #
+  # Machines that use settings other than this (e.g. a different
+  # remoteHostname) should use pkgs.lib.mkForce:
+  # services.ssh-phone-home.remoteHostname = pkgs.lib.mkForce "example.net";
   services.ssh-phone-home = {
     # NOTE: bindPort should be specified on a per-machine basis
-    enable = false;
     localUser = "auntieneo";
-    remoteHostname = "minerve.cose.isu.edu";
+    remoteHostname = "auntieneo.net";
     remotePort = 22;
-    remoteUser = "glinjona";
+    remoteUser = "auntieneo";
   };
 }

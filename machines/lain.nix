@@ -38,9 +38,11 @@
     '';
   };
 
-  # specify port to bind to for SSH reverse tunneling
+  # Specify port to bind to for SSH reverse tunneling
   services.ssh-phone-home = {
     enable = true;
+    remoteHostname = pkgs.lib.mkForce "minerve.cose.isu.edu";
     bindPort = 2222;
+    remoteUser = pkgs.lib.mkForce "glinjona";
   };
 }
