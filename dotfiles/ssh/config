@@ -14,7 +14,7 @@ Host skynet
   ProxyCommand ssh -q minerve nc localhost 2233
   User glinjona
 
-Host skynet2
+Host urban2
   ProxyCommand ssh -q minerve nc localhost 2244
   User glinjona
 
