@@ -14,16 +14,16 @@ Host skynet
   Hostname skynet.cose.isu.edu
   User glinjona
 
-Host urban2
-  ProxyCommand ssh -q minerve nc localhost 2244
-  User glinjona
-
 Host leela
-  Hostname leela.cose.isu.edu
+  ProxyCommand ssh -q minerve nc localhost 2255
   User ansible
 
+Host urban2
+  ProxyCommand ssh -q leela nc 192.168.1.102 22
+  User glinjona
+
 Host urban3
-  ProxyCommand ssh -q minerve nc localhost 2266
+  ProxyCommand ssh -q leela nc 192.168.1.103 22
   User glinjona
 
 Host dhaos
@@ -32,11 +32,6 @@ Host dhaos
 
 Host hazuki
   ProxyCommand ssh -q dhaos nc localhost 2200
-  User auntieneo
-
-Host kresnik
-  ProxyCommand ssh -q dhaos nc localhost 2222
-  LocalForward 3389 localhost:3389
   User auntieneo
 
 Host glacier
