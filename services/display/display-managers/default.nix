@@ -79,5 +79,22 @@ in
     };
   };
   config = {
+    # Determine the display manager to be used; only one display manager can
+    # be enabled at a time.
+    services.display.displayManager.active =
+      let
+        enabled_dm =
+          map (dm: "${dm.name}") (
+            filter (dm: dm.config.enable == true) (
+              map (dm: { name = "${dm}"; config = cfg.${dm}; })
+                map (dm: "wayland.${dm}") builtins.attrNames cfg.wayland ++
+                map (dm: "x11.${dm}") builtins.attrNames cfg.x11
+          ));
+      in
+      if length enabled_dm == 1 then
+        head enabled_dm
+      else if length enabled_dm > 1 then
+        throw "Only one display manager can be enabled at a time."
+      else null;
   };
 }

@@ -11,7 +11,7 @@ Host lain
   User auntieneo
 
 Host skynet
-  ProxyCommand ssh -q minerve nc localhost 2233
+  Hostname skynet.cose.isu.edu
   User glinjona
 
 Host urban2
@@ -19,7 +19,7 @@ Host urban2
   User glinjona
 
 Host leela
-  ProxyCommand ssh -q minerve nc localhost 2255
+  Hostname leela.cose.isu.edu
   User ansible
 
 Host urban3

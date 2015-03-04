@@ -28,7 +28,6 @@ in
   ###### interface
 
   options = {
-    # TODO: Since there is no login screen (yet), add option to specify login user.
     services.swc-launch = {
       enable = mkOption {
         type = types.bool;
@@ -36,29 +35,6 @@ in
         description = ''
           Whether to enable a Wayland compositor launched with swc-launch.
         '';
-      };
-
-      layout = mkOption {
-        type = types.str;
-        default = "us";
-        description = ''
-          Keyboard layout.
-        '';
-      };
-
-      xkbOptions = mkOption {
-        type = types.str;
-        default = "";
-        example = "grp:caps_toggle, grp_led:scroll";
-        description = ''
-          xkb keyboard options.
-        '';
-      };
-
-      tty = mkOption {
-        type = types.int;
-        default = 9;
-        description = "Virtual console for swc-launch to use.";
       };
 
       user = mkOption {
@@ -76,28 +52,19 @@ in
     # needs setuid in order to manage tty's
     security.setuidPrograms = [ "swc-launch" ];
 
-    systemd.services.swc-launch = {
-      enable = true;
-      description = "Launcher for libswc-based Wayland compositors";
-      after = [ "systemd-udev-settle.service" "local-fs.target" ];
-
-      restartIfChanged = false;
-
+    systemd.services.display = {
       serviceConfig = {
+        # run display manager as an ordinary user
         User = "${cfg.user}";
       };
-
       environment = {
-        XKB_DEFAULT_LAYOUT = "${cfg.layout}";
-        XKB_DEFAULT_OPTIONS = "${cfg.xkbOptions}";
-
         # FIXME: This doesn't work when the user hasn't explicitly set her uid.
         XDG_RUNTIME_DIR = "/run/user/${toString config.users.extraUsers.${cfg.user}.uid}";
       };
-
-      script = with cfg; ''
-        ${config.security.wrapperDir}/swc-launch -t /dev/tty${toString tty} \
-        -- ${server.${server.active_server}.command}
+      script = ''
+        ${config.security.wrapperDir}/swc-launch \
+          -t /dev/tty${config.services.display.tty} \
+          -- ${cfg.command}  # FIXME
       '';
     };
   };
