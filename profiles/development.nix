@@ -3,6 +3,7 @@
 {
   # install development packages
   environment.systemPackages = with pkgs; [
+    asterisk
     cmake
     doxygen
     eclipses.eclipse_cpp_43
@@ -10,19 +11,16 @@
     netbeans
     binutils
     python
+#    polish-shell
     R
 #    rubyLibs.jekyll
     scons
     sloccount
     subversionClient
-    vagrant
     valgrind
 #    vimPlugins.UltiSnips
     vimPlugins.YouCompleteMe
   ];
-
-  # Load VirtualBox kernel modules.
-  services.virtualboxHost.enable = true;
 
   system.activationScripts =
   {
@@ -35,5 +33,11 @@
         ln -fs $f /home/auntieneo/.nixpkgs/environments/
       done
     '';
+  };
+
+  # custom packages
+  nixpkgs.config.packageOverrides = pkgs: rec {
+    asterisk = pkgs.callPackage ../pkgs/asterisk/default.nix { };
+    polish-shell = pkgs.callPackage ../pkgs/polish-shell/default.nix { };
   };
 }

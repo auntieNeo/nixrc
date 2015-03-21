@@ -1,7 +1,7 @@
 # ~/.tmuxinator/main.yml
 
 name: main
-root: ~/
+root: ~
 
 # Optional tmux socket
 # socket_name: foo
@@ -28,10 +28,10 @@ windows:
       panes:
         - cd ~/code/nixrc; vim -S Session.vim
         - cd ~/code/nixpkgs; vim -S Session.vim
-  - IRC:
+  - NixOps:
       layout: main-horizontal
       panes:
-        - irssi
+        - cd ~/code/nixrc
   - media:
       layout: main-horizontal
       panes:

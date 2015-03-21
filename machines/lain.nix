@@ -6,6 +6,7 @@
       ../profiles/desktop.nix
       ../profiles/development.nix
       ../profiles/server.nix
+      ../profiles/virtualization.nix
     ];
 
   # Use the GRUB 2 boot loader.

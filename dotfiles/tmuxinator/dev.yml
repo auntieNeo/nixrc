@@ -1,0 +1,38 @@
+# ~/.tmuxinator/dev.yml
+
+name: dev
+root: ~/code
+
+windows:
+  - sandbox:
+      layout: main-horizontal
+      panes:
+        - cd sandbox; echo "TODO"
+  - posh:
+      layout: main-horizontal
+      panes:
+        - cd polish-shell; vim -S Session.vim
+        - cd polish-shell; nix-shell -E '(import <nixpkgs> {}).callPackage /home/auntieneo/code/nixrc/pkgs/polish-shell/default.nix {}'
+        - cd polish-shell; git status
+  - rtrace:
+      layout: main-horizontal
+      panes:
+        - cd rtrace; echo "TODO"
+  - tripripper:
+      layout: main-horizontal
+      panes:
+        - cd tripripper; echo "TODO"
+  - tots:
+      layout: main-horizontal
+      panes:
+        - cd tots; echo "TODO"
+  - blender:
+      layout: main-horizontal
+      panes:
+        - cd blender; echo "TODO"
+        - cd blender; nix-shell '<nixpkgs>' -A blender
+  - asterisk:
+      layout: main-horizontal
+      panes:
+        - cd asterisk; echo "TODO"
+        - cd asterisk; nix-shell '<nixpkgs>' -A asterisk

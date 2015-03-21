@@ -1,0 +1,19 @@
+# ~/.tmuxinator/cose.yml
+
+name: CoSE
+root: ~/work/cose
+
+windows:
+  - shell:
+      layout: main-horizontal
+      panes:
+        - cd
+  - Math108:
+      layout: main-horizontal
+      panes:
+        - echo "TODO"
+  - CreamSoda:
+      layout: main-horizontal
+      panes:
+        - cd code/CreamSoda; vim -S Session.vim
+        - cd code/CreamSoda; nix-env -i env-java && load-env-java

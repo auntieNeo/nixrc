@@ -1,0 +1,10 @@
+# ~/.tmuxinator/irc.yml
+
+name: IRC
+root: ~
+
+windows:
+  - irssi:
+      layout: main-horizontal
+      panes:
+        - irssi
