@@ -7,7 +7,22 @@ let
 in
 {
   options = {
+    services.display.displayManager.auto = {
+      enable = mkOption {
+        type = types.bool;
+        default = false;
+        description = ''
+          Whether to enable the automatic login display manager.
+        '';
+      };
+
+      user = mkOption {
+        type = types.str;
+        default = null;
+        description = "User automatically log in as.";
+      };
+    };
   };
-  config = {
+  config = mkIf cfg.enable {
   };
 }

@@ -23,11 +23,16 @@ windows:
       layout: main-horizontal
       panes:
         - cd
-  - nix:
+  - nixrc:
       layout: main-horizontal
       panes:
         - cd ~/code/nixrc; vim -S Session.vim
+        - cd ~/code/nixrc
+  - nixpkgs:
+      layout: main-horizontal
+      panes:
         - cd ~/code/nixpkgs; vim -S Session.vim
+        - cd ~/code/nixpkgs
   - NixOps:
       layout: main-horizontal
       panes:

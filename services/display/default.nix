@@ -1,9 +1,17 @@
 { config, lib, pkgs, ... }:
 
+with lib;
+
 let
   cfg = config.services.display;
+  dm = cfg.displayManager.active;
 in
 {
+  imports = [
+    ./display-managers/default.nix
+    ./sessions/default.nix
+  ];
+
   options = {
     services.display = {
       enable = mkOption {
@@ -40,8 +48,9 @@ in
   };
 
   config = mkIf cfg.enable {
-    # TODO: create a systemd service for the display manager
     # TODO: figure out if anything special needs to be done for X11 vs Wayland display managers
+
+    # systemd service for the display manager
     systemd.services.display = {
       enable = true;
       description = "Display Manager";
@@ -55,10 +64,10 @@ in
 
       preStart =
         ''
-          ${cfg.displayManager.job.preStart}
+          ${cfg.displayManager.${dm.tech}.${dm.name}.preStart}
         '';
 
-      script = "${cfg.displayManager.job.start}";
+      script = "${cfg.displayManager.${dm.tech}.${dm.name}.start}";
     };
   };
 }

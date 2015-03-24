@@ -16,19 +16,13 @@ with lib;
 
 let
   cfg = config.services.display.displayManager.wayland.swc-launch;
-
-  libswc = (import ../../../../pkgs/libswc/default.nix);  # DELETEME
 in
 
 {
-  imports = [
-    ./swc-servers/default.nix
-    ];
-
   ###### interface
 
   options = {
-    services.swc-launch = {
+    services.display.displayManager.wayland.swc-launch = {
       enable = mkOption {
         type = types.bool;
         default = false;
@@ -42,15 +36,59 @@ in
         default = null;
         description = "User to run swc-launch as.";
       };
+
+      preStart = mkOption {
+        type = types.lines;
+        internal = true;
+        default = "";
+        description = "Display manager pre-start script.";
+      };
+
+      start = mkOption {
+        type = types.lines;
+        internal = true;
+        default = null;
+        description = "Display manager start script.";
+      };
     };
   };
 
 
   ###### implementation
 
-  config = mkIf cfg.enable {
+  config = mkIf cfg.enable
+  (
+  let
+    # Find the libswc-based session in the list of sessions
+    swcSessionPath =
+    let
+      sessions = config.services.display.displayManager.sessions;
+    in
+    if length sessions == 1 then
+      let
+        sessionPath = (splitString "." "services.display.sessions") ++
+                      (splitString "." ((head sessions).type));
+      in
+        if (attrByPath (sessionPath ++ ["attr" "libswc"]) false config) then
+          sessionPath
+        else
+          throw "The swc-launch display manager can only handle libswc-based sessions."
+    else if length sessions > 1 then
+      throw "The swc-launch display manager cannot manage multiple sessions."
+    else null;
+  in
+  {
     # needs setuid in order to manage tty's
     security.setuidPrograms = [ "swc-launch" ];
+
+    services.display.displayManager.wayland.swc-launch.preStart = "";
+
+    services.display.displayManager.wayland.swc-launch.start =
+    ''
+      ${config.security.wrapperDir}/swc-launch \
+      -t /dev/tty${toString config.services.display.tty} \
+      -- ${(attrByPath swcSessionPath null config).command}  # FIXME
+    '';
 
     systemd.services.display = {
       serviceConfig = {
@@ -61,11 +99,6 @@ in
         # FIXME: This doesn't work when the user hasn't explicitly set her uid.
         XDG_RUNTIME_DIR = "/run/user/${toString config.users.extraUsers.${cfg.user}.uid}";
       };
-      script = ''
-        ${config.security.wrapperDir}/swc-launch \
-          -t /dev/tty${config.services.display.tty} \
-          -- ${cfg.command}  # FIXME
-      '';
     };
-  };
+  });
 }

@@ -49,9 +49,13 @@
 with lib;
 
 let
-  cfg = config.services.display;
+  cfg = config.services.display.displayManager;
 in
 {
+  imports = [
+    ./wayland/default.nix
+    ./x11/default.nix
+  ];
   options = {
     services.display.displayManager = {
       enabled_sessions = mkOption {
@@ -63,7 +67,7 @@ in
         '';
       };
 
-      session = mkOption {
+      sessions = mkOption {
         default = [];
         example = literalExample
           ''
@@ -73,7 +77,16 @@ in
             ]
           '';
         description = ''
-          The list of sessions to be supported.
+          The list of sessions to be available on the display manager's menu.
+        '';
+      };
+
+      active = mkOption {
+        internal = true;
+        default = null;
+        description = ''
+          The display manager to be used (i.e. the one that was enabled). Only
+          one display manager can be active at a time.
         '';
       };
     };
@@ -84,11 +97,11 @@ in
     services.display.displayManager.active =
       let
         enabled_dm =
-          map (dm: "${dm.name}") (
+          map (dm: { name = "${dm.name}"; tech = "${dm.tech}"; }) (
             filter (dm: dm.config.enable == true) (
-              map (dm: { name = "${dm}"; config = cfg.${dm}; })
-                map (dm: "wayland.${dm}") builtins.attrNames cfg.wayland ++
-                map (dm: "x11.${dm}") builtins.attrNames cfg.x11
+              map (dm: { name = "${dm.name}"; tech = "${dm.tech}"; config = cfg.${dm.tech}.${dm.name}; })
+                (map (dm: { tech = "wayland"; name = "${dm}"; }) (builtins.attrNames cfg.wayland)) ++
+                (map (dm: { tech = "x11"; name = "${dm}"; }) (builtins.attrNames cfg.x11))
           ));
       in
       if length enabled_dm == 1 then

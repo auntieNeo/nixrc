@@ -7,11 +7,10 @@ let
 in
 {
   imports = [
-    ./swc-launch.nix
   ];
 
   options = {
-    services.display.displayManager.wayland = {};
+    services.display.displayManager.x11 = {};
   };
   config = {};
 }

@@ -2,10 +2,10 @@
 
 {
   imports = [
-    # libswc launch service (Wayland compositor)
-    ../services/wayland/swc-launch.nix
+#    # libswc launch service (Wayland compositor)
+#    ../services/wayland/swc-launch.nix
     # Experimental X11 + Wayland display configuration
-    ../services/display/display-managers/default.nix
+    ../services/display/default.nix
   ];
 
   # Enable Adobe Flash player
@@ -53,7 +53,7 @@
     ibus
     ipafont
     # kochi_substitute  # TODO: write a kochi substitute package
-#    libswc
+    libswc
     mplayer
     # nitrogen  # TODO: write a nitrogen package
     openbox
@@ -129,13 +129,92 @@
 #    server.velox.enable = true;
 #  };
 
-  # The following is a prototype of possible config options for
-  # services.display module. The complexity of this example is
-  # intended to exercise all of the possibilities.
-  #
-  # Possible options vary depending on the value of the "type" option. This
-  # variation is achieved with simple duck-typed polymorphism, a.k.a. the
-  # honor system.
+#  # The following is a prototype of possible config options for
+#  # services.display module. The complexity of this example is
+#  # intended to exercise all of the possibilities.
+#  #
+#  # Possible options vary depending on the value of the "type" option. This
+#  # variation is achieved with simple duck-typed polymorphism, a.k.a. the
+#  # honor system.
+#  services.display = {
+#    enable = true;
+#    layout = "dvorak";
+#    xkbOptions = "caps:super";
+#    displayManager = {
+#      wayland.swc-launch = {
+#        enable = true;
+#        user = "auntieneo";
+#      };
+#
+#      sessions = [
+#        {
+#          # The Wayland case is (nearly) always this simple.
+#
+#          # More sophisticated options (as with X11) are possible, but most
+#          # Wayland desktop environments are tightly integrated with the window
+#          # manager, so these options (outside of user-defined scripts) are
+#          # limited.
+#
+#          name = "Velox";
+#          type = "wayland.velox";
+#          script = ''
+#            ${pkgs.st-wl}/bin/st-wl
+#            '';
+#        }
+#        {
+#          # The simple X11 case is similar to the Wayland case.
+#          # The only addition is that a desktop manager should (must?) be
+#          # specified.
+#          name = "Gnome 3";
+#          type = "x11.mutter";
+#          desktop-manager.type = "x11.gnome3";
+#        }
+#        {
+#          # A pseudo-session called x11.combination is provided to emulate the
+#          # old behavior of generating the combination of any given X11 window
+#          # manager with any given X11 desktop manager.
+#          type = "x11.combination";
+#          window-managers = [
+#            # These "window managers" are also valid X11 sessions (such as the
+#            # "x11.mutter" session type used above).
+#            {
+#              name = "Fluxbox";
+#              type = "x11.fluxbox";
+#            }
+#            {
+#              name = "Openbox";
+#              type = "x11.openbox";
+#            }
+#            {
+#              name = "IceWM";
+#              type = "x11.icewm";
+#            }
+#          ];
+#          desktop-managers = [
+#            # These "desktop managers" are not useful in the Wayland paradigm,
+#            # but are analogous to the "script" option for Wayland sessions.
+#
+#            # Any of these desktop managers can also be used in the simple X11
+#            # case (see "desktop-manager.type" above).
+#            {
+#              name = "KDE 4";
+#              type = "kde4";
+#            }
+#            {
+#              name = "xterm";
+#              type = "script";
+#              script = ''
+#                xterm &
+#                waitPID=$!
+#              '';
+#            } ];
+#        }
+#      ];
+#    };
+#    session.velox.enable = true;
+#  };
+
+  # my display configuration
   services.display = {
     enable = true;
     layout = "dvorak";
@@ -145,73 +224,16 @@
         enable = true;
         user = "auntieneo";
       };
-
       sessions = [
         {
-          # The Wayland case is (nearly) always this simple.
-
-          # More sophisticated options (as with X11) are possible, but most
-          # Wayland desktop environments are tightly integrated with the window
-          # manager, so these options (outside of user-defined scripts) are
-          # limited.
-
           name = "Velox";
           type = "wayland.velox";
           script = ''
             ${pkgs.st-wl}/bin/st-wl
             '';
         }
-        {
-          # The simple X11 case is similar to the Wayland case.
-          # The only addition is that a desktop manager should (must?) be
-          # specified.
-          name = "Gnome 3";
-          type = "x11.mutter";
-          desktop-manager.type = "x11.gnome3";
-        }
-        {
-          # A pseudo-session called x11.combination is provided to emulate the
-          # old behavior of generating the combination of any given X11 window
-          # manager with any given X11 desktop manager.
-          type = "x11.combination";
-          window-managers = [
-            # These "window managers" are also valid X11 sessions (such as the
-            # "x11.mutter" session type used above).
-            {
-              name = "Fluxbox";
-              type = "x11.fluxbox";
-            }
-            {
-              name = "Openbox";
-              type = "x11.openbox";
-            }
-            {
-              name = "IceWM";
-              type = "x11.icewm";
-            }
-          ];
-          desktop-managers = [
-            # These "desktop managers" are not useful in the Wayland paradigm,
-            # but are analogous to the "script" option for Wayland sessions.
-
-            # Any of these desktop managers can also be used in the simple X11
-            # case (see "desktop-manager.type" above).
-            {
-              name = "KDE 4";
-              type = "kde4";
-            }
-            {
-              name = "xterm";
-              type = "script";
-              script = ''
-                xterm &
-                waitPID=$!
-              '';
-            } ];
-        }
       ];
     };
-    session.velox.enable = true;
   };
 
   # TODO: push these upstream
