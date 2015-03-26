@@ -214,23 +214,42 @@
 #    session.velox.enable = true;
 #  };
 
-  # my display configuration
+#  # my display configuration
+#  services.display = {
+#    enable = true;
+#    layout = "dvorak";
+#    xkbOptions = "caps:super";
+#    displayManager = {
+#      wayland.swc-launch = {
+#        enable = true;
+#        user = "auntieneo";
+#      };
+#      sessions = [
+#        {
+#          name = "Velox";
+#          type = "wayland.velox";
+#          script = ''
+#            ${pkgs.st-wl}/bin/st-wl
+#            '';
+#        }
+#      ];
+#    };
+#  };
+
+  # weston display configuration
   services.display = {
     enable = true;
     layout = "dvorak";
     xkbOptions = "caps:super";
     displayManager = {
-      wayland.swc-launch = {
+      wayland.weston-launch = {
         enable = true;
         user = "auntieneo";
       };
       sessions = [
         {
-          name = "Velox";
-          type = "wayland.velox";
-          script = ''
-            ${pkgs.st-wl}/bin/st-wl
-            '';
+          name = "Weston";
+          type = "wayland.weston";
         }
       ];
     };
@@ -245,6 +264,4 @@
     dmenu-wl = pkgs.callPackage ../pkgs/dmenu-wl/default.nix { };
     st-wl = pkgs.callPackage ../pkgs/st-wl/default.nix { };
   };
-
-  security.setuidPrograms = [ "weston-launch" ];
 }

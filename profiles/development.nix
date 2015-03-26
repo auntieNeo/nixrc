@@ -10,6 +10,7 @@
     mercurial
     netbeans
     binutils
+    piglit
     python
 #    polish-shell
     R
@@ -38,6 +39,8 @@
   # custom packages
   nixpkgs.config.packageOverrides = pkgs: rec {
     asterisk = pkgs.callPackage ../pkgs/asterisk/default.nix { };
+    piglit = pkgs.callPackage ../pkgs/piglit/default.nix { };
     polish-shell = pkgs.callPackage ../pkgs/polish-shell/default.nix { };
+    waffle = pkgs.callPackage ../pkgs/waffle/default.nix { };
   };
 }

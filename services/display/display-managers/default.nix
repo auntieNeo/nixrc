@@ -92,6 +92,7 @@ in
     };
   };
   config = {
+    # TODO: move the following routine into services/display/default.nix and get rid of active option? maybe
     # Determine the display manager to be used; only one display manager can
     # be enabled at a time.
     services.display.displayManager.active =
@@ -100,8 +101,8 @@ in
           map (dm: { name = "${dm.name}"; tech = "${dm.tech}"; }) (
             filter (dm: dm.config.enable == true) (
               map (dm: { name = "${dm.name}"; tech = "${dm.tech}"; config = cfg.${dm.tech}.${dm.name}; })
-                (map (dm: { tech = "wayland"; name = "${dm}"; }) (builtins.attrNames cfg.wayland)) ++
-                (map (dm: { tech = "x11"; name = "${dm}"; }) (builtins.attrNames cfg.x11))
+                (map (dm: { tech = "wayland"; name = "${dm}"; }) (builtins.attrNames cfg.wayland)) # ++
+#                (map (dm: { tech = "x11"; name = "${dm}"; }) (builtins.attrNames cfg.x11))
           ));
       in
       if length enabled_dm == 1 then

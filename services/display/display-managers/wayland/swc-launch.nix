@@ -87,7 +87,7 @@ in
     ''
       ${config.security.wrapperDir}/swc-launch \
       -t /dev/tty${toString config.services.display.tty} \
-      -- ${(attrByPath swcSessionPath null config).command}  # FIXME
+      -- ${(attrByPath swcSessionPath null config).command}
     '';
 
     systemd.services.display = {

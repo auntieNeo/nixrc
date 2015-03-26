@@ -4,7 +4,7 @@ with lib;
 
 let
   cfg = config.services.display;
-  dm = cfg.displayManager.active;
+  dm = config.services.display.displayManager.active;
 in
 {
   imports = [
@@ -47,8 +47,15 @@ in
     };
   };
 
+  # In here:  ''
+  #   - Determine what display manager *tech* is being used.
+  #   - Incorperate that display-managers/default.nix set with the // operator
+  #   - Determine what sessions are being used? Not needed. The display manager needs to figure that out.
   config = mkIf cfg.enable {
-    # TODO: figure out if anything special needs to be done for X11 vs Wayland display managers
+    # TODO: assertions for display manager *tech*
+
+    # FIXME: enable the following line
+#    systemd.defaultUnit = mkIf cfg.autorun "graphical.target";
 
     # systemd service for the display manager
     systemd.services.display = {
@@ -60,7 +67,7 @@ in
       environment = {
         XKB_DEFAULT_LAYOUT = "${cfg.layout}";
         XKB_DEFAULT_OPTIONS = "${cfg.xkbOptions}";
-      };
+      };  # // ${cfg.displayManager.${dm.tech}.attr.systemd};
 
       preStart =
         ''

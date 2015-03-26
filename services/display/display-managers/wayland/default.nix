@@ -8,6 +8,7 @@ in
 {
   imports = [
     ./swc-launch.nix
+    ./weston-launch.nix
   ];
 
   options = {

@@ -45,7 +45,7 @@ rec {
   users.extraUsers.auntieneo = {
     name = "auntieneo";
     group = "auntieneo";
-    extraGroups = [ "audio" "users" "vboxusers" "video" "wheel" ];
+    extraGroups = [ "audio" "users" "vboxusers" "video" "weston-launch" "wheel" ];
     uid = 1000;
     # FIXME: createHome doesn't run early enough for a freshly created /home disk
     # (i.e. user is left without a home directory)

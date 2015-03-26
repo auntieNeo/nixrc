@@ -37,9 +37,13 @@ windows:
       layout: main-horizontal
       panes:
         - cd ~/code/nixrc
-  - media:
+  - unison:
       layout: main-horizontal
       panes:
-        - cmus
-        - alsamixer
-        - clear
+        - cd
+#  - media:
+#      layout: main-horizontal
+#      panes:
+#        - cmus
+#        - alsamixer
+#        - clear
