@@ -3,7 +3,7 @@
 {
   # install development packages
   environment.systemPackages = with pkgs; [
-#    asterisk
+    asterisk
     cmake
     doxygen
     eclipses.eclipse_cpp_43

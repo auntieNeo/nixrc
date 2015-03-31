@@ -20,4 +20,4 @@ else
   operation=$1
 fi
 cd $wd
-sudo nixos-rebuild -I nixos=/etc/nixos/nixpkgs/nixos -I nixpkgs=/etc/nixos/nixpkgs $operation
+sudo nixos-rebuild $operation

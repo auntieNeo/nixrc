@@ -53,7 +53,6 @@
     ibus
     ipafont
     # kochi_substitute  # TODO: write a kochi substitute package
-    libswc
     mplayer
     # nitrogen  # TODO: write a nitrogen package
     openbox
@@ -236,32 +235,32 @@
 #    };
 #  };
 
-  # weston display configuration
-  services.display = {
-    enable = true;
-    layout = "dvorak";
-    xkbOptions = "caps:super";
-    displayManager = {
-      wayland.weston-launch = {
-        enable = true;
-        user = "auntieneo";
-      };
-      sessions = [
-        {
-          name = "Weston";
-          type = "wayland.weston";
-        }
-      ];
-    };
-  };
+#  # weston display configuration
+#  services.display = {
+#    enable = true;
+#    layout = "dvorak";
+#    xkbOptions = "caps:super";
+#    displayManager = {
+#      wayland.weston-launch = {
+#        enable = true;
+#        user = "auntieneo";
+#      };
+#      sessions = [
+#        {
+#          name = "Weston";
+#          type = "wayland.weston";
+#        }
+#      ];
+#    };
+#  };
 
   # TODO: push these upstream
   # FIXME: need to bump version of libinput
   nixpkgs.config.packageOverrides = pkgs: rec {
-    libswc = pkgs.misc.debugVersion (pkgs.callPackage ../pkgs/libswc/default.nix { });
-    libwld = pkgs.callPackage ../pkgs/libwld/default.nix { };
-    velox = pkgs.callPackage ../pkgs/velox/default.nix { };
-    dmenu-wl = pkgs.callPackage ../pkgs/dmenu-wl/default.nix { };
-    st-wl = pkgs.callPackage ../pkgs/st-wl/default.nix { };
+#    libswc = pkgs.misc.debugVersion (pkgs.callPackage ../pkgs/libswc/default.nix { });
+#    libwld = pkgs.callPackage ../pkgs/libwld/default.nix { };
+#    velox = pkgs.callPackage ../pkgs/velox/default.nix { };
+#    dmenu-wl = pkgs.callPackage ../pkgs/dmenu-wl/default.nix { };
+#    st-wl = pkgs.callPackage ../pkgs/st-wl/default.nix { };
   };
 }

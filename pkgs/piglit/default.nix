@@ -1,6 +1,6 @@
 { stdenv, fetchgit, cmake, glproto, libdrm, libpthreadstubs,
   libX11, libXau, libXdamage, libXdmcp, libXext, libxshmfence, libXxf86vm,
-  mesa, pkgconfig, python27, python27Packages, udev, waffle }:
+  mesa, pkgconfig, python, pythonPackages, udev, waffle }:
 
 stdenv.mkDerivation rec {
   name = "piglit-${version}";
@@ -15,7 +15,7 @@ stdenv.mkDerivation rec {
   buildInputs = [ cmake glproto libdrm libpthreadstubs
     libX11 libXau libXdamage libXdmcp libXext libxshmfence libXxf86vm
     mesa pkgconfig
-    python27
-    udev waffle ] ++ pythonPath;
-  pythonPath = with python27Packages; [ Mako numpy six ];
+    python pythonPackages.wrapPython
+    udev waffle ];
+  propagatedBuildInputs = with pythonPackages; [ Mako numpy six ];
 }
