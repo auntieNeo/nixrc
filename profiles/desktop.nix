@@ -29,6 +29,7 @@
     anki
     anthy
     briss
+    calibre
     chromium
     cmus
     conky  # TODO: configure conky
@@ -43,6 +44,7 @@
         sha256 = "5415d2fe5458165253e047df434a7840d5488f8a60487a05c00bb4f38fe4843f";
       };
     }))
+#    ebview
     evince
     firefox
     freerdp
@@ -262,5 +264,7 @@
 #    velox = pkgs.callPackage ../pkgs/velox/default.nix { };
 #    dmenu-wl = pkgs.callPackage ../pkgs/dmenu-wl/default.nix { };
 #    st-wl = pkgs.callPackage ../pkgs/st-wl/default.nix { };
+    ebview = pkgs.callPackage ../pkgs/ebview/default.nix { };
+    libeb = pkgs.callPackage ../pkgs/libeb/default.nix { };
   };
 }

@@ -63,7 +63,7 @@ in
     systemd.services.ssh-phone-home =
     {
       description = ''
-        Reverse SSH tunnel as a service.
+        Reverse SSH tunnel as a service
       '';
 
       bindsTo = [ "network.target" ];

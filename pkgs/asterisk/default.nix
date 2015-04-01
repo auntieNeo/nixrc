@@ -21,13 +21,26 @@ stdenv.mkDerivation rec {
 
   buildInputs = [ jansson libxml2 libxslt ncurses openssl sqlite utillinux ];
 
-  patches = [ ./disable-download.patch ];
+  patches = [
+#    ./disable-create-vardirs.patch
+
+    # Disable downloading of audio files (we will fetch them
+    # ourselves if needed).
+    ./disable-download.patch
+
+    # We want the Makefile to install the /var directory structure
+    # under ${out}/var but we also want to use /var at runtime.
+    # This patch changes the runtime behavior to look for state
+    # directories in /var rather than ${out}/var.
+    ./runtime-vardirs.patch
+  ];
 
 #  preConfigure = ''
 #    ln -s ${coreSounds} sounds/
 #    ln -s ${mohSounds} sounds/
 #  '';
 
+#  configureFlags = "--with-sounds-cache=asterisk-${version}/sounds/ --localstatedir=/var";
   configureFlags = "--with-sounds-cache=asterisk-${version}/sounds/";
 
   meta = {

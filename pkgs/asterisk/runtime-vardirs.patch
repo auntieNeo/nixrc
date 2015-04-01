@@ -1,0 +1,17 @@
+diff -rupN '--exclude=*.swp' asterisk-13.2.0/build_tools/make_defaults_h asterisk-13.2.0-patched/build_tools/make_defaults_h
+--- asterisk-13.2.0/build_tools/make_defaults_h	2012-01-30 14:21:16.000000000 -0700
++++ asterisk-13.2.0-patched/build_tools/make_defaults_h	2015-04-01 13:47:02.459531447 -0600
+@@ -1,4 +1,13 @@
+ #!/bin/sh
++
++ASTLOGDIR=/var/log/asterisk
++ASTVARRUNDIR=/var/run/asterisk
++ASTVARLIBDIR=/var/lib/asterisk
++ASTDBDIR=${ASTVARLIBDIR}
++ASTDATADIR=${ASTVARLIBDIR}
++AGI_DIR=${ASTDATADIR}/agi-bin
++ASTVARSPOOLDIR=/var/spool/asterisk
++
+ cat << END
+ /*
+  * defaults.h 

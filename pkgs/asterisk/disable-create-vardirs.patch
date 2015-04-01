@@ -1,0 +1,23 @@
+diff -rupN asterisk-13.2.0/Makefile asterisk-13.2.0-patched/Makefile
+--- asterisk-13.2.0/Makefile	2014-10-31 10:50:53.000000000 -0600
++++ asterisk-13.2.0-patched/Makefile	2015-04-01 11:46:08.644195311 -0600
+@@ -546,17 +546,8 @@ update:
+ 
+ NEWHEADERS=$(notdir $(wildcard include/asterisk/*.h))
+ OLDHEADERS=$(filter-out $(NEWHEADERS) $(notdir $(DESTDIR)$(ASTHEADERDIR)),$(notdir $(wildcard $(DESTDIR)$(ASTHEADERDIR)/*.h)))
+-INSTALLDIRS="$(ASTLIBDIR)" "$(ASTMODDIR)" "$(ASTSBINDIR)" "$(ASTETCDIR)" "$(ASTVARRUNDIR)" \
+-	"$(ASTSPOOLDIR)" "$(ASTSPOOLDIR)/dictate" "$(ASTSPOOLDIR)/meetme" \
+-	"$(ASTSPOOLDIR)/monitor" "$(ASTSPOOLDIR)/system" "$(ASTSPOOLDIR)/tmp" \
+-	"$(ASTSPOOLDIR)/voicemail" "$(ASTSPOOLDIR)/recording" \
+-	"$(ASTHEADERDIR)" "$(ASTHEADERDIR)/doxygen" \
+-	"$(ASTLOGDIR)" "$(ASTLOGDIR)/cdr-csv" "$(ASTLOGDIR)/cdr-custom" \
+-	"$(ASTLOGDIR)/cel-custom" "$(ASTDATADIR)" "$(ASTDATADIR)/documentation" \
+-	"$(ASTDATADIR)/documentation/thirdparty" "$(ASTDATADIR)/firmware" \
+-	"$(ASTDATADIR)/firmware/iax" "$(ASTDATADIR)/images" "$(ASTDATADIR)/keys" \
+-	"$(ASTDATADIR)/phoneprov" "$(ASTDATADIR)/rest-api" "$(ASTDATADIR)/static-http" \
+-	"$(ASTDATADIR)/sounds" "$(ASTDATADIR)/moh" "$(ASTMANDIR)/man8" "$(AGI_DIR)" "$(ASTDBDIR)"
++INSTALLDIRS="$(ASTLIBDIR)" "$(ASTMODDIR)" "$(ASTSBINDIR)" "$(ASTETCDIR)" \
++	"$(ASTHEADERDIR)" "$(ASTHEADERDIR)/doxygen"
+ 
+ installdirs:
+ 	@for i in $(INSTALLDIRS); do \

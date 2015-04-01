@@ -1,6 +1,10 @@
 { config, pkgs, ...}:
 
 {
+  imports = [
+    ../services/asterisk.nix
+  ];
+
   # install development packages
   environment.systemPackages = with pkgs; [
     asterisk
@@ -34,6 +38,10 @@
         ln -fs $f /home/auntieneo/.nixpkgs/environments/
       done
     '';
+  };
+
+  services.asterisk = {
+    enable = true;
   };
 
   # custom packages
