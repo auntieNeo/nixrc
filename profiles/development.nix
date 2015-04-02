@@ -20,6 +20,7 @@
     R
 #    rubyLibs.jekyll
     scons
+    sipp
     sloccount
     subversionClient
     valgrind
@@ -49,6 +50,7 @@
     asterisk = pkgs.callPackage ../pkgs/asterisk/default.nix { };
     piglit = pkgs.callPackage ../pkgs/piglit/default.nix { };
     polish-shell = pkgs.callPackage ../pkgs/polish-shell/default.nix { };
+    sipp = pkgs.callPackage ../pkgs/sipp/default.nix { };
     waffle = pkgs.callPackage ../pkgs/waffle/default.nix { };
   };
 }
