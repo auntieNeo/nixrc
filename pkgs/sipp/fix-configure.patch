@@ -1,0 +1,29 @@
+diff -rupN sipp-3.4.1/configure.ac sipp-3.4.1-patched/configure.ac
+--- sipp-3.4.1/configure.ac	2014-03-09 13:04:57.000000000 -0600
++++ sipp-3.4.1-patched/configure.ac	2015-04-02 00:26:21.929072408 -0600
+@@ -54,7 +54,7 @@ case "$host" in
+ esac
+ 
+ # ==================== checks for libraries =============================
+-AC_CHECK_LIB(curses,initscr,,[AC_MSG_ERROR([ncurses library missing])])
++AC_CHECK_LIB(ncurses,initscr,,[AC_MSG_ERROR([ncurses library missing])])
+ AC_CHECK_LIB(pthread, pthread_mutex_init, THREAD_LIBS="-lpthread",
+                AC_MSG_ERROR(pthread library needed!))
+ 
+@@ -161,11 +161,11 @@ fi
+ # For Makefile.am
+ AM_CONDITIONAL(HAVE_GSL, test "$gsl" = "yes")
+ 
+-AX_HAVE_EPOLL([AX_CONFIG_FEATURE_ENABLE(epoll)],
+-    [AX_CONFIG_FEATURE_DISABLE(epoll)])
+-AX_CONFIG_FEATURE([epoll], [This platform supports epoll(7)],
+-    [HAVE_EPOLL], [This platform supports epoll(7).],
+-    [epoll="yes"], [epoll="no"])
++#AX_HAVE_EPOLL([AX_CONFIG_FEATURE_ENABLE(epoll)],
++#    [AX_CONFIG_FEATURE_DISABLE(epoll)])
++#AX_CONFIG_FEATURE([epoll], [This platform supports epoll(7)],
++#    [HAVE_EPOLL], [This platform supports epoll(7).],
++#    [epoll="yes"], [epoll="no"])
+ 
+ AM_CONDITIONAL(HAVE_EPOLL, test "$epoll" = "yes")
+ # ==================== checks for header files ==========================
