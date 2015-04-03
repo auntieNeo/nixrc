@@ -43,6 +43,29 @@
 
   services.asterisk = {
     enable = true;
+    otherConfig =
+    {
+      "sip.conf" = ''
+        [me1]
+        type=friend
+        username=me1
+        secret=PASSWORD
+        host=dynamic
+        context=house
+
+        [me2]
+        type=friend
+        username=me2
+        secret=PASSWORD
+        host=dynamic
+        context=house
+      '';
+      "extensions.conf" = ''
+        [house]
+        exten => 100,1,Dial(SIP/me1)
+        exten => 101,1,Dial(SIP/me2)
+      '';
+    };
   };
 
   # custom packages
