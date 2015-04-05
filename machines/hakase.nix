@@ -7,6 +7,7 @@
       ../profiles/development.nix
       ../profiles/laptop.nix
       ../profiles/server.nix
+      ../profiles/telephony.nix
       ../profiles/virtualization.nix
     ];
 
