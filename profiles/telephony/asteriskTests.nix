@@ -15,10 +15,20 @@
         same  =>     n,Playback(hello-world)
         same  =>     n,Hangup()
 
+        exten => 003,1,Answer
+        same  =>     n,Wait(5)
+        same  =>     n,Festival('You are a butt a butt a butt a butt. You are a butt. Goodbye.')
+
         [softphones]
         include => tests
 
         [unauthenticated]
+      '';
+      "festival.conf" = ''
+        [general]
+        host=localhost
+        port=1314
+        festivalcommand=(tts_textasterisk "%s" 'file)(quit)\n
       '';
     };
   };

@@ -4,6 +4,15 @@
   services.asterisk = {
     otherConfig =
     {
+      "modules.conf" = ''
+        [modules]
+        autoload = yes
+
+        load => bridge_builtin_features.so
+        load => res_timing_timerfd.so
+        load => app_confbridge.so
+        load => chan_sip.so
+      '';
       "bla.conf" = ''
         [line1]
         type=trunk
@@ -30,8 +39,18 @@
         [station3](station)
         device=SIP/station3
       '';
+      "confbridge.conf" = ''
+        [general]
+
+        [default_user]
+        type=user
+
+        [default_bridge]
+        type=bridge
+      '';
       "extensions.conf" = ''
         [line1]
+        ; The backend treats BLATrunk() like a conference room
         exten => s,1,BLATrunk(line1)
          
         [line2]
@@ -55,7 +74,7 @@
         exten => station3_line2,1,BLAStation(station3_line2)
 
         [softphones]
-        include 
+        include => bla_stations
       '';
     };
   };

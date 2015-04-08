@@ -1,23 +1,33 @@
-{ stdenv, fetchurl, jansson, libxml2, libxslt, ncurses, openssl, sqlite, utillinux }:
+{ stdenv, fetchurl, fetchgit, jansson, libxml2, libxslt, ncurses, openssl, sqlite, utillinux }:
 
 stdenv.mkDerivation rec {
   name = "asterisk-${version}";
-  version = "13.2.0";
+#  version = "13.2.0";
+  version = "git";
 
-  src = fetchurl {
-    url = "http://downloads.asterisk.org/pub/telephony/asterisk/asterisk-${version}.tar.gz";
-    sha256 = "bcef6b30cf7bb1943b12939a4dc98a53f837a8f7ef564fe44cf73ea87e114a9b";
+#  src = fetchurl {
+#    url = "http://downloads.asterisk.org/pub/telephony/asterisk/asterisk-${version}.tar.gz";
+#    sha256 = "bcef6b30cf7bb1943b12939a4dc98a53f837a8f7ef564fe44cf73ea87e114a9b";
+#  };
+  src = fetchgit {
+    url = file:///home/auntieneo/code/asterisk/git;
+    rev = "refs/heads/bla";
+    sha256 = "d6d137c5bc4ee3e2215ef870684dbb04ea2773d4dc62d89a183c3381f03ddee2";
   };
 
-#  coreSounds = fetchurl {
-#    url = http://downloads.asterisk.org/pub/telephony/sounds/releases/asterisk-core-sounds-en-gsm-1.4.26.tar.gz;
-#    sha256 = "2300e3ed1d2ded6808a30a6ba71191e7784710613a5431afebbd0162eb4d5d73";
-#  };
-#
-#  mohSounds = fetchurl {
-#    url = http://downloads.asterisk.org/pub/telephony/sounds/releases/asterisk-moh-opsound-wav-2.03.tar.gz;
-#    sha256 = "449fb810d16502c3052fedf02f7e77b36206ac5a145f3dacf4177843a2fcb538";
-#  };
+#  src = "/home/auntieneo/code/asterisk/git";
+#  configureScript = "true";  # Don't run ./configure for this local build
+#  buildPhase = "true";
+
+  coreSounds = fetchurl {
+    url = http://downloads.asterisk.org/pub/telephony/sounds/releases/asterisk-core-sounds-en-gsm-1.4.26.tar.gz;
+    sha256 = "2300e3ed1d2ded6808a30a6ba71191e7784710613a5431afebbd0162eb4d5d73";
+  };
+
+  mohSounds = fetchurl {
+    url = http://downloads.asterisk.org/pub/telephony/sounds/releases/asterisk-moh-opsound-wav-2.03.tar.gz;
+    sha256 = "449fb810d16502c3052fedf02f7e77b36206ac5a145f3dacf4177843a2fcb538";
+  };
 
   buildInputs = [ jansson libxml2 libxslt ncurses openssl sqlite utillinux ];
 
@@ -35,10 +45,10 @@ stdenv.mkDerivation rec {
     ./runtime-vardirs.patch
   ];
 
-#  preConfigure = ''
-#    ln -s ${coreSounds} sounds/
-#    ln -s ${mohSounds} sounds/
-#  '';
+   preConfigure = ''
+     ln -s ${coreSounds} sounds/asterisk-core-sounds-en-gsm-1.4.26.tar.gz
+     ln -s ${mohSounds} sounds/asterisk-moh-opsound-wav-2.03.tar.gz
+   '';
 
 #  configureFlags = "--with-sounds-cache=asterisk-${version}/sounds/ --localstatedir=/var";
   configureFlags = "--with-sounds-cache=asterisk-${version}/sounds/";
