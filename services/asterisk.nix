@@ -101,7 +101,7 @@ in
 
       otherConfig = mkOption {
         default = {};
-#        type = types.listOf asteriskConfigFile;  # FIXME
+        type = types.attrsOf types.str;
         example = {
           "musiconhold.conf" = ''
             [default]
@@ -159,7 +159,7 @@ in
       '';
 
       script = ''
-        ${pkgs.asterisk}/bin/asterisk -v -U ${asteriskUser} -C ${asteriskEtc}/asterisk.conf
+        ${pkgs.asterisk}/bin/asterisk -vvvvvvvvvvdddddddddd -U ${asteriskUser} -C ${asteriskEtc}/asterisk.conf
       '';
     };
   };
