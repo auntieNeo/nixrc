@@ -41,7 +41,7 @@
     festival
     jitsi
     sipp
-    srtp_linphone
+#    srtp_linphone
     (pkgs.misc.debugVersion twinkle)
   ];
 

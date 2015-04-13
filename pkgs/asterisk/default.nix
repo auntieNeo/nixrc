@@ -12,7 +12,8 @@ stdenv.mkDerivation rec {
   src = fetchgit {
     url = file:///home/auntieneo/code/asterisk/git;
     rev = "refs/heads/bla";
-    sha256 = "d6d137c5bc4ee3e2215ef870684dbb04ea2773d4dc62d89a183c3381f03ddee2";
+    # r!printf '    sha256 = "\%s";' `nix-prefetch-git file:///home/auntieneo/code/asterisk/git --rev refs/heads/bla 2>&/dev/null | tail -n1`
+    sha256 = "c44abd42036115f948d2c962bc0c44328cfa2933e75b32986ec39688abd184c3";
   };
 
 #  src = "/home/auntieneo/code/asterisk/git";

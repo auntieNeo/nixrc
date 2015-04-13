@@ -3,6 +3,7 @@
 {
   imports =
     [
+      ../profiles/printing.nix
       ../profiles/desktop.nix
       ../profiles/development.nix
       ../profiles/laptop.nix

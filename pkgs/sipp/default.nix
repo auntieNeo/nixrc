@@ -14,6 +14,7 @@ stdenv.mkDerivation rec {
   buildInputs = [ autoconf automake ncurses ];
 
   preConfigure = ''
+    automake --add-missing
     autoreconf
   '';
 
