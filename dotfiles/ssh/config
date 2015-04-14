@@ -6,9 +6,9 @@ Host minerve2
   Hostname minerve2.cose.isu.edu
   User glinjona
 
-Host lain
-  ProxyCommand ssh -q minerve nc localhost 2222
-  User auntieneo
+#Host lain
+#  ProxyCommand ssh -q minerve nc localhost 2222
+#  User auntieneo
 
 Host skynet
   Hostname skynet.cose.isu.edu

@@ -11,5 +11,6 @@ stdenv.mkDerivation rec {
 
   buildInputs = [ cmake libX11 mesa pkgconfig udev ];
 
+  # TODO: More API's can be specified here, but I've only tested GLX for now
   cmakeFlags = "-Dwaffle_has_glx=1";
 }
