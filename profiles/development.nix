@@ -19,7 +19,7 @@
     subversionClient
     valgrind
 #    vimPlugins.UltiSnips
-    vimPlugins.YouCompleteMe
+#    vimPlugins.YouCompleteMe  # YCM is blocking vim process, probably due to vim plugin architecture.
   ];
 
   system.activationScripts =
