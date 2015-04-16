@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 {
   imports = [
@@ -13,7 +13,8 @@
 
   environment.systemPackages = with pkgs; [
     asterisk
-#    (pkgs.lib.overrideDerivation pkgs.asterisk (attrs: rec {
+    asterisk-testsuite
+#    (lib.overrideDerivation pkgs.asterisk (attrs: rec {
 #      name = "asterisk-git";
 #      src = fetchgit {
 #        url = file:///home/auntieneo/code/asterisk/git;
@@ -47,7 +48,22 @@
 
   # custom packages
   nixpkgs.config.packageOverrides = pkgs: rec {
-    asterisk = pkgs.callPackage ../pkgs/asterisk/default.nix { };
+    asterisk-orig = pkgs.callPackage ../pkgs/asterisk/default.nix { };
+    asterisk = (lib.overrideDerivation asterisk-orig (attrs: rec {
+      name = "asterisk-git";
+      src = pkgs.fetchgit {
+        url = file:///home/auntieneo/code/asterisk/git;
+        rev = "8fb2245aca6d33b20ae23db1c12618140609ed0a";
+        sha256 = "a3e7099ac3375ed6b9a24090826f411628d79e2a2b3843defa48b2f41c52364d";
+      };
+
+      preConfigure = ''
+        ln -s ${attrs.coreSounds} sounds/asterisk-core-sounds-en-gsm-1.4.26.tar.gz
+        ln -s ${attrs.mohSounds} sounds/asterisk-moh-opsound-wav-2.03.tar.gz
+      '';
+          })
+        );
+    asterisk-testsuite = pkgs.callPackage ../pkgs/asterisk-testsuite/default.nix { };
     sipp = pkgs.callPackage ../pkgs/sipp/default.nix { };
     speech_tools = pkgs.callPackage ../pkgs/speech_tools/default.nix { };
     festival = pkgs.callPackage ../pkgs/festival/default.nix { };
@@ -88,6 +104,7 @@
 
         [hakase](softphone)
         defaultuser=hakase
+        defaultip=127.0.0.1
         secret=GhoshevFew
 
         [fluttershy](softphone)

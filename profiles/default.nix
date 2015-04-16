@@ -44,6 +44,9 @@
     zsh
   ];
 
+  # Enable zsh as a login shell
+  programs.zsh.enable = true;
+
 #  # Enable core dump handling in systemd.
 #  systemd.coredump = {
 #    enable = true;

@@ -1,14 +1,24 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 {
   # install development packages
   environment.systemPackages = with pkgs; [
+    binutils
     cmake
     doxygen
     eclipses.eclipse_cpp_43
     mercurial
     netbeans
-    binutils
+    (lib.overrideDerivation pkgs.nixops (attrs: rec {
+      name = "nixops-git-${version}";
+      version = "86c35beca37833c5b0abed373e5144702f2e88f6";
+
+      src = pkgs.fetchgit {
+        url = https://github.com/NixOS/nixops;
+        rev = "${version}";
+        sha256 = "204b1846f79fb9db48e44251f6075cab56de6bf49740a73907f7ccc3c26ca660";
+      };
+    }))
     piglit
     python
 #    polish-shell

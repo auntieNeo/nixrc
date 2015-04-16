@@ -13,7 +13,7 @@ stdenv.mkDerivation rec {
     url = file:///home/auntieneo/code/asterisk/git;
     rev = "refs/heads/bla";
     # r!printf '    sha256 = "\%s";' `nix-prefetch-git file:///home/auntieneo/code/asterisk/git --rev refs/heads/bla 2>&/dev/null | tail -n1`
-    sha256 = "8d1416b8de93512cab2171537201975bab0f3131ef87523eb5f2921f1afe68cd";
+    sha256 = "4be3ff8e0eab02cba315d1f9a2d0b6683509986c1b7de240309672d1247b6d62";
   };
 
 #  src = "/home/auntieneo/code/asterisk/git";
@@ -52,7 +52,7 @@ stdenv.mkDerivation rec {
    '';
 
 #  configureFlags = "--with-sounds-cache=asterisk-${version}/sounds/ --localstatedir=/var";
-  configureFlags = "--with-sounds-cache=asterisk-${version}/sounds/";
+  configureFlags = "--libdir=\${out}/lib --with-sounds-cache=asterisk-${version}/sounds/";
 
   meta = {
     description = "Software implementation of a telephone private branch exchange (PBX)";

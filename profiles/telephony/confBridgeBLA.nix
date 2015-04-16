@@ -75,15 +75,17 @@
 
         [line1_outbound]
         exten => faux,1,NoOp()
+        same  =>      n,Wait(1)
         same  =>      n(hello),Playback(hello-world)
         same  =>      n,Wait(10)
-        same  =>      n,Goto(hello)
+        same  =>      n,Hangup()
 
         [line2_outbound]
         exten => faux,1,NoOp()
+        same  =>      n,Wait(1)
         same  =>      n(hello),Playback(hello-world)
         same  =>      n,Wait(10)
-        same  =>      n,Goto(hello)
+        same  =>      n,Hangup()
          
         [bla_stations]
         exten => station1,1,BLAStation(station1)

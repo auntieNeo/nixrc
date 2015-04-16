@@ -1,4 +1,4 @@
-{ stdenv, fetchurl, gnome, libeb, pkgconfig }:
+{ stdenv, fetchurl, gnome, libeb, pangox_compat, pkgconfig, xlibs }:
 
 stdenv.mkDerivation rec {
   name = "ebview-${version}";
@@ -9,17 +9,24 @@ stdenv.mkDerivation rec {
     sha256 = "1c9k66bcvpzkk660parpcqkfi7prcjl5gc9wqbbmsysnn7cyk32c";
   };
 
-  buildInputs = [ gnome.gtk libeb pkgconfig ];
+  patches = [
+    # EBView uses the deprecated "GtkTooltips" API, among other things. This
+    # patch simply removes the GTK_DISABLE_DEPRECATED macro definition.
+    ./remove_gtk_disable_deprecated.patch
+  ];
+
+  buildInputs = [ gnome.gtk libeb pangox_compat pkgconfig xlibs.libX11 ];
 
   configureFlags = "--with-eb-conf=${libeb}/etc/eb.conf";
 
-  # ebview uses the deprecated "GtkTooltips" API, among other things
-  CFLAGS = "-U GTK_DISABLE_DEPRECATED";
+  # The EBView ./configure script does not pick up these libraries
+  CFLAGS = "-I${pangox_compat}/include/pango-1.0";
+  LDFLAGS = "-L${pangox_compat}/lib -lpangox-1.0 -lX11";
 
-  meta = {
+  meta = with stdenv.lib; {
     description = "EPWING dictionary viewer";
     homepage = http://ebview.sourceforge.net/;
-    license = stdenv.lib.licenses.gpl2;
-    maintainers = [ stdenv.lib.maintainers.auntie ];
+    license = licenses.gpl2;
+    maintainers = with maintainers; [ auntie ];
   };
 }
