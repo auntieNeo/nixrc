@@ -18,9 +18,12 @@
     irssi
     ledger
     links2
+#    mailutils
+    heirloom-mailx
     manpages
     mkpasswd
     mosh
+    most
     ncurses
 #    nkf  # TODO: write a package for Network Kanji Filter
     nix-prefetch-scripts
@@ -37,12 +40,18 @@
 #    rubyLibs.tmuxinator
     unison
     unzip
+    utillinuxCurses
     vim_configurable
     vlock
     wget
     wgetpaste
     zsh
   ];
+
+  # custom packages
+  nixpkgs.config.packageOverrides = pkgs: rec {
+    heirloom-mailx = pkgs.callPackage ../pkgs/heirloom-mailx/default.nix { };
+  };
 
   # Enable zsh as a login shell
   programs.zsh.enable = true;

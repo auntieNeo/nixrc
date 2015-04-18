@@ -7,6 +7,7 @@
     cmake
     doxygen
     eclipses.eclipse_cpp_43
+    gdb
     mercurial
     netbeans
     (lib.overrideDerivation pkgs.nixops (attrs: rec {
@@ -19,6 +20,7 @@
         sha256 = "204b1846f79fb9db48e44251f6075cab56de6bf49740a73907f7ccc3c26ca660";
       };
     }))
+    patchutils
     piglit
     python
 #    polish-shell
@@ -30,6 +32,7 @@
     valgrind
 #    vimPlugins.UltiSnips
 #    vimPlugins.YouCompleteMe  # YCM is blocking vim process, probably due to vim plugin architecture.
+    afpfs-fuse
   ];
 
   system.activationScripts =
@@ -44,6 +47,8 @@
       done
     '';
   };
+
+  security.setuidPrograms = [ "mount_afp" ];
 
   # custom packages
   nixpkgs.config.packageOverrides = pkgs: rec {

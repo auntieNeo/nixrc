@@ -33,4 +33,4 @@ else
   operation=$1
 fi
 cd $wd
-sudo nixos-rebuild -I nixos=/home/auntieneo/code/nixpkgs/nixos -I nixpkgs=/home/auntieneo/code/nixpkgs $operation
+sudo nixos-rebuild --keep-failed  -I nixos=/home/auntieneo/code/nixpkgs/nixos -I nixpkgs=/home/auntieneo/code/nixpkgs $operation

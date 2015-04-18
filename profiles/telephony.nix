@@ -14,28 +14,6 @@
   environment.systemPackages = with pkgs; [
     asterisk
     asterisk-testsuite
-#    (lib.overrideDerivation pkgs.asterisk (attrs: rec {
-#      name = "asterisk-git";
-#      src = fetchgit {
-#        url = file:///home/auntieneo/code/asterisk/git;
-#        rev = "8fb2245aca6d33b20ae23db1c12618140609ed0a";
-#        sha256 = "a3e7099ac3375ed6b9a24090826f411628d79e2a2b3843defa48b2f41c52364d";
-#      };
-#
-#      coreSounds = fetchurl {
-#        url = http://downloads.asterisk.org/pub/telephony/sounds/releases/asterisk-core-sounds-en-gsm-1.4.26.tar.gz;
-#        sha256 = "2300e3ed1d2ded6808a30a6ba71191e7784710613a5431afebbd0162eb4d5d73";
-#      };
-#      mohSounds = fetchurl {
-#        url = http://downloads.asterisk.org/pub/telephony/sounds/releases/asterisk-moh-opsound-wav-2.03.tar.gz;
-#        sha256 = "449fb810d16502c3052fedf02f7e77b36206ac5a145f3dacf4177843a2fcb538";
-#      };
-#
-#      preConfigure = ''
-#        ln -s ${coreSounds} sounds/asterisk-core-sounds-en-gsm-1.4.26.tar.gz
-#        ln -s ${mohSounds} sounds/asterisk-moh-opsound-wav-2.03.tar.gz
-#      '';
-#    }))
     blink
     ekiga
     empathy
@@ -49,12 +27,13 @@
   # custom packages
   nixpkgs.config.packageOverrides = pkgs: rec {
     asterisk-orig = pkgs.callPackage ../pkgs/asterisk/default.nix { };
-    asterisk = (lib.overrideDerivation asterisk-orig (attrs: rec {
+    asterisk = pkgs.misc.debugVersion (lib.overrideDerivation asterisk-orig (attrs: rec {
       name = "asterisk-git";
       src = pkgs.fetchgit {
         url = file:///home/auntieneo/code/asterisk/git;
-        rev = "8fb2245aca6d33b20ae23db1c12618140609ed0a";
-        sha256 = "a3e7099ac3375ed6b9a24090826f411628d79e2a2b3843defa48b2f41c52364d";
+        rev = "refs/heads/bla";
+# r!printf '    sha256 = "\%s";' `nix-prefetch-git file:///home/auntieneo/code/asterisk/git --rev refs/heads/bla 2>&/dev/null | tail -n1`
+        sha256 = "4d302a9a116551bba2f7ab194a4eee6363d282f154dafc6985b6ecef73ec1024";
       };
 
       preConfigure = ''
@@ -76,7 +55,7 @@
       verbose=10
       debug=10
     '';
-    otherConfig = {
+    confFiles = {
       "logger.conf" = ''
         [general]
 
@@ -92,6 +71,7 @@
         udpbindaddr=0.0.0.0  ; Listen on all interfaces
         tcpenable=no
         nat=force_rport,comedia  ; Assume device is behind NAT
+        callcounter=yes
 
         [softphone](!)
         type=friend  ; Channel driver matches on username first, IP second
@@ -121,6 +101,60 @@
       '';
     };
   };
+
+#  # Asterisk config straight from the example documentation:
+#  services.asterisk = {
+#    enable = true;
+#    extraConfig = ''
+#      [options]
+#      verbose=3
+#      debug=3
+#    '';
+#    confFiles = {
+#      "extensions.conf" = ''
+#        [tests]
+#        exten => 100,1,Answer()
+#        same  =>     n,Wait(1)
+#        same  =>     n,Playback(hello-world)
+#        same  =>     n,Hangup()
+#
+#        [softphones]
+#        include => tests
+#
+#        [unauthorized]
+#      '';
+#      "sip.conf" = ''
+#        [general]
+#        allowguest=no              ; Require authentication
+#        context=unauthorized       ; Send unauthorized users to /dev/null
+#        srvlookup=no               ; Don't do DNS lookup
+#        udpbindaddr=0.0.0.0        ; Listen on all interfaces
+#        nat=force_rport,comedia    ; Assume device is behind NAT
+#
+#        [softphone](!)
+#        type=friend                ; Match on username first, IP second
+#        context=softphones         ; Send to softphones context in
+#                                   ; extensions.conf file
+#        host=dynamic               ; Device will register with asterisk
+#        disallow=all               ; Manually specify codecs to allow
+#        allow=g722
+#        allow=ulaw
+#        allow=alaw
+#
+#        [myphone](softphone)
+#        secret=GhoshevFew          ; Change this password!
+#      '';
+#      "logger.conf" = ''
+#        [general]
+#
+#        [logfiles]
+#        syslog.local0 => notice,warning,error,debug
+#      '';
+#    };
+#    extraArguments = [
+#      "-vvvddd" "-e" "1024"
+#    ];
+#  };
 
   # Allow telephony ports
   networking.firewall = {

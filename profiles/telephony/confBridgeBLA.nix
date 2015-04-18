@@ -2,7 +2,7 @@
 
 {
   services.asterisk = {
-    otherConfig =
+    confFiles =
     {
       "modules.conf" = ''
         [modules]
@@ -77,23 +77,35 @@
         exten => faux,1,NoOp()
         same  =>      n,Wait(1)
         same  =>      n(hello),Playback(hello-world)
-        same  =>      n,Wait(10)
+        same  =>      n(hello),Playback(hello-world)
+        same  =>      n(hello),Playback(hello-world)
+        same  =>      n(hello),Playback(hello-world)
+        same  =>      n(hello),Playback(hello-world)
         same  =>      n,Hangup()
 
         [line2_outbound]
         exten => faux,1,NoOp()
         same  =>      n,Wait(1)
         same  =>      n(hello),Playback(hello-world)
-        same  =>      n,Wait(10)
+        same  =>      n(hello),Playback(hello-world)
+        same  =>      n(hello),Playback(hello-world)
+        same  =>      n(hello),Playback(hello-world)
+        same  =>      n(hello),Playback(hello-world)
         same  =>      n,Hangup()
          
         [bla_stations]
-        exten => station1,1,BLAStation(station1)
+        exten => station1,1,NoOp()
+        same  =>          n,Wait(1)
+;        same  =>          n(hello),Playback(hello-world)
+        same  =>          n,BLAStation(station1)
         exten => station1_line1,hint,BLA:station1_line1
         exten => station1_line1,1,BLAStation(station1_line1)
         exten => station1_line2,hint,BLA:station1_line2
         exten => station1_line2,1,BLAStation(station1_line2)
-        exten => station2,1,BLAStation(station2)
+        exten => station2,1,NoOp()
+        same  =>          n,Wait(1)
+;        same  =>          n(hello),Playback(hello-world)
+        same  =>          n,BLAStation(station2)
         exten => station2_line1,hint,BLA:station2_line1
         exten => station2_line1,1,BLAStation(station2_line1)
         exten => station2_line2,hint,BLA:station2_line2

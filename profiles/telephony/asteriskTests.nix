@@ -2,7 +2,7 @@
 
 {
   services.asterisk = {
-    otherConfig =
+    confFiles =
     {
       "extensions.conf" = ''
         [tests]

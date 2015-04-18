@@ -69,6 +69,12 @@ rec {
       ln -fs ${./dotfiles/gitconfig} .gitconfig
       ln -fs ${./dotfiles/grconfig.json} .grconfig.json
       ln -fsn ${./dotfiles/irssi} .irssi  # FIXME: as this directory is read-only, irssi can't write logs and such
+      if [ ! -e .mailrc ]; then
+        # FIXME: Change this when I figure out how to better store secrets
+        cp ${./dotfiles/mailrc} .mailrc
+        chmod 0700 .mailrc
+        chown auntieneo:auntieneo .mailrc
+      fi
       mkdir .nixpkgs 2>/dev/null || true
       chown auntieneo:auntieneo .nixpkgs
       ln -fs ${./dotfiles/nixpkgs/config.nix} .nixpkgs/config.nix  # FIXME: create a directory for nixpkgs

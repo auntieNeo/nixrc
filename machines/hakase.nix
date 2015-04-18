@@ -11,6 +11,9 @@
       ../profiles/server.nix
       ../profiles/telephony.nix
       ../profiles/virtualization.nix
+
+      # Experimental:
+      ../profiles/mesa.nix
     ];
 
   # Use the gummiboot efi boot loader.
