@@ -33,7 +33,7 @@
         url = file:///home/auntieneo/code/asterisk/git;
         rev = "refs/heads/bla";
 # r!printf '    sha256 = "\%s";' `nix-prefetch-git file:///home/auntieneo/code/asterisk/git --rev refs/heads/bla 2>&/dev/null | tail -n1`
-        sha256 = "4d302a9a116551bba2f7ab194a4eee6363d282f154dafc6985b6ecef73ec1024";
+        sha256 = "046f19911a2648eab10ce7b8e20bf983581a7a789995ef784d6bc69914f0971f";
       };
 
       preConfigure = ''
@@ -43,7 +43,7 @@
           })
         );
     asterisk-testsuite = pkgs.callPackage ../pkgs/asterisk-testsuite/default.nix { };
-    sipp = pkgs.callPackage ../pkgs/sipp/default.nix { };
+#    sipp = pkgs.callPackage ../pkgs/sipp/default.nix { };
     speech_tools = pkgs.callPackage ../pkgs/speech_tools/default.nix { };
     festival = pkgs.callPackage ../pkgs/festival/default.nix { };
   };
@@ -72,6 +72,7 @@
         tcpenable=no
         nat=force_rport,comedia  ; Assume device is behind NAT
         callcounter=yes
+        insecure=port,invite
 
         [softphone](!)
         type=friend  ; Channel driver matches on username first, IP second
@@ -90,6 +91,13 @@
         [fluttershy](softphone)
         defaultuser=fluttershy
         secret=Vekaknobma
+
+        [sipp](softphone)
+        context=line1
+;        context=inbound
+        defaultuser=sipp
+        host=127.0.0.1
+        secret=CytMyQuog2
       '';
       "iax.conf" = ''
         [general]
