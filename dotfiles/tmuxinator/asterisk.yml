@@ -1,0 +1,25 @@
+# ~/.tmuxinator/asterisk.yml
+
+name: asterisk
+root: ~/code/asterisk
+
+windows:
+  - debugging:
+      layout: main-horizontal
+      panes:
+        - sudo journalctl -f -u asterisk
+        - sudo gdb
+        - sipp -h
+  - git:
+      layout: main-horizontal
+      panes:
+        - cd git; vim -S Session.vim
+        - cd git; nix-shell '<nixpkgs>' -A asterisk
+  - sipp:
+      layout: main-horizontal
+      panes:
+        - echo "TODO"
+  - asterisk-testsuite:
+      layout: main-horizontal
+      panes:
+        - nix-shell '<nixpkgs>' -A asterisk-testsuite

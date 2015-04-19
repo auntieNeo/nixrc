@@ -93,7 +93,7 @@
         secret=Vekaknobma
 
         [sipp](softphone)
-        context=line1
+;        context=line1
 ;        context=inbound
         defaultuser=sipp
         host=127.0.0.1
