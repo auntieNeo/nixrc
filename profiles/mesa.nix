@@ -14,21 +14,21 @@
 #      }));
 #    };
 
-    mesa_noglu = lib.makeOverridable (args: lib.overrideDerivation pkgs.mesa_noglu (attrs: rec {
-      name = "mesa-noglu-${version}";
-      version = "10.4.6";
-
-      src = pkgs.fetchurl {
-        urls = [
-          "https://launchpad.net/mesa/trunk/${version}/+download/MesaLib-${version}.tar.bz2"
-          "ftp://ftp.freedesktop.org/pub/mesa/${version}/MesaLib-${version}.tar.bz2"
-        ];
-        sha256 = "0d97l3ydlwv8r9bw1z71ipk94253b4yy41bvba5dkk3r1v9fvfnq";
-      };
-    })) { };
-    mesa = (lib.overrideDerivation pkgs.mesa (attrs: {
-      name = "mesa-${mesa_noglu.version}";
-#      paths = [ mesa_noglu pkgs.mesa_glu ];
-    }));
+#    mesa_noglu = lib.makeOverridable (args: lib.overrideDerivation pkgs.mesa_noglu (attrs: rec {
+#      name = "mesa-noglu-${version}";
+#      version = "10.4.6";
+#
+#      src = pkgs.fetchurl {
+#        urls = [
+#          "https://launchpad.net/mesa/trunk/${version}/+download/MesaLib-${version}.tar.bz2"
+#          "ftp://ftp.freedesktop.org/pub/mesa/${version}/MesaLib-${version}.tar.bz2"
+#        ];
+#        sha256 = "0d97l3ydlwv8r9bw1z71ipk94253b4yy41bvba5dkk3r1v9fvfnq";
+#      };
+#    })) { };
+#    mesa = (lib.overrideDerivation pkgs.mesa (attrs: {
+#      name = "mesa-${mesa_noglu.version}";
+##      paths = [ mesa_noglu pkgs.mesa_glu ];
+#    }));
   };
 }

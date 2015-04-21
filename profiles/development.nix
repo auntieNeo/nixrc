@@ -8,6 +8,7 @@
     doxygen
     eclipses.eclipse_cpp_43
     gdb
+#    git-review  # TODO
     mercurial
     netbeans
     (lib.overrideDerivation pkgs.nixops (attrs: rec {
@@ -32,7 +33,7 @@
     valgrind
 #    vimPlugins.UltiSnips
 #    vimPlugins.YouCompleteMe  # YCM is blocking vim process, probably due to vim plugin architecture.
-    afpfs-fuse
+#    afpfs-fuse
   ];
 
   system.activationScripts =

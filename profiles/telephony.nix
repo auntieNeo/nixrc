@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ../services/asterisk.nix
+#    ../services/asterisk.nix
 
     # Various Asterisk configurations (enable only one at a time)
 #    ./telephony/asteriskTests.nix
@@ -40,9 +40,18 @@
         ln -s ${attrs.coreSounds} sounds/asterisk-core-sounds-en-gsm-1.4.26.tar.gz
         ln -s ${attrs.mohSounds} sounds/asterisk-moh-opsound-wav-2.03.tar.gz
       '';
-          })
-        );
-    asterisk-testsuite = pkgs.callPackage ../pkgs/asterisk-testsuite/default.nix { };
+
+#      configureFlags = "${attrs.configureFlags} --enable-dev-mode";
+    }));
+    asterisk-testsuite-orig = pkgs.callPackage ../pkgs/asterisk-testsuite/default.nix { };
+    asterisk-testsuite = pkgs.misc.debugVersion (lib.overrideDerivation asterisk-testsuite-orig (attrs: rec {
+      name = "asterisk-testsuite-git";
+      src = pkgs.fetchgit {
+        url = file:///home/auntieneo/code/asterisk/testsuite;
+        rev = "refs/heads/master";
+        sha256 = "755aaf66ff7d45aa383d195b7382497b471028f0e0dacc954806d959b27204f1";
+      };
+    }));
 #    sipp = pkgs.callPackage ../pkgs/sipp/default.nix { };
     speech_tools = pkgs.callPackage ../pkgs/speech_tools/default.nix { };
     festival = pkgs.callPackage ../pkgs/festival/default.nix { };
@@ -93,7 +102,7 @@
         secret=Vekaknobma
 
         [sipp](softphone)
-;        context=line1
+        context=line1
 ;        context=inbound
         defaultuser=sipp
         host=127.0.0.1
@@ -109,60 +118,6 @@
       '';
     };
   };
-
-#  # Asterisk config straight from the example documentation:
-#  services.asterisk = {
-#    enable = true;
-#    extraConfig = ''
-#      [options]
-#      verbose=3
-#      debug=3
-#    '';
-#    confFiles = {
-#      "extensions.conf" = ''
-#        [tests]
-#        exten => 100,1,Answer()
-#        same  =>     n,Wait(1)
-#        same  =>     n,Playback(hello-world)
-#        same  =>     n,Hangup()
-#
-#        [softphones]
-#        include => tests
-#
-#        [unauthorized]
-#      '';
-#      "sip.conf" = ''
-#        [general]
-#        allowguest=no              ; Require authentication
-#        context=unauthorized       ; Send unauthorized users to /dev/null
-#        srvlookup=no               ; Don't do DNS lookup
-#        udpbindaddr=0.0.0.0        ; Listen on all interfaces
-#        nat=force_rport,comedia    ; Assume device is behind NAT
-#
-#        [softphone](!)
-#        type=friend                ; Match on username first, IP second
-#        context=softphones         ; Send to softphones context in
-#                                   ; extensions.conf file
-#        host=dynamic               ; Device will register with asterisk
-#        disallow=all               ; Manually specify codecs to allow
-#        allow=g722
-#        allow=ulaw
-#        allow=alaw
-#
-#        [myphone](softphone)
-#        secret=GhoshevFew          ; Change this password!
-#      '';
-#      "logger.conf" = ''
-#        [general]
-#
-#        [logfiles]
-#        syslog.local0 => notice,warning,error,debug
-#      '';
-#    };
-#    extraArguments = [
-#      "-vvvddd" "-e" "1024"
-#    ];
-#  };
 
   # Allow telephony ports
   networking.firewall = {

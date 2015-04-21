@@ -28,10 +28,10 @@
     # Suspend on power button press
     powerEventCommands = ''
       pid_file=/var/run/button-suspend.pid
+
       if [ -e "$pid_file" ]; then
-        exit 0  # FIXME: Checking the pid doesn't seem to work
         wait_pid=$(cat "$pid_file")
-        ps "$wait_pid" > /dev/null
+        kill -s 0 "$wait_pid"
         if [ $? -eq 0 ]; then
           # An instance of the "button_wait" process is already running.
           # Don't do anything, effectively "de-bouncing" the power button.
