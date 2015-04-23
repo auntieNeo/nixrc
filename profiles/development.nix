@@ -35,19 +35,20 @@
 #    afpfs-fuse
   ];
 
-#  nix = {
-#    distributedBuilds = true;
+  nix = {
+    distributedBuilds = true;
 #    requireSignedBinaryCaches = false;  # FIXME
-#    buildMachines = [
-#      {
-#        hostName = "hazuki";
-#        maxJobs = 8;
-#        sshKey = "/home/auntieneo/.ssh/id_rsa";
-#        sshUser = "auntieneo";
-#        system = "x86_64-linux";
-#      }
-#    ];
-#  };
+#    buildCores = 0;  # Use all available CPU cores in the system
+    buildMachines = [
+      {
+        hostName = "hazuki";
+        maxJobs = 8;
+        sshKey = "/home/auntieneo/.ssh/id_rsa";
+        sshUser = "auntieneo";
+        system = "x86_64-linux";
+      }
+    ];
+  };
 
   system.activationScripts =
   {
