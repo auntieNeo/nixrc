@@ -15,6 +15,8 @@ rec {
   # Allow proprietary software (such as the NVIDIA drivers).
   nixpkgs.config.allowUnfree = true;
 
+#  nix.package = pkgs.nixUnstable;
+
   boot = {
     # See console messages during early boot.
     initrd.kernelModules = [ "fbcon" ];

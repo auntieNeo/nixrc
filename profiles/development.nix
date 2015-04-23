@@ -22,7 +22,6 @@
       };
     }))
     patchutils
-    piglit
     python
 #    polish-shell
     R
@@ -35,6 +34,20 @@
 #    vimPlugins.YouCompleteMe  # YCM is blocking vim process, probably due to vim plugin architecture.
 #    afpfs-fuse
   ];
+
+#  nix = {
+#    distributedBuilds = true;
+#    requireSignedBinaryCaches = false;  # FIXME
+#    buildMachines = [
+#      {
+#        hostName = "hazuki";
+#        maxJobs = 8;
+#        sshKey = "/home/auntieneo/.ssh/id_rsa";
+#        sshUser = "auntieneo";
+#        system = "x86_64-linux";
+#      }
+#    ];
+#  };
 
   system.activationScripts =
   {
@@ -53,8 +66,6 @@
 
   # custom packages
   nixpkgs.config.packageOverrides = pkgs: rec {
-    piglit = pkgs.callPackage ../pkgs/piglit/default.nix { };
     polish-shell = pkgs.callPackage ../pkgs/polish-shell/default.nix { };
-    waffle = pkgs.callPackage ../pkgs/waffle/default.nix { };
   };
 }
