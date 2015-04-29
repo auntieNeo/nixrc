@@ -37,8 +37,9 @@
     sudo
     tcpdump
     tmux
-#    rubyLibs.tmuxinator
-    unison
+    tmuxinator
+#    unison
+    unison_2_40_102
     unzip
     utillinuxCurses
     vim_configurable
@@ -51,6 +52,7 @@
   # custom packages
   nixpkgs.config.packageOverrides = pkgs: rec {
     heirloom-mailx = pkgs.callPackage ../pkgs/heirloom-mailx/default.nix { };
+    unison_2_40_102 = pkgs.callPackage ../pkgs/unison/unison-2.40.102.nix { lablgtk = pkgs.ocamlPackages.lablgtk; };
   };
 
   # Enable zsh as a login shell

@@ -29,15 +29,23 @@
       mesa = (import <nixpkgs> { config.packageOverrides = pkgs: rec {
         mesa_noglu = lib.makeOverridable (args: lib.overrideDerivation pkgs.mesa_noglu (attrs: rec {
           name = "mesa-noglu-${version}";
-          version = "10.4.6";
+          version = "git";
+#          version = "10.4.6";
 
-          src = pkgs.fetchurl {
-            urls = [
-              "https://launchpad.net/mesa/trunk/${version}/+download/MesaLib-${version}.tar.bz2"
-              "ftp://ftp.freedesktop.org/pub/mesa/${version}/MesaLib-${version}.tar.bz2"
-            ];
-            sha256 = "0d97l3ydlwv8r9bw1z71ipk94253b4yy41bvba5dkk3r1v9fvfnq";
+          src = pkgs.fetchgit {
+            url = "file:///home/auntieneo/code/mesa";
+            rev = "refs/heads/master";
+# r!printf '    sha256 = "\%s";' `nix-prefetch-git file:///home/auntieneo/code/asterisk/git --rev refs/heads/bla 2>&/dev/null | tail -n1`
+            sha256 = "6b4a4cacbb958c5e5f928b0f16d74e1f40537433edcd5ed421312ce7afead443";
           };
+#          src = pkgs.fetchurl {
+#            urls = [
+#              "https://launchpad.net/mesa/trunk/${version}/+download/MesaLib-${version}.tar.bz2"
+#              "ftp://ftp.freedesktop.org/pub/mesa/${version}/MesaLib-${version}.tar.bz2"
+#            ];
+#            sha256 = "0d97l3ydlwv8r9bw1z71ipk94253b4yy41bvba5dkk3r1v9fvfnq";
+#          };
+          nativeBuildInputs = [ pkgs.pythonPackages.Mako ] ++ attrs.nativeBuildInputs;
         })) { };
       }; }).mesa;
     }; }).callPackage ../pkgs/piglit/default.nix {};

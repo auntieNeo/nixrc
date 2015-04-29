@@ -58,7 +58,7 @@
     ipafont
     # kochi_substitute  # TODO: write a kochi substitute package
     mplayer
-    # nitrogen  # TODO: write a nitrogen package
+    nitrogen
     openbox
     pdftk
     scrot

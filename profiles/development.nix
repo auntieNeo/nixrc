@@ -36,7 +36,7 @@
   ];
 
   nix = {
-    distributedBuilds = true;
+    distributedBuilds = false;
 #    requireSignedBinaryCaches = false;  # FIXME
 #    buildCores = 0;  # Use all available CPU cores in the system
     buildMachines = [
@@ -46,6 +46,7 @@
         sshKey = "/home/auntieneo/.ssh/id_rsa";
         sshUser = "auntieneo";
         system = "x86_64-linux";
+        supportedFeatures = [ "kvm" "nixos-test" ];
       }
     ];
   };
