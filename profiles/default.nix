@@ -18,9 +18,12 @@
     irssi
     ledger
     links2
+#    mailutils
+    heirloom-mailx
     manpages
     mkpasswd
     mosh
+    most
     ncurses
 #    nkf  # TODO: write a package for Network Kanji Filter
     nix-prefetch-scripts
@@ -34,15 +37,26 @@
     sudo
     tcpdump
     tmux
-#    rubyLibs.tmuxinator
-    unison
+    tmuxinator
+#    unison
+    unison_2_40_102
     unzip
+    utillinuxCurses
     vim_configurable
     vlock
     wget
     wgetpaste
     zsh
   ];
+
+  # custom packages
+  nixpkgs.config.packageOverrides = pkgs: rec {
+    heirloom-mailx = pkgs.callPackage ../pkgs/heirloom-mailx/default.nix { };
+    unison_2_40_102 = pkgs.callPackage ../pkgs/unison/unison-2.40.102.nix { lablgtk = pkgs.ocamlPackages.lablgtk; };
+  };
+
+  # Enable zsh as a login shell
+  programs.zsh.enable = true;
 
 #  # Enable core dump handling in systemd.
 #  systemd.coredump = {

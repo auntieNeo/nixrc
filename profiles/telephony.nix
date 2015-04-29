@@ -1,40 +1,19 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 {
   imports = [
-    ../services/asterisk.nix
+#    ../services/asterisk.nix
 
     # Various Asterisk configurations (enable only one at a time)
 #    ./telephony/asteriskTests.nix
 #    ./telephony/confBridgeSLA.nix
-    ./telephony/confBridgeBLA.nix
+#    ./telephony/confBridgeBLA.nix
 #    ./telephony/confBridge.nix
   ];
 
   environment.systemPackages = with pkgs; [
     asterisk
-#    (pkgs.lib.overrideDerivation pkgs.asterisk (attrs: rec {
-#      name = "asterisk-git";
-#      src = fetchgit {
-#        url = file:///home/auntieneo/code/asterisk/git;
-#        rev = "8fb2245aca6d33b20ae23db1c12618140609ed0a";
-#        sha256 = "a3e7099ac3375ed6b9a24090826f411628d79e2a2b3843defa48b2f41c52364d";
-#      };
-#
-#      coreSounds = fetchurl {
-#        url = http://downloads.asterisk.org/pub/telephony/sounds/releases/asterisk-core-sounds-en-gsm-1.4.26.tar.gz;
-#        sha256 = "2300e3ed1d2ded6808a30a6ba71191e7784710613a5431afebbd0162eb4d5d73";
-#      };
-#      mohSounds = fetchurl {
-#        url = http://downloads.asterisk.org/pub/telephony/sounds/releases/asterisk-moh-opsound-wav-2.03.tar.gz;
-#        sha256 = "449fb810d16502c3052fedf02f7e77b36206ac5a145f3dacf4177843a2fcb538";
-#      };
-#
-#      preConfigure = ''
-#        ln -s ${coreSounds} sounds/asterisk-core-sounds-en-gsm-1.4.26.tar.gz
-#        ln -s ${mohSounds} sounds/asterisk-moh-opsound-wav-2.03.tar.gz
-#      '';
-#    }))
+    asterisk-testsuite
     blink
     ekiga
     empathy
@@ -47,63 +26,98 @@
 
   # custom packages
   nixpkgs.config.packageOverrides = pkgs: rec {
-    asterisk = pkgs.callPackage ../pkgs/asterisk/default.nix { };
-    sipp = pkgs.callPackage ../pkgs/sipp/default.nix { };
+    asterisk-orig = pkgs.callPackage ../pkgs/asterisk/default.nix { };
+    asterisk = pkgs.misc.debugVersion (lib.overrideDerivation asterisk-orig (attrs: rec {
+      name = "asterisk-git";
+      src = pkgs.fetchgit {
+        url = file:///home/auntieneo/code/asterisk/git;
+        rev = "refs/heads/bla";
+# r!printf '    sha256 = "\%s";' `nix-prefetch-git file:///home/auntieneo/code/asterisk/git --rev refs/heads/bla 2>&/dev/null | tail -n1`
+        sha256 = "046f19911a2648eab10ce7b8e20bf983581a7a789995ef784d6bc69914f0971f";
+      };
+
+      preConfigure = ''
+        ln -s ${attrs.coreSounds} sounds/asterisk-core-sounds-en-gsm-1.4.26.tar.gz
+        ln -s ${attrs.mohSounds} sounds/asterisk-moh-opsound-wav-2.03.tar.gz
+      '';
+
+#      configureFlags = "${attrs.configureFlags} --enable-dev-mode";
+    }));
+    asterisk-testsuite-orig = pkgs.callPackage ../pkgs/asterisk-testsuite/default.nix { };
+    asterisk-testsuite = pkgs.misc.debugVersion (lib.overrideDerivation asterisk-testsuite-orig (attrs: rec {
+      name = "asterisk-testsuite-git";
+      src = pkgs.fetchgit {
+        url = file:///home/auntieneo/code/asterisk/testsuite;
+        rev = "refs/heads/master";
+        sha256 = "755aaf66ff7d45aa383d195b7382497b471028f0e0dacc954806d959b27204f1";
+      };
+    }));
+#    sipp = pkgs.callPackage ../pkgs/sipp/default.nix { };
     speech_tools = pkgs.callPackage ../pkgs/speech_tools/default.nix { };
     festival = pkgs.callPackage ../pkgs/festival/default.nix { };
   };
 
-  services.asterisk = {
-    enable = true;
-    extraConfig = ''
-      [options]
-      verbose=10
-      debug=10
-    '';
-    otherConfig = {
-      "logger.conf" = ''
-        [general]
-
-        [logfiles]
-        full => notice,warning,error,debug,verbose
-        syslog.local0 => notice,warning,error,debug,verbose
-      '';
-      "sip.conf" = ''
-        [general]
-        context=unauthenticated
-        allowguest=no
-        srvlookup=no  ; Don't do DNS lookup
-        udpbindaddr=0.0.0.0  ; Listen on all interfaces
-        tcpenable=no
-        nat=force_rport,comedia  ; Assume device is behind NAT
-
-        [softphone](!)
-        type=friend  ; Channel driver matches on username first, IP second
-        context=softphones
-        host=dynamic  ; Device will register with asterisk
-        disallow=all
-        allow=g722
-        allow=ulaw
-        allow=alaw
-
-        [hakase](softphone)
-        defaultuser=hakase
-        secret=GhoshevFew
-
-        [fluttershy](softphone)
-        defaultuser=fluttershy
-        secret=Vekaknobma
-      '';
-      "iax.conf" = ''
-        [general]
-        context=unauthenticated
-        allowguest=no
-        srvlookup=no  ; Don't do DNS lookup
-        udpbindaddr=0.0.0.0  ; Listen on all interfaces
-        tcpenable=no
-      '';
-    };
-  };
+#  services.asterisk = {
+#    enable = true;
+#    extraConfig = ''
+#      [options]
+#      verbose=10
+#      debug=10
+#    '';
+#    confFiles = {
+#      "logger.conf" = ''
+#        [general]
+#
+#        [logfiles]
+#        full => notice,warning,error,debug,verbose
+#        syslog.local0 => notice,warning,error,debug,verbose
+#      '';
+#      "sip.conf" = ''
+#        [general]
+#        context=unauthenticated
+#        allowguest=no
+#        srvlookup=no  ; Don't do DNS lookup
+#        udpbindaddr=0.0.0.0  ; Listen on all interfaces
+#        tcpenable=no
+#        nat=force_rport,comedia  ; Assume device is behind NAT
+#        callcounter=yes
+#        insecure=port,invite
+#
+#        [softphone](!)
+#        type=friend  ; Channel driver matches on username first, IP second
+#        context=softphones
+#        host=dynamic  ; Device will register with asterisk
+#        disallow=all
+#        allow=g722
+#        allow=ulaw
+#        allow=alaw
+#
+#        [hakase](softphone)
+#        defaultuser=hakase
+#        defaultip=127.0.0.1
+#        secret=GhoshevFew
+#
+#        [fluttershy](softphone)
+#        defaultuser=fluttershy
+#        secret=Vekaknobma
+#
+#        [sipp](softphone)
+#        context=line1
+#;        context=inbound
+#        defaultuser=sipp
+#        host=127.0.0.1
+#        secret=CytMyQuog2
+#      '';
+#      "iax.conf" = ''
+#        [general]
+#        context=unauthenticated
+#        allowguest=no
+#        srvlookup=no  ; Don't do DNS lookup
+#        udpbindaddr=0.0.0.0  ; Listen on all interfaces
+#        tcpenable=no
+#      '';
+#    };
+#  };
 
   # Allow telephony ports
   networking.firewall = {

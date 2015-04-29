@@ -6,10 +6,14 @@
       ../profiles/printing.nix
       ../profiles/desktop.nix
       ../profiles/development.nix
+      ../profiles/games.nix
       ../profiles/laptop.nix
       ../profiles/server.nix
       ../profiles/telephony.nix
       ../profiles/virtualization.nix
+
+      # Experimental:
+      ../profiles/mesa.nix
     ];
 
   # Use the gummiboot efi boot loader.

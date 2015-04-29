@@ -2,7 +2,7 @@
 
 {
   services.asterisk = {
-    otherConfig =
+    confFiles =
     {
       "modules.conf" = ''
         [modules]
@@ -42,7 +42,7 @@
         device=SIP/fluttershy
          
         [station3](station)
-        device=SIP/station3
+        device=SIP/sipp
       '';
       "confbridge.conf" = ''
         [general]
@@ -69,29 +69,47 @@
         [line1]
         ; FIXME: For some reason, s is needed here. I'm not sure why.
         exten => s,1,BLATrunk(line1)
+        exten => _X.,1,Goto(s,1)
+        exten => 100,1,Goto(s,1)
          
         [line2]
         exten => s,2,BLATrunk(line2)
+        exten => _X.,1,Goto(s,1)
 
         [line1_outbound]
         exten => faux,1,NoOp()
+        same  =>      n,Wait(1)
         same  =>      n(hello),Playback(hello-world)
-        same  =>      n,Wait(10)
-        same  =>      n,Goto(hello)
+        same  =>      n(hello),Playback(hello-world)
+        same  =>      n(hello),Playback(hello-world)
+        same  =>      n(hello),Playback(hello-world)
+        same  =>      n(hello),Playback(hello-world)
+        same  =>      n,Wait(90)
+        same  =>      n,Hangup()
 
         [line2_outbound]
         exten => faux,1,NoOp()
+        same  =>      n,Wait(1)
         same  =>      n(hello),Playback(hello-world)
-        same  =>      n,Wait(10)
-        same  =>      n,Goto(hello)
+        same  =>      n(hello),Playback(hello-world)
+        same  =>      n(hello),Playback(hello-world)
+        same  =>      n(hello),Playback(hello-world)
+        same  =>      n(hello),Playback(hello-world)
+        same  =>      n,Hangup()
          
         [bla_stations]
-        exten => station1,1,BLAStation(station1)
+        exten => station1,1,NoOp()
+        same  =>          n,Wait(1)
+;        same  =>          n(hello),Playback(hello-world)
+        same  =>          n,BLAStation(station1)
         exten => station1_line1,hint,BLA:station1_line1
         exten => station1_line1,1,BLAStation(station1_line1)
         exten => station1_line2,hint,BLA:station1_line2
         exten => station1_line2,1,BLAStation(station1_line2)
-        exten => station2,1,BLAStation(station2)
+        exten => station2,1,NoOp()
+        same  =>          n,Wait(1)
+;        same  =>          n(hello),Playback(hello-world)
+        same  =>          n,BLAStation(station2)
         exten => station2_line1,hint,BLA:station2_line1
         exten => station2_line1,1,BLAStation(station2_line1)
         exten => station2_line2,hint,BLA:station2_line2
@@ -102,12 +120,12 @@
         exten => station3_line2,hint,BLA:station3_line2
         exten => station3_line2,1,BLAStation(station3_line2)
 
-        [bla_tests]
-        exten => dial_line1,1,Dial(Local/100@Line1)
+        [inbound]
+        exten => 100,1,Goto(line1,100,1)
+        exten => 200,1,Goto(line2,200,1)
 
         [softphones]
         include => bla_stations
-        include => bla_tests
       '';
     };
   };

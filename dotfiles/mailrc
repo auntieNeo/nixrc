@@ -1,0 +1,91 @@
+account gmail { 
+   set folder=imaps://auntieNeo@imap.gmail.com 
+   set password-auntieNeo@imap.gmail.com="PASSWORD" 
+   set imap-use-starttls 
+   set ssl-ca-dir=/home/auntieneo/.certs 
+   set record=+[Gmail]/Sent\ Mail 
+   set from="Jonathan Glines <auntieNeo@gmail.com>" 
+   set replyto="auntieNeo@gmail.com" 
+   set sender="auntieNeo@gmail.com" 
+   set smtp-use-starttls 
+   set smtp="smtp.gmail.com:587" 
+   set smtp-auth="login" 
+   set smtp-auth-user=auntieNeo@gmail.com 
+   set smtp-auth-password="PASSWORD"
+
+# IMAP SHORTCUTS SECTION for standard Gmail folders 
+   shortcut allmail +[Gmail]/All\ Mail 
+   shortcut in +INBOX 
+   shortcut spam +[Gmail]/Spam 
+   shortcut trash +[Gmail]/Bin 
+   shortcut sent +[Gmail]/Sent\ Mail 
+} 
+
+# Binary options 
+set askattach 
+set askcc 
+set askbcc 
+set autoinc 
+set autothread 
+set bsdannounce 
+set bsdflags 
+set bsdheadline 
+set bsdmsgs 
+set bsdorder 
+set datefield 
+set dot 
+set editheaders 
+set emptystart 
+set fullnames 
+set hold 
+set keep 
+set markanswered 
+set print-alternatives 
+set quiet 
+set reply-in-same-charset 
+set showlast 
+set showname 
+set showto 
+set noautocollapse 
+
+# String Options 
+fwdretain subject date from to 
+ignore received in-reply-to message-id references 
+ignore mime-version content-transfer-encoding 
+retain subject date from to cc x-mailer user-agent message-id list-Id 
+set autosort=thread 
+set contenttype-cntrl=text/plain 
+set crt=20 
+set encoding=quoted-printable 
+set headline="%>%a%m %27f  %24d %4l/%-5o %i%S" 
+set imap-keepalive=240 
+set imap-list-depth=5 
+set indentprefix="> " 
+set newmail=nopoll 
+set PAGER="/usr/bin/env most -C -d +u" 
+# set pipe-text/plain="/usr/bin/env par -B=ISO8859-15 -R0f0g1l0w70j0 | /usr/bin/env most -C -d +u" 
+set pipe-text/plain="/usr/bin/env fold -s | /usr/bin/env most -C -d +u" 
+set quote=headers 
+set sendcharsets=iso-8859-1,iso-8859-15,utf-8 
+set signature=/arpa/gm/h//happy/.signature 
+
+# String Options
+fwdretain subject date from to
+ignore received in-reply-to message-id references
+ignore mime-version content-transfer-encoding
+retain subject date from to cc x-mailer user-agent message-id list-Id
+set autosort=thread
+set contenttype-cntrl=text/plain
+set crt=20
+set encoding=quoted-printable
+set headline="%>%a%m %27f  %24d %4l/%-5o %i%S"
+set imap-keepalive=240
+set imap-list-depth=5
+set indentprefix="> "
+set newmail=nopoll
+set PAGER="/usr/bin/env most -C -d +u"
+# set pipe-text/plain="/usr/bin/env par -B=ISO8859-15 -R0f0g1l0w70j0 | /usr/bin/env most -C -d +u"
+set pipe-text/plain="/usr/bin/env fold -s | /usr/bin/env most -C -d +u"
+set quote=headers
+set sendcharsets=iso-8859-1,iso-8859-15,utf-8
+set signature=/arpa/gm/h//happy/.signature

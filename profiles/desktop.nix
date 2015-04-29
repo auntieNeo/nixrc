@@ -24,6 +24,8 @@
     };
   };
 
+  # Enable PulseAudio
+  hardware.pulseaudio.enable = true;
 
   environment.systemPackages = with pkgs; [
     anki
@@ -37,14 +39,14 @@
     dmenu
 #    dmenu-wl
     # install patched version of dwm
-    (pkgs.lib.overrideDerivation pkgs.dwm (attrs: {
+    (lib.overrideDerivation pkgs.dwm (attrs: {
       name = "dwm-6.0-patched";
       src = fetchurl {
         url = "https://github.com/auntieNeo/dwm/archive/e7d079df7024379b50c520f14f613f0c036153b1.tar.gz";
         sha256 = "5415d2fe5458165253e047df434a7840d5488f8a60487a05c00bb4f38fe4843f";
       };
     }))
-#    ebview
+    ebview
     evince
     firefox
     freerdp
@@ -56,14 +58,15 @@
     ipafont
     # kochi_substitute  # TODO: write a kochi substitute package
     mplayer
-    # nitrogen  # TODO: write a nitrogen package
+    nitrogen
     openbox
     pdftk
+    scrot
 #    st-wl
     texLiveFull
     typespeed
     # Install a patched version of rxvt_unicode (with text shadows).
-    (pkgs.lib.overrideDerivation pkgs.rxvt_unicode (attrs: {
+    (lib.overrideDerivation pkgs.rxvt_unicode (attrs: {
       patches = [ ../patches/urxvt-text-shadows.patch ];  # FIXME: This clobbers an existing patch for correct font spacing.
     }))
     weston

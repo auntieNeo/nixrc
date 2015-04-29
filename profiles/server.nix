@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 {
   imports =
@@ -14,8 +14,8 @@
   # services.ssh-phone-home.enable = true;
   #
   # Machines that use settings other than this (e.g. a different
-  # remoteHostname) should use pkgs.lib.mkForce:
-  # services.ssh-phone-home.remoteHostname = pkgs.lib.mkForce "example.net";
+  # remoteHostname) should use lib.mkForce:
+  # services.ssh-phone-home.remoteHostname = lib.mkForce "example.net";
   services.ssh-phone-home = {
     # NOTE: bindPort should be specified on a per-machine basis
     localUser = "auntieneo";
