@@ -55,11 +55,13 @@
     gparted
     gutenprint
     ibus
+    imagemagick
     ipafont
     # kochi_substitute  # TODO: write a kochi substitute package
     mplayer
     nitrogen
     openbox
+    pdfjam
     pdftk
     scrot
 #    st-wl
