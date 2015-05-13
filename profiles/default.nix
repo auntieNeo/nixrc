@@ -33,6 +33,7 @@
     rtorrent
     ruby
     screen
+    sshfsFuse
     stdenv
     sudo
     tcpdump

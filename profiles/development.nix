@@ -24,6 +24,7 @@
     patchutils
     python
 #    polish-shell
+    pwclient
     R
 #    rubyLibs.jekyll
     scons
@@ -69,5 +70,6 @@
   # custom packages
   nixpkgs.config.packageOverrides = pkgs: rec {
     polish-shell = pkgs.callPackage ../pkgs/polish-shell/default.nix { };
+    pwclient = pkgs.callPackage ../pkgs/pwclient/default.nix { };
   };
 }

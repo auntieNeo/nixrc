@@ -1,39 +1,7 @@
-Host minerve
-  Hostname minerve.cose.isu.edu
-  User glinjona
-
-Host minerve2
-  Hostname minerve2.cose.isu.edu
-  User glinjona
-
-#Host lain
-#  ProxyCommand ssh -q minerve nc localhost 2222
-#  User auntieneo
-
-Host skynet
-  Hostname skynet.cose.isu.edu
-  User glinjona
-
-Host leela
-  ProxyCommand ssh -q minerve nc localhost 2255
-  User ansible
-
-Host urban2
-  ProxyCommand ssh -q leela nc 192.168.1.102 22
-  User glinjona
-
-Host urban3
-  ProxyCommand ssh -q leela nc 192.168.1.103 22
-  User glinjona
-
 Host dhaos
   Hostname auntieneo.net
   User auntieneo
 
 Host hazuki
-  ProxyCommand ssh -q dhaos nc localhost 2200
+  ProxyCommand ssh dhaos -W localhost:2200
   User auntieneo
-
-Host glacier
-  Hostname glacier.isu.edu
-  User glinjona

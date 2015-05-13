@@ -95,5 +95,14 @@ rec {
         xorg_sys_opengl
       ];
     };
+
+    env-root = pkgs.myEnvFun {
+      name = "root";
+      buildInputs = with pkgs; [
+        gdb
+        root
+        stdenv
+      ];
+    };
   };
 }

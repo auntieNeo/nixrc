@@ -81,6 +81,10 @@ rec {
       chown auntieneo:auntieneo .nixpkgs
       ln -fs ${./dotfiles/nixpkgs/config.nix} .nixpkgs/config.nix  # FIXME: create a directory for nixpkgs
       ln -fsn ${./dotfiles/oh-my-zsh} .oh-my-zsh
+      ln -fs ${./dotfiles/pwclientrc} .pwclientrc
+#      cp ${./dotfiles/pwclientrc} .pwclientrc
+#      chown auntieneo:auntieneo .pwclientrc
+#      chmod 0644 .pwclientrc
       mkdir --mode=0700 .ssh 2>/dev/null || true
       chown auntieneo:auntieneo .ssh
       cp ${./dotfiles/ssh/authorized_keys} .ssh/authorized_keys

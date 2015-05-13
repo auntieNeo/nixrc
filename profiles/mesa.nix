@@ -32,11 +32,13 @@
           version = "git";
 #          version = "10.4.6";
 
+          enableParallelBuilding = true;
           src = pkgs.fetchgit {
             url = "file:///home/auntieneo/code/mesa";
-            rev = "refs/heads/master";
-# r!printf '    sha256 = "\%s";' `nix-prefetch-git file:///home/auntieneo/code/asterisk/git --rev refs/heads/bla 2>&/dev/null | tail -n1`
-            sha256 = "6b4a4cacbb958c5e5f928b0f16d74e1f40537433edcd5ed421312ce7afead443";
+            rev = "refs/heads/arb_shader_subroutine";
+            sha256 = "96399a2f56429375bdea403d0abbf0c9731d251e52d93e4e198e917ec8865eea";
+#            rev = "refs/heads/master";
+#            sha256 = "6b4a4cacbb958c5e5f928b0f16d74e1f40537433edcd5ed421312ce7afead443";
           };
 #          src = pkgs.fetchurl {
 #            urls = [

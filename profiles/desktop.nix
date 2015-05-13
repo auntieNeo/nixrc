@@ -73,6 +73,7 @@
     }))
     weston
     wmname  # Used for hack in which Java apps break in dwm.
+    x11vnc
     xlibs.xinit
     xorg.xkill
     xwayland
