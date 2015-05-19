@@ -3,7 +3,7 @@
 {
   environment.systemPackages = with pkgs; [
 #    piglit
-    piglit-patched
+#    piglit-patched
   ];
   nixpkgs.config.packageOverrides = pkgs:
     (let

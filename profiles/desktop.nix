@@ -31,7 +31,7 @@
     anki
     anthy
     briss
-    calibre
+#    calibre
     chromium
     cmus
     conky  # TODO: configure conky
@@ -49,7 +49,15 @@
     ebview
     evince
     firefox
-    freerdp
+#    freerdp
+# FIXME: fix freerdp:
+# ####### Building extension hunspell #######
+# Compiling hunspell
+# CMake Warning at CMakeLists.txt:623 (export):
+#   Cannot create package registry file:
+#
+#       /homeless-shelter/.cmake/packages/freerdp/7efaf6cf5b6fe0c4d9dd6288e45784d3
+#
     gimp
     gnumeric
     gparted
@@ -71,7 +79,8 @@
     (lib.overrideDerivation pkgs.rxvt_unicode (attrs: {
       patches = [ ../patches/urxvt-text-shadows.patch ];  # FIXME: This clobbers an existing patch for correct font spacing.
     }))
-    weston
+# FIXME: fix freerdp to fix weston
+#    weston
     wmname  # Used for hack in which Java apps break in dwm.
     x11vnc
     xlibs.xinit

@@ -1,6 +1,9 @@
 .*.swp
 .*.swo
+.*.swn
 hardware-configuration.nix
 hostname
 Session.vim
 private
+/result
+/core

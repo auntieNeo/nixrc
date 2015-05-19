@@ -1,0 +1,11 @@
+# ~/.tmuxinator/irc.yml
+
+name: finance
+root: ~/finance
+
+windows:
+  - ledger:
+      layout: main-horizontal
+      panes:
+        - vim ./ledger.dat
+        - watch -n60 ledger -f ./ledger.dat balance

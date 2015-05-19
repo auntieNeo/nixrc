@@ -92,9 +92,17 @@ rec {
         mesa
         pkgconfig
         SDL2
+        stdenv
         xorg_sys_opengl
       ];
     };
+
+    loveEnv = pkgs.stdenv.mkDerivation rec {
+       name = "love-env";
+       buildInputs = with pkgs; [
+         love_0_9
+       ];
+     };
 
     env-root = pkgs.myEnvFun {
       name = "root";

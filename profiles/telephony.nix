@@ -5,7 +5,7 @@
 #    ../services/asterisk.nix
 
     # Various Asterisk configurations (enable only one at a time)
-#    ./telephony/asteriskTests.nix
+    ./telephony/asteriskTests.nix
 #    ./telephony/confBridgeSLA.nix
 #    ./telephony/confBridgeBLA.nix
 #    ./telephony/confBridge.nix
@@ -33,7 +33,7 @@
         url = file:///home/auntieneo/code/asterisk/git;
         rev = "refs/heads/bla";
 # r!printf '    sha256 = "\%s";' `nix-prefetch-git file:///home/auntieneo/code/asterisk/git --rev refs/heads/bla 2>&/dev/null | tail -n1`
-        sha256 = "046f19911a2648eab10ce7b8e20bf983581a7a789995ef784d6bc69914f0971f";
+        sha256 = "a4b82595eab750eaf7c921b2693b832ae955e7130ae7226f8d3f506c2991b9a9";
       };
 
       preConfigure = ''
@@ -57,67 +57,67 @@
     festival = pkgs.callPackage ../pkgs/festival/default.nix { };
   };
 
-#  services.asterisk = {
-#    enable = true;
-#    extraConfig = ''
-#      [options]
-#      verbose=10
-#      debug=10
-#    '';
-#    confFiles = {
-#      "logger.conf" = ''
-#        [general]
-#
-#        [logfiles]
-#        full => notice,warning,error,debug,verbose
-#        syslog.local0 => notice,warning,error,debug,verbose
-#      '';
-#      "sip.conf" = ''
-#        [general]
-#        context=unauthenticated
-#        allowguest=no
-#        srvlookup=no  ; Don't do DNS lookup
-#        udpbindaddr=0.0.0.0  ; Listen on all interfaces
-#        tcpenable=no
-#        nat=force_rport,comedia  ; Assume device is behind NAT
-#        callcounter=yes
-#        insecure=port,invite
-#
-#        [softphone](!)
-#        type=friend  ; Channel driver matches on username first, IP second
-#        context=softphones
-#        host=dynamic  ; Device will register with asterisk
-#        disallow=all
-#        allow=g722
-#        allow=ulaw
-#        allow=alaw
-#
-#        [hakase](softphone)
-#        defaultuser=hakase
-#        defaultip=127.0.0.1
-#        secret=GhoshevFew
-#
-#        [fluttershy](softphone)
-#        defaultuser=fluttershy
-#        secret=Vekaknobma
-#
-#        [sipp](softphone)
-#        context=line1
-#;        context=inbound
-#        defaultuser=sipp
-#        host=127.0.0.1
-#        secret=CytMyQuog2
-#      '';
-#      "iax.conf" = ''
-#        [general]
-#        context=unauthenticated
-#        allowguest=no
-#        srvlookup=no  ; Don't do DNS lookup
-#        udpbindaddr=0.0.0.0  ; Listen on all interfaces
-#        tcpenable=no
-#      '';
-#    };
-#  };
+  services.asterisk = {
+    enable = true;
+    extraConfig = ''
+      [options]
+      verbose=10
+      debug=10
+    '';
+    confFiles = {
+      "logger.conf" = ''
+        [general]
+
+        [logfiles]
+        full => notice,warning,error,debug,verbose
+        syslog.local0 => notice,warning,error,debug,verbose
+      '';
+      "sip.conf" = ''
+        [general]
+        context=unauthenticated
+        allowguest=no
+        srvlookup=no  ; Don't do DNS lookup
+        udpbindaddr=0.0.0.0  ; Listen on all interfaces
+        tcpenable=no
+        nat=force_rport,comedia  ; Assume device is behind NAT
+        callcounter=yes
+        insecure=port,invite
+
+        [softphone](!)
+        type=friend  ; Channel driver matches on username first, IP second
+        context=softphones
+        host=dynamic  ; Device will register with asterisk
+        disallow=all
+        allow=g722
+        allow=ulaw
+        allow=alaw
+
+        [hakase](softphone)
+        defaultuser=hakase
+        defaultip=127.0.0.1
+        secret=GhoshevFew
+
+        [fluttershy](softphone)
+        defaultuser=fluttershy
+        secret=Vekaknobma
+
+        [sipp](softphone)
+        context=line1
+;        context=inbound
+        defaultuser=sipp
+        host=127.0.0.1
+        secret=CytMyQuog2
+      '';
+      "iax.conf" = ''
+        [general]
+        context=unauthenticated
+        allowguest=no
+        srvlookup=no  ; Don't do DNS lookup
+        udpbindaddr=0.0.0.0  ; Listen on all interfaces
+        tcpenable=no
+      '';
+    };
+  };
 
   # Allow telephony ports
   networking.firewall = {
