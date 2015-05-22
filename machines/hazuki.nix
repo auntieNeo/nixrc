@@ -9,6 +9,7 @@
       ../profiles/mesa.nix
       ../profiles/printing.nix
       ../profiles/server.nix
+      ../profiles/telephony.nix
     ];
 
   hardware.opengl.driSupport32Bit = true;

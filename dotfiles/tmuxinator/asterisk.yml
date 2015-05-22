@@ -10,11 +10,11 @@ windows:
         - sudo journalctl -f -u asterisk
         - sudo gdb
         - sipp -h
-  - git:
+  - gerrit:
       layout: main-horizontal
       panes:
-        - cd git; vim -S Session.vim
-        - cd git; nix-shell '<nixpkgs>' -A asterisk
+        - cd asterisk-gerrit; vim -S Session.vim
+        - cd asterisk-gerrit; nix-shell '<nixpkgs>' -A asterisk
   - sipp:
       layout: main-horizontal
       panes:

@@ -66,59 +66,28 @@
         type=bridge
       '';
       "extensions.conf" = ''
-        [line1]
-        ; FIXME: For some reason, s is needed here. I'm not sure why.
-        exten => s,1,BLATrunk(line1)
-        exten => _X.,1,Goto(s,1)
-        exten => 100,1,Goto(s,1)
-         
-        [line2]
-        exten => s,2,BLATrunk(line2)
-        exten => _X.,1,Goto(s,1)
-
         [line1_outbound]
         exten => faux,1,NoOp()
         same  =>      n,Wait(1)
+        same  =>      n,Answer()
         same  =>      n(hello),Playback(hello-world)
         same  =>      n(hello),Playback(hello-world)
         same  =>      n(hello),Playback(hello-world)
         same  =>      n(hello),Playback(hello-world)
         same  =>      n(hello),Playback(hello-world)
-        same  =>      n,Wait(90)
+        same  =>      n(hello),Playback(hello-world)
+        same  =>      n(hello),Playback(hello-world)
+        same  =>      n(hello),Playback(hello-world)
+        same  =>      n(hello),Playback(hello-world)
+        same  =>      n(hello),Playback(hello-world)
         same  =>      n,Hangup()
 
         [line2_outbound]
         exten => faux,1,NoOp()
         same  =>      n,Wait(1)
-        same  =>      n(hello),Playback(hello-world)
-        same  =>      n(hello),Playback(hello-world)
-        same  =>      n(hello),Playback(hello-world)
-        same  =>      n(hello),Playback(hello-world)
-        same  =>      n(hello),Playback(hello-world)
+        same  =>      n,Answer()
+        same  =>      n,Echo()
         same  =>      n,Hangup()
-         
-        [bla_stations]
-        exten => station1,1,NoOp()
-        same  =>          n,Wait(1)
-;        same  =>          n(hello),Playback(hello-world)
-        same  =>          n,BLAStation(station1)
-        exten => station1_line1,hint,BLA:station1_line1
-        exten => station1_line1,1,BLAStation(station1_line1)
-        exten => station1_line2,hint,BLA:station1_line2
-        exten => station1_line2,1,BLAStation(station1_line2)
-        exten => station2,1,NoOp()
-        same  =>          n,Wait(1)
-;        same  =>          n(hello),Playback(hello-world)
-        same  =>          n,BLAStation(station2)
-        exten => station2_line1,hint,BLA:station2_line1
-        exten => station2_line1,1,BLAStation(station2_line1)
-        exten => station2_line2,hint,BLA:station2_line2
-        exten => station2_line2,1,BLAStation(station2_line2)
-        exten => station3,1,BLAStation(station3)
-        exten => station3_line1,hint,BLA:station3_line1
-        exten => station3_line1,1,BLAStation(station3_line1)
-        exten => station3_line2,hint,BLA:station3_line2
-        exten => station3_line2,1,BLAStation(station3_line2)
 
         [inbound]
         exten => 100,1,Goto(line1,100,1)
@@ -130,3 +99,4 @@
     };
   };
 }
+

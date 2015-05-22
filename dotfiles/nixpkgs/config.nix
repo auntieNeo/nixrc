@@ -104,6 +104,22 @@ rec {
        ];
      };
 
+    perlEnv = pkgs.stdenv.mkDerivation rec {
+      name = "perl-env";
+      buildInputs = with pkgs; [
+        perlPackages.DBDSQLite
+        perlPackages.DBI
+        sqlite
+      ];
+    };
+
+    asteriskEnv = pkgs.stdenv.lib.overrideDerivation pkgs.asterisk (attrs: rec {
+      name = "asterisk-env";
+      buildInputs = with pkgs; [
+        pkgs.pjsip
+      ] ++ attrs.buildInputs;
+    });
+
     env-root = pkgs.myEnvFun {
       name = "root";
       buildInputs = with pkgs; [

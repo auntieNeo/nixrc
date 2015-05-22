@@ -5,15 +5,16 @@
 #    ../services/asterisk.nix
 
     # Various Asterisk configurations (enable only one at a time)
-    ./telephony/asteriskTests.nix
+#    ./telephony/asteriskTests.nix
 #    ./telephony/confBridgeSLA.nix
-#    ./telephony/confBridgeBLA.nix
+#    ./telephony/BLA.nix
+    ./telephony/BLA_autocontext.nix
 #    ./telephony/confBridge.nix
   ];
 
   environment.systemPackages = with pkgs; [
     asterisk
-    asterisk-testsuite
+#    asterisk-testsuite
     blink
     ekiga
     empathy
@@ -26,19 +27,24 @@
 
   # custom packages
   nixpkgs.config.packageOverrides = pkgs: rec {
-    asterisk-orig = pkgs.callPackage ../pkgs/asterisk/default.nix { };
-    asterisk = pkgs.misc.debugVersion (lib.overrideDerivation asterisk-orig (attrs: rec {
+#    asterisk-orig = pkgs.callPackage ../pkgs/asterisk/default.nix { };
+    asterisk = pkgs.misc.debugVersion (lib.overrideDerivation pkgs.asterisk (attrs: rec {
       name = "asterisk-git";
       src = pkgs.fetchgit {
-        url = file:///home/auntieneo/code/asterisk/git;
+        url = file:///home/auntieneo/code/asterisk/asterisk-gerrit;
         rev = "refs/heads/bla";
-# r!printf '    sha256 = "\%s";' `nix-prefetch-git file:///home/auntieneo/code/asterisk/git --rev refs/heads/bla 2>&/dev/null | tail -n1`
-        sha256 = "a4b82595eab750eaf7c921b2693b832ae955e7130ae7226f8d3f506c2991b9a9";
+# r!printf '    sha256 = "\%s";' `nix-prefetch-git file:///home/auntieneo/code/asterisk/asterisk-gerrit --rev refs/heads/bla 2>&/dev/null | tail -n1`
+        sha256 = "c25a9eeb6ce630c33f00db91d4b4795a16186bf83b86586feb828dc10aa3d7df";
       };
+
+      buildInputs = [ pkgs.pjsip ] ++ attrs.buildInputs;
 
       preConfigure = ''
         ln -s ${attrs.coreSounds} sounds/asterisk-core-sounds-en-gsm-1.4.26.tar.gz
         ln -s ${attrs.mohSounds} sounds/asterisk-moh-opsound-wav-2.03.tar.gz
+
+        # FIXME: This is a hack. I have no idea why the gcc wrapper fails to add pjsip to the include path. Maybe a bug with packageOverrides?
+        export NIX_CFLAGS_COMPILE="$NIX_CFLAGS_COMPILE -isystem ${pkgs.pjsip}/include/"
       '';
 
 #      configureFlags = "${attrs.configureFlags} --enable-dev-mode";
