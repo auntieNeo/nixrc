@@ -7,7 +7,8 @@
   };
 
   # Load VirtualBox kernel modules.
-  services.virtualboxHost.enable = true;
+  # FIXME: This interferes with AziLink Android tethering because they both use 192.168.56.0/24
+#  services.virtualboxHost.enable = true;
 
   environment.systemPackages = with pkgs; [
 #    gentoo

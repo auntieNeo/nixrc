@@ -24,19 +24,21 @@
         type=trunk
         device=Local/faux@line2_outbound
         autocontext=line2
-        trunk_user_profile=incoming_user  ; default user profile for calls INTO the trunk (i.e. channels that invoke BLATrunk())
-        station_user_profile=outgoing_user  ; default user profile for stations
-        bridge_profile=trunk_bridge  ; bridge type to mix channels (obviously for all channels on this trunk)
+
+        [line3]
+        type=trunk
+        device=Local/faux@line3_outbound
+        autocontext=line3
          
         [station](!)
         type=station
         trunk=line1
         trunk=line2
+        trunk=line3
         autocontext=bla_stations
          
         [station1](station)
         device=SIP/hakase
-        user_profile=admin_user
          
         [station2](station)
         device=SIP/fluttershy
@@ -47,23 +49,21 @@
       "confbridge.conf" = ''
         [general]
 
-        [default_user]
-        type=user
+;        [default_bla_station_user]
+;        type=user
+;        marked=yes
+;        quiet=yes
+;        dtmf_passthrough=yes
 
-        [default_bridge]
-        type=bridge
+;        [default_bla_trunk_user]
+;        type=user
+;        quiet=yes
+;        dtmf_passthrough=yes
+;        end_marked=yes
 
-        [incoming_user]
-        type=user
-
-        [outgoing_user]
-        type=user
-
-        [admin_user]
-        type=user
-
-        [trunk_bridge]
-        type=bridge
+;        [default_bla_bridge]
+;        type=bridge
+;        sound_join=hello-world
       '';
       "extensions.conf" = ''
         [line1_outbound]
@@ -87,6 +87,14 @@
         same  =>      n,Wait(1)
         same  =>      n,Answer()
         same  =>      n,Echo()
+        same  =>      n,Hangup()
+
+        [line3_outbound]
+        exten => faux,1,NoOp()
+        same  =>      n,Wait(1)
+        same  =>      n,Answer()
+        same  =>      n,Read(DIGITS,,3)
+        same  =>      n,SayDigits(''${DIGITS})
         same  =>      n,Hangup()
 
         [inbound]

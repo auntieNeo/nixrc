@@ -60,13 +60,16 @@
 #
     gimp
     gnumeric
+    go-mtpfs
     gparted
     gutenprint
     ibus
     imagemagick
     ipafont
+#    jmtpfs
     # kochi_substitute  # TODO: write a kochi substitute package
     mplayer
+    mtpfs
     nitrogen
     openbox
     pdfjam

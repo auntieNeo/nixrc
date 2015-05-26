@@ -117,6 +117,7 @@ rec {
       name = "asterisk-env";
       buildInputs = with pkgs; [
         pkgs.pjsip
+        pkgs.doxygen
       ] ++ attrs.buildInputs;
     });
 

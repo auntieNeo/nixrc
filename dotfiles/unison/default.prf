@@ -5,6 +5,7 @@ root = ssh://dhaos//home/auntieneo
 servercmd = /run/current-system/sw/bin/unison
 
 path = code
+ignore = Path code/asterisk/sandbox
 path = work
 ignore = Path work/cose/code/cluster_scripts/playbooks/minerve/site
 ignore = Path work/cose/code/cluster_scripts/playbooks/skynet/site

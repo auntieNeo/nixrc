@@ -3,9 +3,11 @@
 {
   imports =
     [
+      ../profiles/android.nix
       ../profiles/desktop.nix
       ../profiles/development.nix
       ../profiles/games.nix
+      ../profiles/graphics.nix
       ../profiles/mesa.nix
       ../profiles/printing.nix
       ../profiles/server.nix

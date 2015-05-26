@@ -19,7 +19,7 @@ windows:
       layout: main-horizontal
       panes:
         - echo "TODO"
-  - asterisk-testsuite:
+  - testsuite:
       layout: main-horizontal
       panes:
-        - nix-shell '<nixpkgs>' -A asterisk-testsuite
+        - cd testsuite; vim -S Session.vim
