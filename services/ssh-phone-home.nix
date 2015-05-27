@@ -66,6 +66,7 @@ in
         Reverse SSH tunnel as a service
       '';
 
+      # FIXME: This isn't triggered until a reboot, and probably won't work between suspends.
       bindsTo = [ "network.target" ];
 
       serviceConfig = with cfg; {

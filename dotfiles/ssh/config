@@ -5,3 +5,11 @@ Host dhaos
 Host hazuki
   ProxyCommand ssh dhaos -W localhost:2200
   User auntieneo
+
+Host miku
+  ProxyCommand ssh dhaos -W localhost:2211
+  User auntieneo
+
+Host hakase
+  ProxyCommand ssh dhaos -W localhost:2244
+  User auntieneo

@@ -34,7 +34,7 @@
         url = file:///home/auntieneo/code/asterisk/asterisk-gerrit;
         rev = "refs/heads/bla";
 # r!printf '    sha256 = "\%s";' `nix-prefetch-git file:///home/auntieneo/code/asterisk/asterisk-gerrit --rev refs/heads/bla 2>&/dev/null | tail -n1`
-        sha256 = "8ee5372ef0cd1f2c41b571a696690e042b84c85ceabd603b390c1fcdce45fa26";
+        sha256 = "40f88fedc025102dc973181dc42c0207c34d24a9855a901d1cbfa76f9f99d6e3";
       };
 
       buildInputs = [ pkgs.pjsip ] ++ attrs.buildInputs;
@@ -55,7 +55,7 @@
       src = pkgs.fetchgit {
         url = file:///home/auntieneo/code/asterisk/testsuite;
         rev = "refs/heads/master";
-        sha256 = "755aaf66ff7d45aa383d195b7382497b471028f0e0dacc954806d959b27204f1";
+        sha256 = "65d522c5f6e73bebf8ddd239e95811717cd944955c2052e3080bdaefa2994590";
       };
     }));
 #    sipp = pkgs.callPackage ../pkgs/sipp/default.nix { };
@@ -108,11 +108,13 @@
         secret=Vekaknobma
 
         [larry](softphone)
+        context=line1
+;        context=inbound
         defaultuser=larry
         secret=shivKujSie
 
         [sipp](softphone)
-        context=line1
+;        context=line1
 ;        context=inbound
         defaultuser=sipp
         host=127.0.0.1

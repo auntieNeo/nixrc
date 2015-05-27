@@ -4,6 +4,7 @@
   # install development packages
   environment.systemPackages = with pkgs; [
     binutils
+    cgdb
     cmake
     doxygen
     eclipses.eclipse_cpp_43

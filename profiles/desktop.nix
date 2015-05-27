@@ -60,7 +60,7 @@
 #
     gimp
     gnumeric
-    go-mtpfs
+#    go-mtpfs
     gparted
     gutenprint
     ibus

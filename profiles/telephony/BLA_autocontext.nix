@@ -52,9 +52,11 @@
         [station3](station)
         device=SIP/larry
 
-        [station4](station)
-        device=SIP/sipp
+;        [station4](station)
+;        device=SIP/sipp
 
+;        [station5](station)
+;        device=Local/faux@station5_inbound
       '';
       "confbridge.conf" = ''
         [general]
@@ -116,6 +118,23 @@
         same  =>      n,Answer()
         same  =>      n,Read(DIGITS,,4)
         same  =>      n,GotoIf($[''${DIGITS} = 1234]?line1_outbound,faux,1)
+        same  =>      n,Hangup()
+
+        [station5_inbound]
+        exten => faux,1,NoOp()
+        same  =>      n,Wait(3)
+        same  =>      n,Answer()
+        same  =>      n,Wait(8)
+        same  =>      n(hello),Playback(hello-world)
+        same  =>      n(hello),Playback(hello-world)
+        same  =>      n(hello),Playback(hello-world)
+        same  =>      n(hello),Playback(hello-world)
+        same  =>      n(hello),Playback(hello-world)
+        same  =>      n(hello),Playback(hello-world)
+        same  =>      n(hello),Playback(hello-world)
+        same  =>      n(hello),Playback(hello-world)
+        same  =>      n(hello),Playback(hello-world)
+        same  =>      n(hello),Playback(hello-world)
         same  =>      n,Hangup()
 
         [inbound]
