@@ -34,7 +34,7 @@
         url = file:///home/auntieneo/code/asterisk/asterisk-gerrit;
         rev = "refs/heads/bla";
 # r!printf '    sha256 = "\%s";' `nix-prefetch-git file:///home/auntieneo/code/asterisk/asterisk-gerrit --rev refs/heads/bla 2>&/dev/null | tail -n1`
-        sha256 = "ea39003711883833f6b9da97938b16228b7c514fc800af76d3ee8b1810978a93";
+        sha256 = "8ee5372ef0cd1f2c41b571a696690e042b84c85ceabd603b390c1fcdce45fa26";
       };
 
       buildInputs = [ pkgs.pjsip ] ++ attrs.buildInputs;
@@ -91,7 +91,7 @@
 
         [softphone](!)
         type=friend  ; Channel driver matches on username first, IP second
-        context=bla_stations
+        context=softphones
         host=dynamic  ; Device will register with asterisk
         disallow=all
         allow=g722
@@ -106,6 +106,10 @@
         [fluttershy](softphone)
         defaultuser=fluttershy
         secret=Vekaknobma
+
+        [larry](softphone)
+        defaultuser=larry
+        secret=shivKujSie
 
         [sipp](softphone)
         context=line1

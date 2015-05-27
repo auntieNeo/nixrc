@@ -29,12 +29,18 @@
         type=trunk
         device=Local/faux@line3_outbound
         autocontext=line3
+
+        [line4]
+        type=trunk
+        device=Local/faux@line4_outbound
+        autocontext=line4
          
         [station](!)
         type=station
         trunk=line1
         trunk=line2
         trunk=line3
+        trunk=line4
         autocontext=bla_stations
          
         [station1](station)
@@ -44,7 +50,11 @@
         device=SIP/fluttershy
          
         [station3](station)
+        device=SIP/larry
+
+        [station4](station)
         device=SIP/sipp
+
       '';
       "confbridge.conf" = ''
         [general]
@@ -66,6 +76,9 @@
 ;        sound_join=hello-world
       '';
       "extensions.conf" = ''
+        [line1]
+        exten => 123,1,BLATrunk(line1)
+
         [line1_outbound]
         exten => faux,1,NoOp()
         same  =>      n,Wait(1)
@@ -97,12 +110,21 @@
         same  =>      n,SayDigits(''${DIGITS})
         same  =>      n,Hangup()
 
+        [line4_outbound]
+        exten => faux,1,NoOp()
+        same  =>      n,Wait(1)
+        same  =>      n,Answer()
+        same  =>      n,Read(DIGITS,,4)
+        same  =>      n,GotoIf($[''${DIGITS} = 1234]?line1_outbound,faux,1)
+        same  =>      n,Hangup()
+
         [inbound]
         exten => 100,1,Goto(line1,100,1)
         exten => 200,1,Goto(line2,200,1)
 
         [softphones]
         include => bla_stations
+        include => line1
       '';
     };
   };
