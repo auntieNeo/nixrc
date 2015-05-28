@@ -34,7 +34,7 @@
         url = file:///home/auntieneo/code/asterisk/asterisk-gerrit;
         rev = "refs/heads/bla";
 # r!printf '    sha256 = "\%s";' `nix-prefetch-git file:///home/auntieneo/code/asterisk/asterisk-gerrit --rev refs/heads/bla 2>&/dev/null | tail -n1`
-        sha256 = "40f88fedc025102dc973181dc42c0207c34d24a9855a901d1cbfa76f9f99d6e3";
+        sha256 = "9924b1e6868ab4de3d4865f8aafdd7a446e8653139868611f45b3c164ded7424";
       };
 
       buildInputs = [ pkgs.pjsip ] ++ attrs.buildInputs;
@@ -104,6 +104,7 @@
         secret=GhoshevFew
 
         [fluttershy](softphone)
+        context=line1
         defaultuser=fluttershy
         secret=Vekaknobma
 

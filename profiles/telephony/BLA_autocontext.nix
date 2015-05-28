@@ -46,17 +46,17 @@
         [station1](station)
         device=SIP/hakase
          
-        [station2](station)
-        device=SIP/fluttershy
+;        [station2](station)
+;        device=SIP/fluttershy
          
-        [station3](station)
-        device=SIP/larry
+;        [station3](station)
+;        device=SIP/larry
 
 ;        [station4](station)
 ;        device=SIP/sipp
 
-;        [station5](station)
-;        device=Local/faux@station5_inbound
+        [station5](station)
+        device=Local/faux@station5_inbound
       '';
       "confbridge.conf" = ''
         [general]
@@ -124,7 +124,7 @@
         exten => faux,1,NoOp()
         same  =>      n,Wait(3)
         same  =>      n,Answer()
-        same  =>      n,Wait(8)
+        same  =>      n,Wait(1)
         same  =>      n(hello),Playback(hello-world)
         same  =>      n(hello),Playback(hello-world)
         same  =>      n(hello),Playback(hello-world)
