@@ -1,0 +1,7 @@
+---
+
+- name: check the installed nixos version
+  command: /run/current-system/sw/bin/nixos-version
+  register: nixos_version
+
+- debug: msg="{{ nixos_version.stdout }}"

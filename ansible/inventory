@@ -1,0 +1,3 @@
+hakase ansible_ssh_user=auntieneo ansible_python_interpreter=/run/current-system/sw/bin/python
+hazuki ansible_ssh_user=auntieneo ansible_python_interpreter=/run/current-system/sw/bin/python
+miku ansible_ssh_user=auntieneo ansible_python_interpreter=/run/current-system/sw/bin/python

@@ -1,0 +1,13 @@
+---
+- hosts: hakase
+  sudo: yes
+  roles:
+    - { role: nixos_info }
+- hosts: hazuki
+  sudo: yes
+  roles:
+    - { role: nixos_info }
+- hosts: miku
+  sudo: yes
+  roles:
+    - { role: nixos_info }
