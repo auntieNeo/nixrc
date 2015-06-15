@@ -101,6 +101,7 @@ rec {
       ln -fs ${./dotfiles/vimlatex} .vimlatex
       ln -fs ${./dotfiles/vimnotepad} .vimnotepad
       ln -fs ${./dotfiles/vimpython} .vimpython
+      ln -fs ${./dotfiles/vimtabs} .vimtabs
       ln -fs ${./dotfiles/vimrc} .vimrc
       ln -fs ${./dotfiles/Xdefaults} .Xdefaults
       ln -fs ${./dotfiles/ycm_extra_conf.py} .ycm_extra_conf.py

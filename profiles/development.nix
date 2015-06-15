@@ -10,6 +10,7 @@
     eclipses.eclipse_cpp_43
     gdb
 #    git-review  # TODO
+    godot
     mercurial
     netbeans
     (lib.overrideDerivation pkgs.nixops (attrs: rec {
@@ -53,6 +54,13 @@
     ];
   };
 
+  # custom packages
+  nixpkgs.config.packageOverrides = pkgs: rec {
+    godot = pkgs.callPackage ../pkgs/godot/default.nix { };
+    polish-shell = pkgs.callPackage ../pkgs/polish-shell/default.nix { };
+    pwclient = pkgs.callPackage ../pkgs/pwclient/default.nix { };
+  };
+
   system.activationScripts =
   {
     # install development environments
@@ -68,9 +76,19 @@
 
   security.setuidPrograms = [ "mount_afp" ];
 
-  # custom packages
-  nixpkgs.config.packageOverrides = pkgs: rec {
-    polish-shell = pkgs.callPackage ../pkgs/polish-shell/default.nix { };
-    pwclient = pkgs.callPackage ../pkgs/pwclient/default.nix { };
+  # Enable core dump handling in systemd.
+  systemd.coredump = {
+    enable = true;
+#    extraConfig = ''
+#      Storage=journal
+#    '';
   };
+  security.pam.loginLimits = [
+    # Enable core dump files.
+    { domain = "*"; type = "-"; item = "core"; value = "unlimited"; }
+  ];
+#  boot.kernel.sysctl = {
+#    # Enable core dumps even for setuid processes
+#    "fs.suid_dumpable" = 1;
+#  };
 }

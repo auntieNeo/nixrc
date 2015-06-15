@@ -17,46 +17,83 @@
         [line1]
         type=trunk
         device=Local/faux@line1_outbound
-        autocontext=line1
+;        autocontext=line1
         ; default user profile and bridge profile
          
         [line2]
         type=trunk
         device=Local/faux@line2_outbound
-        autocontext=line2
+;        autocontext=line2
 
-        [line3]
-        type=trunk
-        device=Local/faux@line3_outbound
-        autocontext=line3
+;        [line3]
+;        type=trunk
+;        device=Local/faux@line3_outbound
+;        autocontext=line3
+;
+;        [line4]
+;        type=trunk
+;        device=Local/faux@line4_outbound
+;        autocontext=line4
+;         
+;        [station](!)
+;        type=station
+;        trunk=line1
+;        trunk=line2
+;        trunk=line3
+;        trunk=line4
+;        autocontext=bla_stations
 
-        [line4]
-        type=trunk
-        device=Local/faux@line4_outbound
-        autocontext=line4
-         
-        [station](!)
+        [station1line1]
         type=station
         trunk=line1
         trunk=line2
-        trunk=line3
-        trunk=line4
-        autocontext=bla_stations
-         
-        [station1](station)
-        device=SIP/hakase
-         
-;        [station2](station)
-;        device=SIP/fluttershy
-         
+        device=SIP/polycom1_line1
+;        autocontext=bla_stations
+
+;        [station1line2]
+;        type=station
+;        trunk=line2
+;        device=SIP/polycom1_line2
+;        autocontext=bla_stations
+;
+;        [station1line3]
+;        type=station
+;        trunk=line3
+;        device=SIP/polycom1_line3
+;        autocontext=bla_stations
+;
+;        [station2line1]
+;        type=station
+;        trunk=line1
+;        device=SIP/polycom2_line1
+;        autocontext=bla_stations
+;
+;        [station2line2]
+;        type=station
+;        trunk=line2
+;        device=SIP/polycom2_line2
+;        autocontext=bla_stations
+;
+;        [station2line3]
+;        type=station
+;        trunk=line3
+;        device=SIP/polycom2_line3
+;        autocontext=bla_stations
+;         
 ;        [station3](station)
-;        device=SIP/larry
-
+;        device=SIP/hakase
+;         
 ;        [station4](station)
+;        device=SIP/fluttershy
+;         
+;;        [station5](station)
+;;        device=SIP/larry
+;
+;        [station6](station)
 ;        device=SIP/sipp
-
-        [station5](station)
-        device=Local/faux@station5_inbound
+;
+;;        [station7](station)
+;;        device=Local/answer_everything@station_inbound
       '';
       "confbridge.conf" = ''
         [general]
@@ -81,6 +118,12 @@
         [line1]
         exten => 123,1,BLATrunk(line1)
 
+        [line2]
+        exten => 456,1,BLATrunk(line2)
+
+        [line2]
+        exten => 789,1,BLATrunk(line3)
+
         [line1_outbound]
         exten => faux,1,NoOp()
         same  =>      n,Wait(1)
@@ -95,6 +138,7 @@
         same  =>      n(hello),Playback(hello-world)
         same  =>      n(hello),Playback(hello-world)
         same  =>      n(hello),Playback(hello-world)
+        same  =>      n,Wait(90000)
         same  =>      n,Hangup()
 
         [line2_outbound]
@@ -120,8 +164,8 @@
         same  =>      n,GotoIf($[''${DIGITS} = 1234]?line1_outbound,faux,1)
         same  =>      n,Hangup()
 
-        [station5_inbound]
-        exten => faux,1,NoOp()
+        [station_inbound]
+        exten => answer_everything,1,NoOp()
         same  =>      n,Wait(3)
         same  =>      n,Answer()
         same  =>      n,Wait(1)
@@ -141,9 +185,14 @@
         exten => 100,1,Goto(line1,100,1)
         exten => 200,1,Goto(line2,200,1)
 
+        [deskphones]
+        include => bla_stations
+
         [softphones]
         include => bla_stations
         include => line1
+        include => line2
+        include => line3
       '';
     };
   };

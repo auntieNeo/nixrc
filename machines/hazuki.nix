@@ -9,7 +9,10 @@
       ../profiles/games.nix
       ../profiles/graphics.nix
       ../profiles/mesa.nix
+      ../profiles/networking.nix
       ../profiles/printing.nix
+      ../profiles/scanning.nix
+      ../profiles/sdr.nix
       ../profiles/server.nix
       ../profiles/telephony.nix
     ];
@@ -20,7 +23,7 @@
   hardware.pulseaudio.configFile = pkgs.stdenv.mkDerivation rec {
     name = "pulseaudio-config";
     buildCommand = ''
-      cat ${pkgs.pulseaudio}/etc/pulse/default.pa > $out
+      cat ${pkgs.pulseaudioFull}/etc/pulse/default.pa > $out
       echo 'load-module module-alsa-sink device=hw:1,7' >> $out
     '';
   };
@@ -75,5 +78,33 @@
   services.ssh-phone-home = {
     enable = true;
     bindPort = 2200;
+  };
+
+  # Listen for Synergy connections through SSH on localhost
+  services.synergy.server = {
+    enable = true;
+    address = "localhost";
+    configFile = pkgs.stdenv.mkDerivation rec {
+      name = "synergy-server-config";
+      text = ''
+        section: screens
+          hazuki:
+          applebloom:
+        end
+        section: aliases
+          applebloom:
+            applebloom.local
+        end
+        section: links
+          hazuki:
+            right = applebloom
+          applebloom:
+            left = hazuki
+        end
+      '';
+      buildCommand = ''
+        echo "$text" > "$out"
+      '';
+    };
   };
 }

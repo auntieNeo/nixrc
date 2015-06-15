@@ -33,4 +33,6 @@
     enable = true;
     bindPort = 2244;
   };
+
+  networking.firewall.enable = false;
 }

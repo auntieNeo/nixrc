@@ -16,7 +16,7 @@
     asterisk
 #    asterisk-testsuite
     blink
-    ekiga
+#    ekiga  # FIXME
     empathy
     festival
     jitsi
@@ -32,15 +32,20 @@
       name = "asterisk-git";
       src = pkgs.fetchgit {
         url = file:///home/auntieneo/code/asterisk/asterisk-gerrit;
-        rev = "refs/heads/bla";
-# r!printf '    sha256 = "\%s";' `nix-prefetch-git file:///home/auntieneo/code/asterisk/asterisk-gerrit --rev refs/heads/bla 2>&/dev/null | tail -n1`
-        sha256 = "9924b1e6868ab4de3d4865f8aafdd7a446e8653139868611f45b3c164ded7424";
+        rev = "refs/heads/app_bla";
+# r!printf '    sha256 = "\%s";' `nix-prefetch-git file:///home/auntieneo/code/asterisk/asterisk-gerrit --rev refs/heads/app_bla 2>&/dev/null | tail -n1`
+        sha256 = "dfd4a218d5bcdf277c46a4d497579061835daa72d57e6a03008c784a78547caf";
       };
 
       buildInputs = [ pkgs.pjsip ] ++ attrs.buildInputs;
 
+      coreSounds = pkgs.fetchurl {
+        url = http://downloads.asterisk.org/pub/telephony/sounds/releases/asterisk-core-sounds-en-gsm-1.4.27.tar.gz;
+        sha256 = "1z8hb0511vnp3cbryblj0paqnm41dqz5b8vi789v8lgd7jmhd95s";
+      };
+
       preConfigure = ''
-        ln -s ${attrs.coreSounds} sounds/asterisk-core-sounds-en-gsm-1.4.26.tar.gz
+        ln -s ${coreSounds} sounds/asterisk-core-sounds-en-gsm-1.4.27.tar.gz
         ln -s ${attrs.mohSounds} sounds/asterisk-moh-opsound-wav-2.03.tar.gz
 
         # FIXME: This is a hack. I have no idea why the gcc wrapper fails to add pjsip to the include path. Maybe a bug with packageOverrides?
@@ -89,6 +94,33 @@
         callcounter=yes
         insecure=port,invite
 
+        [deskphone](!)
+        type=friend  ; Channel driver matches on username first, IP second
+        context=deskphones
+        host=dynamic  ; Device will register with asterisk
+        disallow=all
+        allow=g722
+        allow=ulaw
+        allow=alaw
+
+        [polycom1_line1](deskphone)
+        secret=pyfliptoik
+
+        [polycom1_line2](deskphone)
+        secret=pyfliptoik
+
+        [polycom1_line3](deskphone)
+        secret=pyfliptoik
+
+        [polycom2_line1](deskphone)
+        secret=pipjuHoded
+
+        [polycom2_line2](deskphone)
+        secret=pipjuHoded
+
+        [polycom2_line3](deskphone)
+        secret=pipjuHoded
+
         [softphone](!)
         type=friend  ; Channel driver matches on username first, IP second
         context=softphones
@@ -104,12 +136,12 @@
         secret=GhoshevFew
 
         [fluttershy](softphone)
-        context=line1
+;        context=line1
         defaultuser=fluttershy
         secret=Vekaknobma
 
         [larry](softphone)
-        context=line1
+;        context=line1
 ;        context=inbound
         defaultuser=larry
         secret=shivKujSie
@@ -134,15 +166,61 @@
 
   # Allow telephony ports
   networking.firewall = {
+    enable = true;
+#    # FIXME: I can't seem to get TFTP connection tracking to work
+#    trustedInterfaces = [ "enp3s0" ];
     allowedTCPPorts = [
       5060  # SIP
     ];
     allowedUDPPorts = [
+      69  # TFTP
       5060  # SIP
     ];
     allowedUDPPortRanges = [
       # default Asterisk RTP port range
       { from = 5000; to = 31000; }
     ];
+    autoLoadConntrackHelpers = true;
+    connectionTrackingModules = [ "tftp" ];
+    extraCommands = ''
+      iptables -A OUTPUT -p udp --sport 69 -m state --state ESTABLISHED -j ACCEPT
+    '';
+  };
+
+  # Serve configuration files for deskphones
+  services.tftpd = rec {
+    enable = true;
+    path = "${./telephony/deskphone_config}";
+#    path =
+#    let
+#      files = {
+#        "phone1.cfg" = ''
+#          something
+#        '';
+#      };
+#    in
+#    pkgs.stdenv.mkDerivation
+#    ((lib.mapAttrs' (name: value: lib.nameValuePair
+#            # Fudge the file names to make bash happy
+#            ((lib.replaceChars ["."] ["_"] name) + "_")
+#            (value)
+#          ) files) //
+#
+#    {
+#      name = "deskphone-config";
+#
+#      filesString = lib.concatStringsSep " " (
+#        lib.attrNames files
+#      );
+#
+#      buildCommand =
+#      ''
+#        mkdir -p "$out"
+#        for i in $filesString; do
+#          file=$(echo "$i"_ | sed 's/\./_/g')
+#          echo "''${!file}" > "$out"/"$i"
+#        done
+#      '';
+#    });
   };
 }

@@ -20,8 +20,8 @@ stdenv.mkDerivation rec {
   configureFlags = "--with-eb-conf=${libeb}/etc/eb.conf";
 
   # The EBView ./configure script does not pick up these libraries
-  CFLAGS = "-I${pangox_compat}/include/pango-1.0";
-  LDFLAGS = "-L${pangox_compat}/lib -lpangox-1.0 -lX11";
+  NIX_CFLAGS_COMPILE = "-I${pangox_compat}/include/pango-1.0";
+  NIX_CFLAGS_LINK = "-L${pangox_compat}/lib -lpangox-1.0 -lX11";
 
   meta = with stdenv.lib; {
     description = "EPWING dictionary viewer";

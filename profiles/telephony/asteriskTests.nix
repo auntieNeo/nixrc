@@ -19,6 +19,9 @@
         same  =>     n,Wait(5)
         same  =>     n,Festival('You are a butt a butt a butt a butt. You are a butt. Goodbye.')
 
+        [deskphones]
+        include => tests
+
         [softphones]
         include => tests
 

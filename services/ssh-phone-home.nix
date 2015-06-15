@@ -21,6 +21,20 @@ in
         '';
       };
 
+      persist = mkOption {
+        type = types.bool;
+        default = true;
+        description = ''
+          When this is set to true, the service will persistently attempt to
+          reconnect at intervals whenever the port forwarding operation fails.
+          This is the recommended behavior for reliable operation. If one finds
+          oneself in an environment where this kind of behavior might draw the
+          suspicion of a network administrator, it might be a good idea to
+          set this option to false (or not use <literal>ssh-phone-home</literal>
+          at all).
+        '';
+      };
+
       localUser = mkOption {
         description = ''
           Local user to connect as (i.e. the user with password-less SSH keys).
@@ -67,15 +81,21 @@ in
       '';
 
       # FIXME: This isn't triggered until a reboot, and probably won't work between suspends.
-      bindsTo = [ "network.target" ];
+      wantedBy = [ "multi-user.target" ];
 
       serviceConfig = with cfg; {
         User = cfg.localUser;
-        RestartSec = 10;  # restart every 10 seconds on failure
-        Restart = "on-failure";
-      };
+      } // (if cfg.persist then
+        {
+          # Restart every 10 seconds on failure
+          RestartSec = 10;
+          Restart = "on-failure";
+        }
+        else {}
+      );
+
       script = with cfg;  ''
-        ${openssh}/bin/ssh -NTC -o ServerAliveInterval=60 -o ExitOnForwardFailure=yes -R ${toString bindPort}:localhost:22 -l ${remoteUser} -p ${toString remotePort} ${remoteHostname}
+        ${openssh}/bin/ssh -NTC -o ServerAliveInterval=30 -o ExitOnForwardFailure=yes -R ${toString bindPort}:localhost:22 -l ${remoteUser} -p ${toString remotePort} ${remoteHostname}
       '';
     };
   };

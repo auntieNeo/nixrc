@@ -58,22 +58,4 @@
 
   # Enable zsh as a login shell
   programs.zsh.enable = true;
-
-#  # Enable core dump handling in systemd.
-#  systemd.coredump = {
-#    enable = true;
-##    extraConfig = ''
-##      Storage=journal
-##    '';
-#  };
-
-  security.pam.loginLimits = [
-    # Enable core dump files.
-    { domain = "*"; type = "-"; item = "core"; value = "unlimited"; }
-  ];
-
-  boot.kernel.sysctl = {
-    # Enable core dumps even for setuid processes
-    "fs.suid_dumpable" = 1;
-  };
 }

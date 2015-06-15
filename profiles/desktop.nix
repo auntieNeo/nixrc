@@ -84,6 +84,7 @@
     }))
 # FIXME: fix freerdp to fix weston
 #    weston
+    wineStaging
     wmname  # Used for hack in which Java apps break in dwm.
     x11vnc
     xlibs.xinit
@@ -282,7 +283,7 @@
 #    velox = pkgs.callPackage ../pkgs/velox/default.nix { };
 #    dmenu-wl = pkgs.callPackage ../pkgs/dmenu-wl/default.nix { };
 #    st-wl = pkgs.callPackage ../pkgs/st-wl/default.nix { };
-    ebview = pkgs.callPackage ../pkgs/ebview/default.nix { };
+    ebview = pkgs.misc.debugVersion (pkgs.callPackage ../pkgs/ebview/default.nix { });
     libeb = pkgs.callPackage ../pkgs/libeb/default.nix { };
   };
 }
