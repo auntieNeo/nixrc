@@ -87,8 +87,8 @@
     # Enable core dump files.
     { domain = "*"; type = "-"; item = "core"; value = "unlimited"; }
   ];
-#  boot.kernel.sysctl = {
-#    # Enable core dumps even for setuid processes
-#    "fs.suid_dumpable" = 1;
-#  };
+  boot.kernel.sysctl = {
+    # Enable core dumps even for setuid processes
+    "fs.suid_dumpable" = 1;
+  };
 }

@@ -34,7 +34,7 @@
         url = file:///home/auntieneo/code/asterisk/asterisk-gerrit;
         rev = "refs/heads/app_bla";
 # r!printf '    sha256 = "\%s";' `nix-prefetch-git file:///home/auntieneo/code/asterisk/asterisk-gerrit --rev refs/heads/app_bla 2>&/dev/null | tail -n1`
-        sha256 = "dfd4a218d5bcdf277c46a4d497579061835daa72d57e6a03008c784a78547caf";
+        sha256 = "6417fdbb15704ba8ee2d49c0ad1288d32f8e9c00f4f34223e4b5895decf13bcf";
       };
 
       buildInputs = [ pkgs.pjsip ] ++ attrs.buildInputs;

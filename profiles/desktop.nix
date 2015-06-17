@@ -24,9 +24,6 @@
     };
   };
 
-  # Enable PulseAudio
-  hardware.pulseaudio.enable = true;
-
   environment.systemPackages = with pkgs; [
     anki
     anthy

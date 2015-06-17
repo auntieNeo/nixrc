@@ -4,14 +4,15 @@
   imports =
     [
       ../profiles/android.nix
-      ../profiles/printing.nix
       ../profiles/desktop.nix
       ../profiles/development.nix
-#      ../profiles/games.nix
       ../profiles/laptop.nix
+      ../profiles/printing.nix
+      ../profiles/redshift.nix
       ../profiles/server.nix
       ../profiles/telephony.nix
       ../profiles/virtualization.nix
+#      ../profiles/games.nix
 
       # Experimental:
       ../profiles/mesa.nix

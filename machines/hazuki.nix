@@ -11,6 +11,7 @@
       ../profiles/mesa.nix
       ../profiles/networking.nix
       ../profiles/printing.nix
+      ../profiles/redshift.nix
       ../profiles/scanning.nix
       ../profiles/sdr.nix
       ../profiles/server.nix
@@ -19,14 +20,22 @@
 
   hardware.opengl.driSupport32Bit = true;
 
-  # Enable HDMI audio for pulse
-  hardware.pulseaudio.configFile = pkgs.stdenv.mkDerivation rec {
-    name = "pulseaudio-config";
-    buildCommand = ''
-      cat ${pkgs.pulseaudioFull}/etc/pulse/default.pa > $out
-      echo 'load-module module-alsa-sink device=hw:1,7' >> $out
-    '';
-  };
+  # Enable PulseAudio
+  hardware.pulseaudio.enable = true;
+
+  environment.systemPackages = with pkgs; [
+    apulse  # Allows ALSA applications to use pulse
+    pavucontrol  # PulseAudio volume control
+  ];
+
+#  # Enable HDMI audio for pulse
+#  hardware.pulseaudio.configFile = pkgs.stdenv.mkDerivation rec {
+#    name = "pulseaudio-config";
+#    buildCommand = ''
+#      cat ${pkgs.pulseaudioFull}/etc/pulse/default.pa > $out
+#      echo 'load-module module-alsa-sink device=hw:1,7' >> $out
+#    '';
+#  };
 
   # Use the GRUB 2 boot loader.
   boot.loader.grub.enable = true;
