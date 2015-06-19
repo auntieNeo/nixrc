@@ -1,0 +1,71 @@
+diff -rupN QtSixA-1.5.1/sixad/bluetooth.cpp QtSixA-1.5.1-sf-1/sixad/bluetooth.cpp
+--- QtSixA-1.5.1/sixad/bluetooth.cpp	2011-10-12 12:03:39.000000000 -0400
++++ QtSixA-1.5.1-sf-1/sixad/bluetooth.cpp	2014-02-01 14:20:24.095050015 -0500
+@@ -25,7 +25,7 @@
+ #include <signal.h>
+ #include <syslog.h>
+ #include <sys/ioctl.h>
+-
++#include <unistd.h>
+ #include <bluetooth/hidp.h>
+ #include <bluetooth/sdp.h>
+ #include <bluetooth/sdp_lib.h>
+diff -rupN QtSixA-1.5.1/sixad/sixad-3in1.cpp QtSixA-1.5.1-sf-1/sixad/sixad-3in1.cpp
+--- QtSixA-1.5.1/sixad/sixad-3in1.cpp	2011-10-12 11:53:04.000000000 -0400
++++ QtSixA-1.5.1-sf-1/sixad/sixad-3in1.cpp	2014-02-01 14:22:33.895042754 -0500
+@@ -25,6 +25,7 @@
+ #include <errno.h>
+ #include <fcntl.h>
+ #include <syslog.h>
++#include <unistd.h>
+ 
+ #define KEYMOTE_KEY_SELECT   1 << 0
+ #define KEYMOTE_KEY_START    1 << 1
+diff -rupN QtSixA-1.5.1/sixad/sixad-bin.cpp QtSixA-1.5.1-sf-1/sixad/sixad-bin.cpp
+--- QtSixA-1.5.1/sixad/sixad-bin.cpp	2011-10-11 20:21:37.000000000 -0400
++++ QtSixA-1.5.1-sf-1/sixad/sixad-bin.cpp	2014-02-01 14:20:03.239051181 -0500
+@@ -22,7 +22,7 @@
+ #include <signal.h>
+ #include <stdlib.h>
+ #include <syslog.h>
+-
++#include <unistd.h>
+ #if 0
+ #include <sys/ioctl.h>
+ 
+diff -rupN QtSixA-1.5.1/sixad/sixad-raw.cpp QtSixA-1.5.1-sf-1/sixad/sixad-raw.cpp
+--- QtSixA-1.5.1/sixad/sixad-raw.cpp	2011-10-11 16:00:41.000000000 -0400
++++ QtSixA-1.5.1-sf-1/sixad/sixad-raw.cpp	2014-02-01 14:22:08.095044197 -0500
+@@ -22,7 +22,7 @@
+ #include <iostream>
+ #include <fcntl.h>
+ #include <syslog.h>
+-
++#include <unistd.h>
+ int main(int argc, char **argv)
+ {
+     int i, fd, nr;
+diff -rupN QtSixA-1.5.1/sixad/sixad-remote.cpp QtSixA-1.5.1-sf-1/sixad/sixad-remote.cpp
+--- QtSixA-1.5.1/sixad/sixad-remote.cpp	2011-10-12 09:22:19.000000000 -0400
++++ QtSixA-1.5.1-sf-1/sixad/sixad-remote.cpp	2014-02-01 14:21:45.963045435 -0500
+@@ -27,7 +27,7 @@
+ #include <syslog.h>
+ #include <time.h>
+ #include <sys/socket.h>
+-
++#include <unistd.h>
+ int csk = 0;
+ int isk = 1;
+ int debug;
+diff -rupN QtSixA-1.5.1/sixad/sixad-sixaxis.cpp QtSixA-1.5.1-sf-1/sixad/sixad-sixaxis.cpp
+--- QtSixA-1.5.1/sixad/sixad-sixaxis.cpp	2011-10-11 20:58:37.000000000 -0400
++++ QtSixA-1.5.1-sf-1/sixad/sixad-sixaxis.cpp	2014-02-01 14:20:47.611048699 -0500
+@@ -27,7 +27,7 @@
+ #include <syslog.h>
+ #include <time.h>
+ #include <sys/socket.h>
+-
++#include <unistd.h>
+ int csk = 0;
+ int isk = 1;
+ int debug;

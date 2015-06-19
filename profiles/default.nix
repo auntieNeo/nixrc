@@ -27,6 +27,7 @@
     ncurses
 #    nkf  # TODO: write a package for Network Kanji Filter
     nix-prefetch-scripts
+    p7zip
 #    pacman  # TODO: write a package for Arch Linux's pacman (for creating Arch chroots)
     pmutils
     psmisc

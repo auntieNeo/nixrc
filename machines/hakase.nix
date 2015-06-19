@@ -4,6 +4,7 @@
   imports =
     [
       ../profiles/android.nix
+      ../profiles/audio.nix
       ../profiles/desktop.nix
       ../profiles/development.nix
       ../profiles/laptop.nix
