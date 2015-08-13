@@ -3,7 +3,8 @@
 {
   environment.systemPackages = with pkgs; [
 #    piglit
-#    piglit-patched
+    piglit-patched
+#    piglit-test
   ];
   nixpkgs.config.packageOverrides = pkgs:
     (let
@@ -35,10 +36,10 @@
           enableParallelBuilding = true;
           src = pkgs.fetchgit {
             url = "file:///home/auntieneo/code/mesa";
-            rev = "refs/heads/arb_shader_subroutine";
-            sha256 = "96399a2f56429375bdea403d0abbf0c9731d251e52d93e4e198e917ec8865eea";
-#            rev = "refs/heads/master";
-#            sha256 = "6b4a4cacbb958c5e5f928b0f16d74e1f40537433edcd5ed421312ce7afead443";
+#            rev = "refs/heads/arb_shader_subroutine";
+#            sha256 = "96399a2f56429375bdea403d0abbf0c9731d251e52d93e4e198e917ec8865eea";
+            rev = "refs/heads/master";
+            sha256 = "587f77ecfd960db593d61c8b5040a4a27ff064f499be88c16528ed4b48fb0f43";
           };
 #          src = pkgs.fetchurl {
 #            urls = [
@@ -51,5 +52,7 @@
         })) { };
       }; }).mesa;
     }; }).callPackage ../pkgs/piglit/default.nix {};
+
+    piglit-test = pkgs.callPackage mesa/piglits/master.nix { piglit = piglit-patched; };
   });
 }

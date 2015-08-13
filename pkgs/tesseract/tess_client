@@ -1,0 +1,20 @@
+#!/bin/sh
+# TESS_DATA should refer to the directory in which Tesseract data files are placed.
+TESS_DATA="@tess_data@"
+
+# TESS_BIN should refer to the directory in which Tesseract executable files are placed.
+TESS_BIN="${TESS_DATA}"
+
+# TESS_OPTIONS contains any command line options you would like to start Tesseract with.
+#TESS_OPTIONS=""
+TESS_OPTIONS="-u${HOME}/.tesseract"
+
+if [ -x ${TESS_BIN}/tess_client ]
+then
+  cd ${TESS_DATA}
+  exec ${TESS_BIN}/tess_client ${TESS_OPTIONS} "$@"
+else
+  echo "Could not find Tesseract client."
+  exit 1
+fi
+

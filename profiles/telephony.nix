@@ -8,8 +8,9 @@
 #    ./telephony/asteriskTests.nix
 #    ./telephony/confBridgeSLA.nix
 #    ./telephony/BLA.nix
-    ./telephony/BLA_autocontext.nix
+#    ./telephony/BLA_autocontext.nix
 #    ./telephony/confBridge.nix
+    ./telephony/app_bla.nix
   ];
 
   environment.systemPackages = with pkgs; [
@@ -34,7 +35,7 @@
         url = file:///home/auntieneo/code/asterisk/asterisk-gerrit;
         rev = "refs/heads/app_bla";
 # r!printf '    sha256 = "\%s";' `nix-prefetch-git file:///home/auntieneo/code/asterisk/asterisk-gerrit --rev refs/heads/app_bla 2>&/dev/null | tail -n1`
-        sha256 = "6417fdbb15704ba8ee2d49c0ad1288d32f8e9c00f4f34223e4b5895decf13bcf";
+        sha256 = "33383d364142baa441988c6b78e8fe9987894ff7e2cf61c86498d6235af86b46";
       };
 
       buildInputs = [ pkgs.pjsip ] ++ attrs.buildInputs;
@@ -51,6 +52,8 @@
         # FIXME: This is a hack. I have no idea why the gcc wrapper fails to add pjsip to the include path. Maybe a bug with packageOverrides?
         export NIX_CFLAGS_COMPILE="$NIX_CFLAGS_COMPILE -isystem ${pkgs.pjsip}/include/"
       '';
+
+      enableParallelBuilding = true;
 
 #      configureFlags = "${attrs.configureFlags} --enable-dev-mode";
     }));

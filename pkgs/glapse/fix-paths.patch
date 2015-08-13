@@ -1,0 +1,40 @@
+diff -rupN glapse-0.3/data/glapse.desktop glapse-0.3-patched/data/glapse.desktop
+--- glapse-0.3/data/glapse.desktop	2011-05-15 16:30:39.000000000 -0600
++++ glapse-0.3-patched/data/glapse.desktop	2015-07-24 11:34:12.000000000 -0600
+@@ -7,7 +7,7 @@ GenericName=Screenshots and video
+ GenericName[es]=Capturas de pantalla y vídeo
+ Comment=Take screenshots and glue them together
+ Comment[es]=Toma capturas de pantalla, pégalas en un vídeo
+-Icon=/usr/share/pixmaps/glapse-icon.png
++Icon=@out@/share/pixmaps/glapse-icon.png
+ Exec=glapse
+ Terminal=false
+ Categories=AudioVideo
+diff -rupN glapse-0.3/glapse glapse-0.3-patched/glapse
+--- glapse-0.3/glapse	2011-05-15 16:24:03.000000000 -0600
++++ glapse-0.3-patched/glapse	2015-07-24 11:33:21.000000000 -0600
+@@ -1,5 +1,5 @@
+ #!/bin/bash
+ 
+-cd /usr/lib/glapse/
++cd @out@/lib/glapse/
+ 
+ python glapse.py
+diff -rupN glapse-0.3/glapseControllers/configuration.py glapse-0.3-patched/glapseControllers/configuration.py
+--- glapse-0.3/glapseControllers/configuration.py	2011-07-04 16:43:27.000000000 -0600
++++ glapse-0.3-patched/glapseControllers/configuration.py	2015-07-24 11:32:48.000000000 -0600
+@@ -8,10 +8,10 @@ class Configuration:
+ 	def __init__(self):
+ 		self.version = 0.3
+ 		
+-		self.dataDir = '/usr/share/glapse/data'
+-		self.libDir = '/usr/lib/glapse'
+-		self.binPath = '/usr/bin/glapse'
+-		self.langDir = '/usr/share/locale'
++		self.dataDir = '@out@/share/glapse/data'
++		self.libDir = '@out@/lib/glapse'
++		self.binPath = '@out@/bin/glapse'
++		self.langDir = '@out@/share/locale'
+ 		
+ 		#self.dataDir = os.path.realpath(os.path.join(os.path.dirname(__file__), '../data'))
+ 		#self.libDir = os.path.realpath(os.path.join(os.path.dirname(__file__), '../glapseControllers'))

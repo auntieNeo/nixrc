@@ -13,7 +13,7 @@
     godot
     mercurial
     netbeans
-    nixops
+    nixopsUnstable
     patchutils
     python
 #    polish-shell

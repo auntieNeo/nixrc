@@ -16,7 +16,7 @@
 #      ../profiles/games.nix
 
       # Experimental:
-      ../profiles/mesa.nix
+#      ../profiles/mesa.nix
     ];
 
   # Use the gummiboot efi boot loader.
