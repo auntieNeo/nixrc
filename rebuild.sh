@@ -20,4 +20,4 @@ else
   operation=$1
 fi
 cd $wd
-sudo NIX_CURL_FLAGS='--retry=1000' nixos-rebuild --keep-failed $operation
+sudo NIX_CURL_FLAGS='--retry=1000' nixos-rebuild --fast --keep-failed $operation

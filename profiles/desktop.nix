@@ -14,7 +14,7 @@
     firefox = {
       jre = true;
       enableGoogleTalkPlugin = true;
-      enableAdobeFlash = true;
+      enableAdobeFlash = false;  # FIXME: Do I even care about Adobe flash?
     };
     chromium = {
       jre = true;
@@ -69,6 +69,7 @@
     mtpfs
     nitrogen
     openbox
+    openjdk
     pdfjam
     pdftk
     scrot
@@ -86,7 +87,7 @@
     x11vnc
     xlibs.xinit
     xorg.xkill
-    xwayland
+#    xwayland  # FIXME: conflict with xorg man page
   ];
 
   # Enable CUPS to print documents.

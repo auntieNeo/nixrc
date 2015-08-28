@@ -21,7 +21,7 @@
     empathy
     festival
     jitsi
-    sipp
+#    sipp  # FIXME
 #    srtp_linphone
     (pkgs.misc.debugVersion twinkle)
   ];
@@ -35,7 +35,7 @@
         url = file:///home/auntieneo/code/asterisk/asterisk-gerrit;
         rev = "refs/heads/app_bla";
 # r!printf '    sha256 = "\%s";' `nix-prefetch-git file:///home/auntieneo/code/asterisk/asterisk-gerrit --rev refs/heads/app_bla 2>&/dev/null | tail -n1`
-        sha256 = "33383d364142baa441988c6b78e8fe9987894ff7e2cf61c86498d6235af86b46";
+        sha256 = "f84d36db30f7bde1e4fa2ea3576035a8e009e0a4de0c969d8eb452758e3ae79c";
       };
 
       buildInputs = [ pkgs.pjsip ] ++ attrs.buildInputs;

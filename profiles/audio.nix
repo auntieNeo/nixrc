@@ -7,6 +7,11 @@
   environment.systemPackages = with pkgs; [
     apulse  # Allows ALSA applications to use pulse
     pavucontrol  # PulseAudio volume control
+
+    # Audio tools
+    audacity
+    ardour
+    milkytracker
   ];
 
 #  # Enable HDMI audio for pulse

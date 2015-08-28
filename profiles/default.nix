@@ -9,6 +9,7 @@
     aspell
     aspellDicts.en
     bind  # nslookup, dig
+    bridge-utils
     ctags
     expect
     git
@@ -19,7 +20,7 @@
     ledger
     links2
 #    mailutils
-    heirloom-mailx
+#    heirloom-mailx  # FIXME
     manpages
     mkpasswd
     mosh
@@ -29,6 +30,7 @@
     nix-prefetch-scripts
     p7zip
 #    pacman  # TODO: write a package for Arch Linux's pacman (for creating Arch chroots)
+    pciutils
     pmutils
     psmisc
     rtorrent
@@ -43,6 +45,7 @@
 #    unison
     unison_2_40_102
     unzip
+    usbutils
     utillinuxCurses
     vim_configurable
     vlock

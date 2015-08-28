@@ -36,5 +36,18 @@
     bindPort = 2244;
   };
 
-  networking.firewall.enable = false;
+#  networking.firewall.enable = false;
+  networking.firewall.allowPing = true;
+
+#  # Share ethernet connection
+#  networking.nat = {
+#    enable = true;
+#    externalInterface = "wlp4s0";
+#    internalIPs = [ "192.168.1.0/24" ];
+#    internalInterfaces = [ "enp1s0" ];
+#  };
+#  networking.interfaces.enp1s0 = {
+#    ipAddress = "192.168.0.1";
+#    prefixLength = 24;
+#  };
 }

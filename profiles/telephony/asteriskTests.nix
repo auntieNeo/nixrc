@@ -15,9 +15,14 @@
         same  =>     n,Playback(hello-world)
         same  =>     n,Hangup()
 
-        exten => 003,1,Answer
+        exten => 003,1,Answer()
         same  =>     n,Wait(5)
         same  =>     n,Festival('You are a butt a butt a butt a butt. You are a butt. Goodbye.')
+
+        exten => 123,1,NoOp()
+        same  =>     n,Answer()
+        same  =>     n,Dial(SIP/polycom1_line1)
+        same  =>     n,Hangup()
 
         [deskphones]
         include => tests

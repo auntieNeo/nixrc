@@ -11,3 +11,4 @@ ignore = Path work/cose/code/cluster_scripts/playbooks/minerve/site
 ignore = Path work/cose/code/cluster_scripts/playbooks/skynet/site
 path = images
 path = finance
+path = school

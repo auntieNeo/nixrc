@@ -10,6 +10,7 @@
     eclipses.eclipse_cpp_43
     gdb
 #    git-review  # TODO
+    glapse
     godot
     mercurial
     netbeans
@@ -47,6 +48,7 @@
 
   # custom packages
   nixpkgs.config.packageOverrides = pkgs: rec {
+    glapse = pkgs.callPackage ../pkgs/glapse/default.nix { };
     godot = pkgs.callPackage ../pkgs/godot/default.nix { };
     polish-shell = pkgs.callPackage ../pkgs/polish-shell/default.nix { };
     pwclient = pkgs.callPackage ../pkgs/pwclient/default.nix { };
