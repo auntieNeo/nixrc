@@ -1,0 +1,15 @@
+# ~/.tmuxinator/school.yml
+
+name: school
+root: ~/school/fall2015
+
+windows:
+  - math:
+      layout: main-horizontal
+      panes:
+        - cd 'Elementary Analysis'
+  - compiler:
+      laout: main-horizontal
+      panes:
+        - cd 'Compilers'/sandbox
+        - cd 'Compilers'/sandbox; 
