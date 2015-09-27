@@ -55,10 +55,11 @@
 #
 #       /homeless-shelter/.cmake/packages/freerdp/7efaf6cf5b6fe0c4d9dd6288e45784d3
 #
-    gimp
+    ghostscript
     gnumeric
 #    go-mtpfs
     gparted
+    graphviz
     gutenprint
     ibus
     imagemagick
@@ -67,6 +68,7 @@
     # kochi_substitute  # TODO: write a kochi substitute package
     mplayer
     mtpfs
+    networkmanagerapplet
     nitrogen
     openbox
     openjdk
@@ -90,11 +92,19 @@
 #    xwayland  # FIXME: conflict with xorg man page
   ];
 
+  fonts = {
+    enableFontDir = true;
+    enableGhostscriptFonts = true;
+    fonts = with pkgs; [
+      corefonts  # Micrsoft free fonts
+      inconsolata  # monospaced
+      ubuntu_font_family  # Ubuntu fonts
+      ipafont  # Japanese characters
+    ];
+  };
+
   # Enable CUPS to print documents.
   services.printing.enable = true;
-
-  # Put fonts in font path
-  fonts.fonts = [ pkgs.ipafont ];
 
   services.xserver = {
     # Enable the X11 windowing system.

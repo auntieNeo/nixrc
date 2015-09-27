@@ -9,7 +9,7 @@
       ../profiles/development.nix
       ../profiles/games.nix
       ../profiles/graphics.nix
-      ../profiles/mesa.nix
+#      ../profiles/mesa.nix  # FIXME
       ../profiles/networking.nix
       ../profiles/printing.nix
       ../profiles/redshift.nix

@@ -8,6 +8,8 @@
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+  # Allow remote hosts to connect to reverse proxy tunnels
+  services.openssh.gatewayPorts = "clientspecified";
 
   # The "SSH phone home" service for SSH reverse tunneling
   # Machines that use this will still need to enable it with:

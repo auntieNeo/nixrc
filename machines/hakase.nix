@@ -7,6 +7,7 @@
       ../profiles/audio.nix
       ../profiles/desktop.nix
       ../profiles/development.nix
+      ../profiles/graphics.nix
       ../profiles/laptop.nix
       ../profiles/printing.nix
       ../profiles/redshift.nix
@@ -16,7 +17,7 @@
 #      ../profiles/games.nix
 
       # Experimental:
-#      ../profiles/mesa.nix
+      ../profiles/mesa.nix
     ];
 
   # Use the gummiboot efi boot loader.

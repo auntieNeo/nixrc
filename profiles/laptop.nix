@@ -1,7 +1,8 @@
 { config, pkgs, ... }:
 
 {
-  networking.wireless.enable = true;
+#  networking.wireless.enable = true;
+  networking.networkmanager.enable = true;
 
   services.xserver = {
     # Enable laptop trackpads.

@@ -3,7 +3,7 @@
 {
   nixpkgs.config = {
     # Enable VirtualBox extensions (requires manual download)
-    virtualbox.enableExtensionPack = true;
+#    virtualbox.enableExtensionPack = true;
   };
 
   # Load VirtualBox kernel modules.

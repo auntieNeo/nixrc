@@ -1,6 +1,7 @@
 { stdenv, fetchgit, cmake, glproto, libdrm, libpthreadstubs,
   libX11, libXau, libXdamage, libXdmcp, libXext, libxshmfence, libXxf86vm,
-  makeWrapper, mesa, pkgconfig, python, pythonPackages, udev, waffle }:
+  makeWrapper, mesa, mesa_drivers, pkgconfig, python, pythonPackages, udev,
+  waffle }:
 
 stdenv.mkDerivation rec {
   name = "piglit-${version}";
@@ -25,6 +26,11 @@ stdenv.mkDerivation rec {
   propagatedBuildInputs = with pythonPackages; [ Mako numpy six ];
 
   postInstall = ''
-    wrapProgram "$out"/bin/piglit --prefix PYTHONPATH : "$PYTHONPATH"
+    # piglit might be testing a specific version of Mesa's DRI drivers, but in
+    # NixOS DRI drivers are typically search for at runtime in
+    # "/run/opengl-driver{,-32}/lib/*". We make an exception to that rule here.
+    wrapProgram "$out"/bin/piglit \
+      --prefix PYTHONPATH : "$PYTHONPATH" \
+      --set LIBGL_DRIVERS_PATH "${mesa_drivers}/lib"
   '';
 }

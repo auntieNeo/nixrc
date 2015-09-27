@@ -16,8 +16,11 @@ rec {
     env-java = pkgs.myEnvFun {
       name = "java";
       buildInputs = with pkgs; [
+        antlr3
+        gnumake
         gradle
         maven
+        netbeans
         openjdk
 #        openjdk8
       ];
@@ -127,6 +130,16 @@ rec {
         gdb
         root
         stdenv
+      ];
+    };
+
+    # Environment for manipulating images with libpng
+    env-libpng = pkgs.myEnvFun {
+      name = "libpng";
+      buildInputs = with pkgs; [
+        gcc
+        gnumake
+        libpng
       ];
     };
   };
