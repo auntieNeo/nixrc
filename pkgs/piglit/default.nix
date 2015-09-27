@@ -31,6 +31,6 @@ stdenv.mkDerivation rec {
     # "/run/opengl-driver{,-32}/lib/*". We make an exception to that rule here.
     wrapProgram "$out"/bin/piglit \
       --prefix PYTHONPATH : "$PYTHONPATH" \
-      --set LIBGL_DRIVERS_PATH "${mesa_drivers}/lib"
+      --set LIBGL_DRIVERS_PATH "${mesa_drivers}/lib:${mesa_drivers}/lib/dri"
   '';
 }

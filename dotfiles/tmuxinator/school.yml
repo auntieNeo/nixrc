@@ -8,8 +8,13 @@ windows:
       layout: main-horizontal
       panes:
         - cd 'Elementary Analysis'
-  - compiler:
+  - compilers:
       laout: main-horizontal
       panes:
-        - cd 'Compilers'/sandbox
-        - cd 'Compilers'/sandbox; 
+        - cd 'Compilers'
+        - cd 'Compilers'
+  - graphics:
+      laout: main-horizontal
+      panes:
+        - cd 'Advanced Computer Graphics'
+        - cd 'Advanced Computer Graphics'
