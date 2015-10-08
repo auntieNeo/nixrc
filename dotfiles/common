@@ -11,3 +11,6 @@ fi
 
 # Add custom bin, including Windows RDP "executables", to the PATH
 PATH="$PATH:$HOME/.bin"
+
+# Disable the deprecated GREP_OPTIONS (now in my aliases)
+GREP_OPTIONS=

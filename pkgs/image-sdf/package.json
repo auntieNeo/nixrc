@@ -1,0 +1,72 @@
+{
+  "name": "image-sdf",
+  "version": "1.0.4",
+  "description": "generate a signed distance field from an image",
+  "main": "index.js",
+  "license": "MIT",
+  "author": {
+    "name": "Matt DesLauriers",
+    "email": "dave.des@gmail.com",
+    "url": "https://github.com/mattdesl"
+  },
+  "bin": {
+    "image-sdf": "./bin/cmd.js"
+  },
+  "dependencies": {
+    "as-number": "^1.0.0",
+    "clamp": "^1.0.1",
+    "color-string": "^0.2.1",
+    "get-pixels": "^3.1.0",
+    "ndarray": "^1.0.16",
+    "save-pixels": "^2.2.0",
+    "typedarray-pool": "^1.1.0",
+    "yargs": "^1.3.3"
+  },
+  "devDependencies": {
+    "2d-context": "^1.2.0",
+    "baboon-image-uri": "^1.0.1",
+    "browserify": "^8.1.3",
+    "buffer-equal": "0.0.1",
+    "concat-stream": "^1.4.7",
+    "garnish": "^2.1.0",
+    "get-image-pixels": "^1.0.0",
+    "img": "^1.0.0",
+    "npm-execspawn": "^1.0.6",
+    "tap-spec": "^2.2.1",
+    "tape": "^3.0.3",
+    "wzrd": "^1.2.1"
+  },
+  "scripts": {
+    "test": "node test/test.js | tap-spec",
+    "test-browser": "wzrd test/test-browser.js | garnish"
+  },
+  "keywords": [
+    "sdf",
+    "bitmap",
+    "bmp",
+    "png",
+    "img",
+    "jpg",
+    "image",
+    "signed",
+    "distance",
+    "field",
+    "text",
+    "alpha",
+    "test",
+    "fonts",
+    "webgl",
+    "gl",
+    "stackgl",
+    "glsl",
+    "shader"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mattdesl/image-sdf.git"
+  },
+  "homepage": "https://github.com/mattdesl/image-sdf",
+  "bugs": {
+    "url": "https://github.com/mattdesl/image-sdf/issues"
+  }
+}

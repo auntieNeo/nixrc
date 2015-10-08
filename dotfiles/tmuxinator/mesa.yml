@@ -1,0 +1,25 @@
+---
+
+name: mesa
+root: ~/code/mesa
+
+windows:
+  - mesa:
+      layout: main-horizontal
+      panes:
+        - vim -S Session.vim
+  - mesa-patches:
+      layout: maim-horizontal
+      panes:
+        - git for-each-ref --sort=-committerdate --format='%(committerdate:short)  %(refname:short)  %(authorname)' refs/remotes/ | less
+        - pwclient list -p mesa -m 1000 | less
+  - piglit:
+      layout: main-horizontal
+      panes:
+        - cd ../piglit; vim -S Session.vim
+        - cd ../piglit
+  - piglit-patches:
+      layout: main-horizontal
+      panes:
+        - cd ../piglit; git for-each-ref --sort=-committerdate --format='%(committerdate:short)  %(refname:short)  %(authorname)' refs/remotes/ | less
+        - cd ../piglit; pwclient list -p piglit -m 1000 | less

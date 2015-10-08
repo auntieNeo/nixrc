@@ -100,6 +100,7 @@
       inconsolata  # monospaced
       ubuntu_font_family  # Ubuntu fonts
       ipafont  # Japanese characters
+      dina-font  # Programming font
     ];
   };
 

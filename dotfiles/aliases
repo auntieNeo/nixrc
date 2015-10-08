@@ -12,3 +12,4 @@ alias nsl='nix-shell-local'
 alias alsamixer="alsamixer --no-color"
 alias gr-unpushed="gr git --no-pager log --branches --not --remotes --simplify-by-decoration --decorate --oneline"
 alias unison="unison -ui text"
+alias grep="grep --color=auto --exclude-dir=.cvs --exclude-dir=.git --exclude-dir=.hg --exclude-dir=.svn"
