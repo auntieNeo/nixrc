@@ -1,12 +1,13 @@
-{ stdenv, fetchurl, fontconfig, libdrm, pixman, pkgconfig, wayland, ... }:
+{ stdenv, fetchgit, fontconfig, libdrm, pixman, pkgconfig, wayland, ... }:
 
 stdenv.mkDerivation rec {
   name = "libwld-${version}";
-  version = "74f0deabb2a8a0f2e9c2eaebb4e36945716d8ab9";
+  version = "git";
 
-  src = fetchurl {
-    url = "https://github.com/michaelforney/wld/archive/${version}.tar.gz";
-    sha256 = "da4f2c862958346ac54a83cf0f1cb4b9734bafbbe0844d7e15447bfcb18d97b4";
+  src = fetchgit {
+    url = "https://github.com/michaelforney/wld.git";
+    rev = "efe0a1ed1856a2e4a1893ed0f2d7dde43b5627f0";
+    sha256 = "52e4f64d5086c7b3273403987ff42174ed69bfcf913d4b82f729d7be770728d9";
   };
 
   buildInputs = [

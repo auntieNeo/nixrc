@@ -56,12 +56,12 @@
 
   nixpkgs.config.packageOverrides = pkgs: rec {
     # Need latest virt-manager for UEFI boot
-    virtmanager = pkgs.callPackage ../pkgs/virt-manager/default.nix {
-      inherit (pkgs.gnome) gnome_python;
-      vte = pkgs.gnome3.vte;
-      dconf = pkgs.gnome3.dconf;
-      gtkvnc = pkgs.gtkvnc.override { enableGTK3 = true; };
-      spice_gtk = pkgs.spice_gtk.override { enableGTK3 = true; };
-    };
+#    virtmanager = pkgs.callPackage ../pkgs/virt-manager/default.nix {
+#      inherit (pkgs.gnome) gnome_python;
+#      vte = pkgs.gnome3.vte;
+#      dconf = pkgs.gnome3.dconf;
+#      gtkvnc = pkgs.gtkvnc.override { enableGTK3 = true; };
+#      spice_gtk = pkgs.spice_gtk.override { enableGTK3 = true; };
+#    };
   };
 }

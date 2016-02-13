@@ -79,6 +79,15 @@ rec {
       ];
     };
 
+    # Environment for developing PIAB-live
+    env-piab = pkgs.myEnvFun {
+      name = "piab";
+      buildInputs = with pkgs; [
+        gnumake
+        autotools
+      ];
+    };
+
     # Environment I am using for developing a game engine.
     env-tots = pkgs.myEnvFun {
       name = "tots";
@@ -100,46 +109,17 @@ rec {
       ];
     };
 
-    loveEnv = pkgs.stdenv.mkDerivation rec {
-       name = "love-env";
-       buildInputs = with pkgs; [
-         love_0_9
-       ];
-     };
-
-    perlEnv = pkgs.stdenv.mkDerivation rec {
-      name = "perl-env";
+    env-berb = pkgs.myEnvFun {
+      name = "berb";
       buildInputs = with pkgs; [
-        perlPackages.DBDSQLite
-        perlPackages.DBI
-        sqlite
-      ];
-    };
-
-    asteriskEnv = pkgs.stdenv.lib.overrideDerivation pkgs.asterisk (attrs: rec {
-      name = "asterisk-env";
-      buildInputs = with pkgs; [
-        pkgs.pjsip
-        pkgs.doxygen
-      ] ++ attrs.buildInputs;
-    });
-
-    env-root = pkgs.myEnvFun {
-      name = "root";
-      buildInputs = with pkgs; [
+        cmake
         gdb
-        root
+        glew
+        mesa
+        pkgconfig
+        SDL2
         stdenv
-      ];
-    };
-
-    # Environment for manipulating images with libpng
-    env-libpng = pkgs.myEnvFun {
-      name = "libpng";
-      buildInputs = with pkgs; [
-        gcc
-        gnumake
-        libpng
+        xorg_sys_opengl
       ];
     };
   };

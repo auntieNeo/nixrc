@@ -5,7 +5,7 @@
 #    # libswc launch service (Wayland compositor)
 #    ../services/wayland/swc-launch.nix
     # Experimental X11 + Wayland display configuration
-    ../services/display/default.nix
+#    ../services/display/default.nix
   ];
 
   # Enable Adobe Flash player
@@ -63,7 +63,7 @@
     gutenprint
     ibus
     imagemagick
-    ipafont
+#    ipafont  # FIXME: The download link is dead
 #    jmtpfs
     # kochi_substitute  # TODO: write a kochi substitute package
     mplayer
@@ -107,46 +107,52 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
+  # Enable 3D acceleration for 32bit applications (e.g. wine)
+  hardware.opengl.driSupport32Bit = true;
+
   services.xserver = {
     # Enable the X11 windowing system.
     enable = true;
     layout = "dvorak";
     xkbOptions = "caps:hyper";
 
-    displayManager = {
-      slim = {
-        # Set the SLiM display manager theme.
-        theme = pkgs.fetchurl {
-          url = "https://github.com/menski/slim-theme-dwm/archive/076038e839a29fad3ec403326c22f0cf3e7c79f9.tar.gz";
-          sha256 = "d74fb764cb79f962d7bdb134388b9d8a31dbbb67953adc5c54a14b85aaf73d9f";
-        };
-
-#        # Auto-login until I get a less ugly theme
-#        defaultUser = "auntieneo";
-#        autoLogin = true;
-      };
-
-      # Set key repeat delay lower than default (which is 500 30).
-      xserverArgs = [
-        "-ardelay 400"
-        "-arinterval 30"
-      ];
-
-      # Set dwm as the X session type.
-      session = [ {
-        manage = "window";
-        name = "dwm";
-        start = ''
-          wmname LG3D
-          # FIXME: Need a way to reference the patched dwm by its full path.
-          dwm
-          waitPID=$!
-        '';
-      } ];
-    };
+#    displayManager = {
+#      slim = {
+#        # Set the SLiM display manager theme.
+#        theme = pkgs.fetchurl {
+#          url = "https://github.com/menski/slim-theme-dwm/archive/076038e839a29fad3ec403326c22f0cf3e7c79f9.tar.gz";
+#          sha256 = "d74fb764cb79f962d7bdb134388b9d8a31dbbb67953adc5c54a14b85aaf73d9f";
+#        };
+#
+##        # Auto-login until I get a less ugly theme
+##        defaultUser = "auntieneo";
+##        autoLogin = true;
+#      };
+#
+#      # Set key repeat delay lower than default (which is 500 30).
+#      xserverArgs = [
+#        "-ardelay 400"
+#        "-arinterval 30"
+#      ];
+#
+#      # Set dwm as the X session type.
+#      session = [ {
+#        manage = "window";
+#        name = "dwm";
+#        start = ''
+#          wmname LG3D
+#          # FIXME: Need a way to reference the patched dwm by its full path.
+#          dwm
+#          waitPID=$!
+#        '';
+#      } ];
+#    };
 
     # Enable dwm window manager.
 #    windowManager.default = "dwm";
+
+    desktopManager.kde4.enable = true;
+    displayManager.kdm.enable = true;
   };
 
 #  # Enable swc+velox (Wayland compositor) as alternative to X11
@@ -294,5 +300,10 @@
 #    st-wl = pkgs.callPackage ../pkgs/st-wl/default.nix { };
     ebview = pkgs.misc.debugVersion (pkgs.callPackage ../pkgs/ebview/default.nix { });
     libeb = pkgs.callPackage ../pkgs/libeb/default.nix { };
+    mesa_drivers = pkgs.pkgs.mesaDarwinOr (
+      let mo = pkgs.mesa_noglu.override {
+        llvmPackages = pkgs.llvmPackages_36;
+      };
+    in mo.drivers);
   };
 }

@@ -71,7 +71,7 @@
 
   # Enable core dump handling in systemd.
   systemd.coredump = {
-    enable = true;
+    enable = false;
 #    extraConfig = ''
 #      Storage=journal
 #    '';

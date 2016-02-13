@@ -12,7 +12,7 @@
       ../profiles/mesa.nix
       ../profiles/networking.nix
       ../profiles/printing.nix
-      ../profiles/redshift.nix
+#      ../profiles/redshift.nix
       ../profiles/scanning.nix
       ../profiles/sdr.nix
       ../profiles/server.nix

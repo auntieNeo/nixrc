@@ -9,27 +9,31 @@
       ../profiles/development.nix
       ../profiles/graphics.nix
       ../profiles/laptop.nix
+#      ../profiles/mathematics.nix
       ../profiles/printing.nix
-      ../profiles/redshift.nix
+#      ../profiles/redshift.nix
+      ../profiles/school.nix
       ../profiles/server.nix
-      ../profiles/telephony.nix
+#      ../profiles/telephony.nix
       ../profiles/virtualization.nix
 #      ../profiles/games.nix
 
       # Experimental:
-      ../profiles/mesa.nix
+#      ../profiles/mesa.nix
+      ../profiles/wayland.nix
+      ../profiles/virtualreality.nix
     ];
 
   # Use the gummiboot efi boot loader.
   boot.loader.gummiboot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  services.xserver = {
-    # Disable RenderAccel for faster rendering in terminal emulators.
-    deviceSection = ''
-      Option "RenderAccel" "false"
-    '';
-  };
+#  services.xserver = {
+#    # Disable RenderAccel for faster rendering in terminal emulators.
+#    deviceSection = ''
+#      Option "RenderAccel" "false"
+#    '';
+#  };
 
   # Specify port to bind to for SSH reverse tunneling
   services.ssh-phone-home = {

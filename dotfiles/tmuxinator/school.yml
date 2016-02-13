@@ -1,20 +1,26 @@
 # ~/.tmuxinator/school.yml
 
 name: school
-root: ~/school/fall2015
+root: ~/school/spring2016
 
 windows:
-  - math:
+  - linear:
       layout: main-horizontal
       panes:
-        - cd 'Elementary Analysis'
-  - compilers:
-      laout: main-horizontal
+        - cd 'linearAlgebra'
+  - opSystems:
+      layout: main-horizontal
       panes:
-        - cd 'Compilers'
-        - cd 'Compilers'
-  - graphics:
-      laout: main-horizontal
+        - cd 'operatingSystems'
+  - DSP:
+      layout: main-horizontal
       panes:
-        - cd 'Advanced Computer Graphics'
-        - cd 'Advanced Computer Graphics'
+        - cd 'digitalSignalProcessing'
+  - techWriting:
+      layout: main-horizontal
+      panes:
+        - cd 'technicalWriting'
+  - probability:
+      layout: main-horizontal
+      panes:
+        - cd 'probability'

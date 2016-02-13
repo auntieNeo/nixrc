@@ -81,6 +81,10 @@ in
 
         # FIXME: This doesn't work when the user hasn't explicitly set her uid.
         XDG_RUNTIME_DIR = "/run/user/${toString config.users.extraUsers.${cfg.user}.uid}";
+
+#        systemPackages = [
+#          libswc
+#        ];
       };
 
       script = with cfg; ''

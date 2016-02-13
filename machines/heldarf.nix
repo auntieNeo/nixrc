@@ -10,7 +10,6 @@
       ../profiles/graphics.nix
       ../profiles/laptop.nix
       ../profiles/printing.nix
-      ../profiles/redshift.nix
       ../profiles/server.nix
 #      ../profiles/telephony.nix
       ../profiles/virtualization.nix

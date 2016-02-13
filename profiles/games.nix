@@ -22,7 +22,7 @@
   nixpkgs.config.packageOverrides = pkgs: rec {
     pcsx2 = pkgs.callPackage_i686 ../pkgs/pcsx2/default.nix { };
     qtsixa = pkgs.callPackage ../pkgs/qtsixa/default.nix { };
-    steam = pkgs.callPackage ../pkgs/steam/chrootenv.nix { };
+#    steam = pkgs.callPackage ../pkgs/steam/chrootenv.nix { };
     tesseract = pkgs.callPackage ../pkgs/tesseract/default.nix { };
   };
 }

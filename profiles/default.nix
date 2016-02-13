@@ -13,6 +13,7 @@
     ctags
     expect
     git
+    gnumake
     gnupg
     idutils
     inetutils

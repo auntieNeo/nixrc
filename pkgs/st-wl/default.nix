@@ -1,12 +1,13 @@
-{ stdenv, fetchurl, fontconfig, libwld, libxkbcommon, ncurses, pixman, pkgconfig, wayland }:
+{ stdenv, fetchgit, fontconfig, libwld, libxkbcommon, ncurses, pixman, pkgconfig, wayland }:
 
 stdenv.mkDerivation rec {
   name = "st-wl-${version}";
   version = "cb8abfd49d35df14aed49664608955c9af170ff5";
 
-  src = fetchurl {
-    url = "https://github.com/michaelforney/st/archive/${version}.tar.gz";
-    sha256 = "1d29ab652afb437e2581e65e41c628169c50859bbf2a7e673e431dce3bd43c40";
+  src = fetchgit {
+    url = "https://github.com/michaelforney/st.git";
+    rev = "61b47b76a09599c8093214e28c48938f5b424daa";
+    sha256 = "b08e9907a7899ac9ad864a361d7dc33f6a0b5b125844ee6527900b771b844a27";
   };
 
   buildInputs = [ fontconfig libwld libxkbcommon ncurses pixman pkgconfig wayland ];

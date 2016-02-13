@@ -1,12 +1,13 @@
-{ stdenv, fetchurl, fontconfig, libswc, libwld, libxkbcommon, pixman, wayland }:
+{ stdenv, fetchgit, fontconfig, libswc, libwld, libxkbcommon, pixman, wayland }:
 
 stdenv.mkDerivation rec {
   name = "dmenu-wl-${version}";
-  version = "6e08b77428cc3c406ed2e90d4cae6c41df76341e";
+  version = "git";
 
-  src = fetchurl {
-    url = "https://github.com/michaelforney/dmenu/archive/${version}.tar.gz";
-    sha256 = "d0f73e442baf44a93a3b9d41a72e9cfa14f54af6049c90549f516722e3f88019";
+  src = fetchgit {
+    url = "https://github.com/michaelforney/dmenu.git";
+    rev = "6e08b77428cc3c406ed2e90d4cae6c41df76341e";
+    sha256 = "d12256b7788b642aa6bee0b01db2c24358ad5346b3fe51f04b6d6928508ee6fa";
   };
 
   buildInputs = [ fontconfig libswc libwld libxkbcommon pixman wayland ];
