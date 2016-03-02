@@ -3,8 +3,9 @@
 {
   # install packages for Android development
   environment.systemPackages = with pkgs; [
-#    androidsdk_4_4
-    openvpn
+#    androidndk
+#    androidsdk
+#    openvpn
   ];
 
   # FIXME: Can't seem to get adb to work without root
