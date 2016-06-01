@@ -1,0 +1,11 @@
+# ~/.tmuxinator/school.yml
+
+name: work
+root: ~/code
+
+windows:
+  - berb:
+      layout: main-horizontal
+      panes:
+        - cd 'berb'
+        - cd 'berb' && nix-shell -E '(import <nixpkgs> {}).callPackage ./default.nix {}'

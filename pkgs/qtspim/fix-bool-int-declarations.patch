@@ -1,0 +1,33 @@
+diff -Naurp qtspim/CPU/parser.h qtspim-patched/CPU/parser.h
+--- qtspim/CPU/parser.h	2015-11-15 14:24:08.013922133 -0700
++++ qtspim-patched/CPU/parser.h	2015-11-15 14:38:17.496414415 -0700
+@@ -43,8 +43,8 @@ int yyparse ();
+ 
+ /* Exported Variables: */
+ 
+-extern bool data_dir;		/* => item in data segment */
++extern int data_dir;		/* => item in data segment */
+ 
+-extern bool text_dir;		/* => item in text segment */
++extern int text_dir;		/* => item in text segment */
+ 
+-extern bool parse_error_occurred; /* => parse resulted in error */
++extern int parse_error_occurred; /* => parse resulted in error */
+diff -Naurp qtspim/CPU/parser.y qtspim-patched/CPU/parser.y
+--- qtspim/CPU/parser.y	2015-11-15 14:22:20.456137560 -0700
++++ qtspim-patched/CPU/parser.y	2015-11-15 14:22:08.161818292 -0700
+@@ -466,11 +466,11 @@ typedef struct ll
+ 
+ /* Exported Variables: */
+ 
+-bool data_dir;                  /* => item in data segment */
++int data_dir;                  /* => item in data segment */
+ 
+-bool text_dir;                  /* => item in text segment */
++int text_dir;                  /* => item in text segment */
+ 
+-bool parse_error_occurred;      /* => parse resulted in error */
++int parse_error_occurred;      /* => parse resulted in error */
+ 
+ 
+ /* Local functions: */

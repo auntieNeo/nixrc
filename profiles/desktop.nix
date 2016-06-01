@@ -12,16 +12,16 @@
   nixpkgs.config = {
     allowUnfree = true;
     firefox = {
-      jre = true;
+      jre = false;
       enableGoogleTalkPlugin = true;
       enableAdobeFlash = false;  # FIXME: Do I even care about Adobe flash?
     };
-    chromium = {
-      jre = true;
-      enableGoogleTalkPlugin = true;
-      enablePepperFlash = true;
-      enablePepperPDF = true;
-    };
+#    chromium = {
+#      jre = true;
+#      enableGoogleTalkPlugin = true;
+#      enablePepperFlash = true;
+#      enablePepperPDF = true;
+#    };
   };
 
   environment.systemPackages = with pkgs; [
@@ -43,7 +43,7 @@
         sha256 = "5415d2fe5458165253e047df434a7840d5488f8a60487a05c00bb4f38fe4843f";
       };
     }))
-    ebview
+#    ebview
     evince
     firefox
 #    freerdp
@@ -61,7 +61,7 @@
     gparted
     graphviz
     gutenprint
-    ibus
+#    ibus
     imagemagick
 #    ipafont  # FIXME: The download link is dead
 #    jmtpfs
@@ -76,7 +76,7 @@
     pdftk
     scrot
 #    st-wl
-    texLiveFull
+#    texlive.combined.scheme-full
     typespeed
     # Install a patched version of rxvt_unicode (with text shadows).
     (lib.overrideDerivation pkgs.rxvt_unicode (attrs: {
@@ -91,6 +91,13 @@
     xorg.xkill
 #    xwayland  # FIXME: conflict with xorg man page
   ];
+
+  i18n.inputMethod = {
+    enabled = "ibus";
+    ibus.engines = with pkgs.ibus-engines; [
+      anthy
+    ];
+  };
 
   fonts = {
     enableFontDir = true;

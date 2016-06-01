@@ -23,7 +23,7 @@
 #    rubyLibs.jekyll
     scons
     sloccount
-    subversionClient
+#    subversionClient
     valgrind
 #    vimPlugins.UltiSnips
 #    vimPlugins.YouCompleteMe  # YCM is blocking vim process, probably due to vim plugin architecture.

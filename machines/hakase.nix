@@ -12,7 +12,7 @@
 #      ../profiles/mathematics.nix
       ../profiles/printing.nix
 #      ../profiles/redshift.nix
-      ../profiles/school.nix
+#      ../profiles/school.nix
       ../profiles/server.nix
 #      ../profiles/telephony.nix
       ../profiles/virtualization.nix

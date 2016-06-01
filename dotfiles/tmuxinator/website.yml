@@ -1,0 +1,10 @@
+---
+
+name: website
+root: ~/code/website
+
+windows:
+  - website:
+      layout: main-horizontal
+      panes:
+        - ls

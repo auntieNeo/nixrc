@@ -1,11 +1,11 @@
-{ stdenv, fetchurl, unzip, makeWrapper, python, pythonPackages,  }:
+{ stdenv, fetchurl, unzip, makeWrapper, python, pythonPackages }:
 
 stdenv.mkDerivation rec {
   name = "makehuman-${version}";
   version = "1.0.2";
 
   src = fetchurl {
-    url = file:///tmp/MakeHuman-makehuman-47eda58327ee.zip;
+    url = "https://bitbucket.org/MakeHuman/makehuman/get/${version}.zip";
     sha256 = "1nad29y3hn4wdxjmm0640pvhly3ric66yajk9qnja0zf1vd0z89j";
   };
 
