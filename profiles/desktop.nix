@@ -45,7 +45,7 @@
     }))
 #    ebview
     evince
-    firefox
+#    firefox
 #    freerdp
 # FIXME: fix freerdp:
 # ####### Building extension hunspell #######

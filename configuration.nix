@@ -25,9 +25,7 @@ rec {
   networking.hostName = "${hostName}";
 
   boot = {
-    # Use more recent kernel for render node support
-    # See <http://www.phoronix.com/scan.php?page=news_item&px=MTYzMTg>
-    # FIXME: get this working with Nixops
-    kernelPackages = pkgs.linuxPackages_3_18;
+    # Use more recent kernel for Intel HD Graphics 520 support
+    kernelPackages = pkgs.linuxPackages_4_3;
   };
 }

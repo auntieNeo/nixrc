@@ -132,6 +132,11 @@ rec {
   # Show the NixOS manual in a virtual console.
   services.nixosManual.showManual = true;
 
+  # Disable the infamous systemd screen/tmux killer
+  services.logind.extraConfig = ''
+    KillUserProcesses=no
+  '';
+
 # TODO: write an anthy package
 # TODO: update vagrant to at lesat version 1.6 (for Windows guest support)
 # TODO: write packages for some repository management tools, such as myrepo, gr, Android's repo, and mu-repo
