@@ -12,37 +12,42 @@
 #      ../profiles/mathematics.nix
       ../profiles/printing.nix
 #      ../profiles/redshift.nix
-#      ../profiles/school.nix
+      ../profiles/school.nix
       ../profiles/server.nix
 #      ../profiles/telephony.nix
-#      ../profiles/virtualization.nix
+      ../profiles/virtualization.nix
 #      ../profiles/games.nix
+      ../profiles/drawing.nix
 
       # Experimental:
 #      ../profiles/mesa.nix
-      ../profiles/wayland.nix
+#      ../profiles/wayland.nix
       ../profiles/virtualreality.nix
+      ../profiles/steam.nix
     ];
 
   # Use the efi boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-#  services.xserver = {
-#    # Disable RenderAccel for faster rendering in terminal emulators.
-#    deviceSection = ''
-#      Option "RenderAccel" "false"
-#    '';
-#  };
+  # Enable the PCSC-Lite smart card reader daemon
+  services.pcscd.enable = true;
 
   # Specify port to bind to for SSH reverse tunneling
   services.ssh-phone-home = {
-    enable = true;
+    enable = false;
     bindPort = 2244;
   };
 
 #  networking.firewall.enable = false;
   networking.firewall.allowPing = true;
+
+  # Enable fingerprint reader auth
+  services.fprintd.enable = true;
+  security.pam.services.auntieneo.fprintAuth = true;
+
+  # Use GPG for SSH auth, etc.
+  programs.ssh.startAgent = false;
 
 #  # Share ethernet connection
 #  networking.nat = {
@@ -55,25 +60,4 @@
 #    ipAddress = "192.168.0.1";
 #    prefixLength = 24;
 #  };
-
-  # Define a user account for larry
-  users.extraUsers.larry = {
-    name = "larry";
-    group = "larry";
-    extraGroups = [
-      "audio"
-      "libvirtd"
-      "networkmanager"
-      "users"
-      "vboxusers"
-      "video"
-      "weston-launch"
-      "wheel"
-    ];
-    uid = 1002;
-    createHome = true;
-    home = "/home/larry";
-    shell = "/run/current-system/sw/bin/bash";
-  };
-  users.extraGroups.larry.gid = 1002;
 }

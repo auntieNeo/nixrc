@@ -8,6 +8,8 @@
 #    ../services/display/default.nix
   ];
 
+  services.rogue.enable = true;
+
   # Enable Adobe Flash player
   nixpkgs.config = {
     allowUnfree = true;
@@ -26,7 +28,6 @@
 
   environment.systemPackages = with pkgs; [
     anki
-    anthy
     briss
 #    calibre
     chromium
@@ -76,7 +77,7 @@
     pdftk
     scrot
 #    st-wl
-#    texlive.combined.scheme-full
+    texlive.combined.scheme-full
     typespeed
     # Install a patched version of rxvt_unicode (with text shadows).
     (lib.overrideDerivation pkgs.rxvt_unicode (attrs: {
@@ -96,6 +97,7 @@
     enabled = "ibus";
     ibus.engines = with pkgs.ibus-engines; [
       anthy
+      mozc
     ];
   };
 
@@ -122,6 +124,7 @@
     enable = true;
     layout = "dvorak";
     xkbOptions = "caps:hyper";
+    enableCtrlAltBackspace = true;
 
 #    displayManager = {
 #      slim = {

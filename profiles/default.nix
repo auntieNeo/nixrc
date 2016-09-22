@@ -12,6 +12,7 @@
     bridge-utils
     ctags
     expect
+    fuse
     git
     gnumake
     gnupg

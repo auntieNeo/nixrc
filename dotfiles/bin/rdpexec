@@ -12,7 +12,7 @@ close $f
 set timeout 10
 
 # TODO: get clipboard redirection working
-spawn -ignore HUP xfreerdp -u fg6tqj --app --plugin rail --data '$command' -- localhost
+spawn -ignore HUP xfreerdp -u fg6tqj --app --plugin rail --data '$command' -- 192.168.122.65
 
 expect {
   Password: {

@@ -10,15 +10,16 @@
     eclipses.eclipse_cpp_43
     gdb
 #    git-review  # TODO
+    git-lfs
     glapse
-    godot
+#    godot
     mercurial
     netbeans
     nixopsUnstable
     patchutils
     python
 #    polish-shell
-    pwclient
+#    pwclient
     R
 #    rubyLibs.jekyll
     scons
@@ -29,6 +30,11 @@
 #    vimPlugins.YouCompleteMe  # YCM is blocking vim process, probably due to vim plugin architecture.
 #    afpfs-fuse
   ];
+
+  nixpkgs.config.allowBroken = true;  # XXX: This is needed because UE4 depends on a broken build of llvm
+
+  # Enable this to support Unity3D
+  security.chromiumSuidSandbox.enable = true;
 
   nix = {
     distributedBuilds = false;
@@ -49,7 +55,7 @@
   # custom packages
   nixpkgs.config.packageOverrides = pkgs: rec {
     glapse = pkgs.callPackage ../pkgs/glapse/default.nix { };
-    godot = pkgs.callPackage ../pkgs/godot/default.nix { };
+#    godot = pkgs.callPackage ../pkgs/godot/default.nix { };  # FIXME
     polish-shell = pkgs.callPackage ../pkgs/polish-shell/default.nix { };
     pwclient = pkgs.callPackage ../pkgs/pwclient/default.nix { };
   };

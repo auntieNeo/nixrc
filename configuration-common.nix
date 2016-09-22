@@ -27,11 +27,11 @@ rec {
 
 #  networking.hostName = "${config.hostName}";
 
-  # Google nameservers
-  networking.nameservers = [
-    "8.8.8.8"
-    "8.8.4.4"
-  ];
+#  # Google nameservers
+#  networking.nameservers = [
+#    "8.8.8.8"
+#    "8.8.4.4"
+#  ];
 
   # Select internationalisation properties.
   i18n = {
@@ -68,6 +68,18 @@ rec {
 
   system.activationScripts =
   {
+    # Enable OpenCL
+    opencl =
+    ''
+      cd /etc
+      mkdir -p ./OpenCL/vendors
+      cd ./OpenCL/vendors
+#      echo '/nix/store/wwp9424ypv542mjagvvpf9zhc1z30i0b-beignet-1.1.2/lib/beignet/libcl.so' > intel.icd
+      rm -f intel.icd
+#      echo '/nix/store/khpgvl7qf367zjg0mhxkbpfgdxjvdx47-pocl-0.13/lib/libpocl.so' > pocl.icd
+      echo '/nix/store/x10znr2rgmffx8zfdx1ay3j6zqvyvsn7-pocl-0.13/lib/libpocl.so' > pocl.icd
+    '';
+
     # Configure various dotfiles.
     dotfiles = stringAfter [ "users" ]
     ''

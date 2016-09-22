@@ -2,7 +2,7 @@
 
 {
   # Enable PulseAudio
-  hardware.pulseaudio.enable = false;
+  hardware.pulseaudio.enable = true;
 
   environment.systemPackages = with pkgs; [
     apulse  # Allows ALSA applications to use pulse

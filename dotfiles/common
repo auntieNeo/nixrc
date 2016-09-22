@@ -14,3 +14,7 @@ PATH="$PATH:$HOME/.bin"
 
 # Disable the deprecated GREP_OPTIONS (now in my aliases)
 GREP_OPTIONS=
+
+# Use GnuPG as the ssh agent
+export SSH_AUTH_SOCK=${XDG_RUNTIME_DIR}/gnupg/S.gpg-agent.ssh
+gpg-agent --daemon --enable-ssh-support >/dev/null 2>/dev/null
