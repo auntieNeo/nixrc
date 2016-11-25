@@ -3,19 +3,19 @@
 {
   environment.systemPackages = with pkgs; [
 #    bzflag
-    dolphinEmuMaster
+#    dolphinEmuMaster
 #    mupen64plus
 #    nexuiz
-    openra
-    pcsx2
+#    openra
+#    pcsx2
 #    prboom  # TODO: fix this build
-    sauerbraten
+#    sauerbraten
 #    scorched3d  # TODO: fix this build
-    tesseract 
+#    tesseract 
 #    tremulous  # TODO: fix this package
 
     # Game related tools
-    qtsixa
+#    qtsixa
     steam
   ];
 

@@ -7,7 +7,6 @@
     cgdb
     cmake
     doxygen
-    eclipses.eclipse_cpp_43
     gdb
 #    git-review  # TODO
     git-lfs
@@ -26,6 +25,7 @@
     sloccount
 #    subversionClient
     valgrind
+    vimPlugins.latex-box
 #    vimPlugins.UltiSnips
 #    vimPlugins.YouCompleteMe  # YCM is blocking vim process, probably due to vim plugin architecture.
 #    afpfs-fuse

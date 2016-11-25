@@ -73,7 +73,7 @@
     nitrogen
     openbox
     openjdk
-    pdfjam
+#    pdfjam
     pdftk
     scrot
 #    st-wl

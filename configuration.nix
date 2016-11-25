@@ -27,6 +27,6 @@ rec {
   boot = {
     # Use more recent kernel for Intel HD Graphics 520 support
 #    kernelPackages = pkgs.linuxPackages_4_3;
-    kernelPackages = pkgs.linuxPackages_4_7;
+    kernelPackages = pkgs.linuxPackages_4_8;
   };
 }

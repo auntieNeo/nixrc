@@ -4,7 +4,7 @@
   environment.systemPackages = with pkgs; [
 #    mysqlWorkbench
 #    qtspim  # FIXME
-    octaveFull
+#    octaveFull
   ];
 
 #  services.postgresql = {

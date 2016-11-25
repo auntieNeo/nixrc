@@ -16,7 +16,7 @@
       ../profiles/server.nix
 #      ../profiles/telephony.nix
       ../profiles/virtualization.nix
-#      ../profiles/games.nix
+      ../profiles/games.nix
       ../profiles/drawing.nix
 
       # Experimental:
