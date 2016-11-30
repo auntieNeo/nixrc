@@ -32,8 +32,12 @@ nmap <C-S> :tabnext<CR>
 
 " map the tag navigation key (<C-]>) is difficult to reach
 nnoremap <C-n> <C-]>
-" Command for updating ctags with Nix include directories
+" command for updating ctags with Nix include directories
 command Ctags !ctags -R ../src $(echo $NIX_CFLAGS_COMPILE | grep -o '\S*include\S*')
+
+" map <F2> as a quick build key
+nmap <F2> :make!<CR><CR>:cw<CR>
+set autowrite
 
 " Vim is a piece of shit when it comes to failing gracefully, so disable these for now.
 "" YCM key bindings (tab binding is added later with hacks below)
