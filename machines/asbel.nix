@@ -24,6 +24,7 @@
 #      ../profiles/wayland.nix
       ../profiles/virtualreality.nix
       ../profiles/steam.nix
+      ../profiles/arduino.nix
     ];
 
   # Use the efi boot loader.
